@@ -1,0 +1,127 @@
+-- Productos para Little Caesars
+INSERT INTO `productos`(`idCategoria`, `idEmpresa`, `producto`, `descripcion`, `precio`, `imagen`) VALUES
+(1, 1, 'Pizza Pepperoni', 'Pizza mediana con extra pepperoni', 150.00, NULL),
+(1, 1, 'Crazy Bread', 'Pan de ajo con queso', 50.00, NULL);
+
+-- Productos para Pizza Hut
+INSERT INTO `productos`(`idCategoria`, `idEmpresa`, `producto`, `descripcion`, `precio`, `imagen`) VALUES
+(1, 2, 'Cheesy Bites', 'Pizza con bordes de queso', 190.00, NULL),
+(1, 2, 'Wings BBQ', 'Alitas bañadas en salsa BBQ', 110.00, NULL);
+
+-- Productos para KFC
+INSERT INTO `productos`(`idCategoria`, `idEmpresa`, `producto`, `descripcion`, `precio`, `imagen`) VALUES
+(2, 3, 'Combo 2 Piezas', '2 piezas de pollo, papas y soda', 120.00, NULL),
+(2, 3, 'Twister', 'Tortilla con pollo frito, ensalada y salsas', 90.00, NULL);
+
+-- Productos para McDonald's
+INSERT INTO `productos`(`idCategoria`, `idEmpresa`, `producto`, `descripcion`, `precio`, `imagen`) VALUES
+(2, 4, 'Big Mac', 'Hamburguesa doble con salsa especial', 130.00, NULL),
+(2, 4, 'McNuggets 10pcs', 'Nuggets de pollo con papas', 110.00, NULL);
+
+-- Productos para Subway
+INSERT INTO `productos`(`idCategoria`, `idEmpresa`, `producto`, `descripcion`, `precio`, `imagen`) VALUES
+(3, 5, 'Sub Pollo Teriyaki', 'Sub de pollo con salsa teriyaki', 115.00, NULL),
+(3, 5, 'Sub Italiano', 'Jamón, salami, pepperoni y vegetales', 125.00, NULL);
+
+-- Productos para Domino's Pizza
+INSERT INTO `productos`(`idCategoria`, `idEmpresa`, `producto`, `descripcion`, `precio`, `imagen`) VALUES
+(1, 6, 'Pizza Suprema', 'Pizza con carne, vegetales y queso', 180.00, NULL),
+(1, 6, 'Pan de Queso', 'Pan horneado con queso derretido', 60.00, NULL);
+
+-- Productos para Papa John's
+INSERT INTO `productos`(`idCategoria`, `idEmpresa`, `producto`, `descripcion`, `precio`, `imagen`) VALUES
+(1, 7, 'Pizza Garden', 'Pizza vegetariana con vegetales frescos', 170.00, NULL),
+(1, 7, 'Breadsticks', 'Palitos de pan con queso y ajo', 55.00, NULL);
+
+-- Productos para Taco Bell
+INSERT INTO `productos`(`idCategoria`, `idEmpresa`, `producto`, `descripcion`, `precio`, `imagen`) VALUES
+(4, 8, 'Crunchwrap Supreme', 'Tortilla rellena con carne, queso y vegetales', 95.00, NULL),
+(4, 8, 'Burrito Beef', 'Burrito de carne y frijoles', 85.00, NULL);
+
+-- Productos para Denny's
+INSERT INTO `productos`(`idCategoria`, `idEmpresa`, `producto`, `descripcion`, `precio`, `imagen`) VALUES
+(5, 9, 'Desayuno Grand Slam', 'Huevos, pancakes, salchichas y tocino', 150.00, NULL),
+(5, 9, 'Burger Bacon', 'Hamburguesa con tocino y queso', 130.00, NULL);
+
+-- Productos para Burger King
+INSERT INTO `productos`(`idCategoria`, `idEmpresa`, `producto`, `descripcion`, `precio`, `imagen`) VALUES
+(2, 10, 'Whopper', 'Hamburguesa clásica con carne flameada', 125.00, NULL),
+(2, 10, 'Onion Rings', 'Aros de cebolla crujientes', 45.00, NULL);
+
+-- Productos para Wendy's
+INSERT INTO `productos`(`idCategoria`, `idEmpresa`, `producto`, `descripcion`, `precio`, `imagen`) VALUES
+(2, 11, 'Baconator', 'Hamburguesa doble con tocino', 135.00, NULL),
+(2, 11, 'Papas Curly', 'Papas fritas en espiral', 55.00, NULL);
+
+-- Productos para Chili's
+INSERT INTO `productos`(`idCategoria`, `idEmpresa`, `producto`, `descripcion`, `precio`, `imagen`) VALUES
+(5, 12, 'Baby Back Ribs', 'Costillas con salsa BBQ', 210.00, NULL),
+(5, 12, 'Tex Mex Burger', 'Hamburguesa con guacamole y nachos', 160.00, NULL);
+
+-- Productos para Hardee's
+INSERT INTO `productos`(`idCategoria`, `idEmpresa`, `producto`, `descripcion`, `precio`, `imagen`) VALUES
+(2, 13, 'Famous Star', 'Hamburguesa con todo', 120.00, NULL),
+(2, 13, 'Hash Rounds', 'Papas hashbrown', 40.00, NULL);
+
+-- Productos para Popeyes
+INSERT INTO `productos`(`idCategoria`, `idEmpresa`, `producto`, `descripcion`, `precio`, `imagen`) VALUES
+(2, 14, 'Spicy Chicken Sandwich', 'Sandwich picante con pollo frito', 115.00, NULL),
+(2, 14, 'Chicken Tenders', 'Tiras de pollo empanizado', 100.00, NULL);
+
+-- Productos para Shake Shack
+INSERT INTO `productos`(`idCategoria`, `idEmpresa`, `producto`, `descripcion`, `precio`, `imagen`) VALUES
+(2, 15, 'ShackBurger', 'Hamburguesa con ShackSauce', 140.00, NULL),
+(2, 15, 'Milkshake Vainilla', 'Malteada clásica', 65.00, NULL);
+
+-- Productos para Pizza Factory
+INSERT INTO `productos`(`idCategoria`, `idEmpresa`, `producto`, `descripcion`, `precio`, `imagen`) VALUES
+(1, 16, 'Pizza Artesanal', 'Pizza hecha en horno de leña', 160.00, NULL),
+(1, 16, 'Rollitos de Queso', 'Rollitos rellenos de queso fundido', 70.00, NULL);
+
+-- Productos para Wingstop
+INSERT INTO `productos`(`idCategoria`, `idEmpresa`, `producto`, `descripcion`, `precio`, `imagen`) VALUES
+(4, 17, 'Wings Lemon Pepper', 'Alitas sabor limón y pimienta', 130.00, NULL),
+(4, 17, 'Wings Mango Habanero', 'Alitas picantes con mango', 135.00, NULL);
+
+-- Productos para Krispy Kreme
+INSERT INTO `productos`(`idCategoria`, `idEmpresa`, `producto`, `descripcion`, `precio`, `imagen`) VALUES
+(6, 18, 'Donas Glaseadas', 'Caja de 6 donas originales', 95.00, NULL),
+(6, 18, 'Donas Rellenas', 'Donas con relleno de crema o fresa', 110.00, NULL);
+
+-- Productos para Five Guys
+INSERT INTO `productos`(`idCategoria`, `idEmpresa`, `producto`, `descripcion`, `precio`, `imagen`) VALUES
+(2, 19, 'Cheeseburger', 'Hamburguesa con doble queso', 150.00, NULL),
+(2, 19, 'Papas Cajún', 'Papas fritas con sazón cajún', 65.00, NULL);
+
+-- Productos para Jersey Mike's
+INSERT INTO `productos`(`idCategoria`, `idEmpresa`, `producto`, `descripcion`, `precio`, `imagen`) VALUES
+(3, 20, 'Sub Roast Beef', 'Sub de roast beef con vegetales', 130.00, NULL),
+(3, 20, 'Sub Atún', 'Sub de atún fresco con mayonesa', 125.00, NULL);
+
+
+
+
+
+
+
+INSERT INTO `productos`( `idCategoria`, `idEmpresa`, `producto`, `descripcion`, `precio`, `imagen`) VALUES ( 2, 3, 'Hamburguesa Clásica', 'Hamburguesa Clásica delicioso y recién preparado.', 95.99, NULL);
+INSERT INTO `productos`( `idCategoria`, `idEmpresa`, `producto`, `descripcion`, `precio`, `imagen`) VALUES ( 2, 3, 'Hamburguesa Doble', 'Hamburguesa Doble delicioso y recién preparado.', 115.78, NULL);
+INSERT INTO `productos`( `idCategoria`, `idEmpresa`, `producto`, `descripcion`, `precio`, `imagen`) VALUES ( 2, 3, 'Pollo Frito', 'Pollo Frito delicioso y recién preparado.', 135.49, NULL);
+INSERT INTO `productos`( `idCategoria`, `idEmpresa`, `producto`, `descripcion`, `precio`, `imagen`) VALUES ( 2, 3, 'Hamburguesa con Queso', 'Hamburguesa con Queso delicioso y recién preparado.', 125.15, NULL);
+INSERT INTO `productos`( `idCategoria`, `idEmpresa`, `producto`, `descripcion`, `precio`, `imagen`) VALUES ( 2, 3, 'Tenders', 'Tenders delicioso y recién preparado.', 105.30, NULL);
+INSERT INTO `productos`( `idCategoria`, `idEmpresa`, `producto`, `descripcion`, `precio`, `imagen`) VALUES ( 2, 4, 'Pollo Frito', 'Pollo Frito delicioso y recién preparado.', 120.75, NULL);
+INSERT INTO `productos`( `idCategoria`, `idEmpresa`, `producto`, `descripcion`, `precio`, `imagen`) VALUES ( 2, 4, 'Hamburguesa Clásica', 'Hamburguesa Clásica delicioso y recién preparado.', 110.99, NULL);
+INSERT INTO `productos`( `idCategoria`, `idEmpresa`, `producto`, `descripcion`, `precio`, `imagen`) VALUES ( 2, 4, 'Hamburguesa con Queso', 'Hamburguesa con Queso delicioso y recién preparado.', 100.56, NULL);
+INSERT INTO `productos`( `idCategoria`, `idEmpresa`, `producto`, `descripcion`, `precio`, `imagen`) VALUES ( 2, 4, 'Hamburguesa Doble', 'Hamburguesa Doble delicioso y recién preparado.', 115.49, NULL);
+INSERT INTO `productos`( `idCategoria`, `idEmpresa`, `producto`, `descripcion`, `precio`, `imagen`) VALUES ( 2, 4, 'Tenders', 'Tenders delicioso y recién preparado.', 109.87, NULL);
+
+INSERT INTO `productos`( `idCategoria`, `idEmpresa`, `producto`, `descripcion`, `precio`, `imagen`) VALUES ( 3, 5, 'Sub de Pollo', 'Sub de Pollo delicioso y recién preparado.', 98.45, NULL);
+INSERT INTO `productos`( `idCategoria`, `idEmpresa`, `producto`, `descripcion`, `precio`, `imagen`) VALUES ( 3, 5, 'Sub Veggie', 'Sub Veggie delicioso y recién preparado.', 110.89, NULL);
+INSERT INTO `productos`( `idCategoria`, `idEmpresa`, `producto`, `descripcion`, `precio`, `imagen`) VALUES ( 3, 5, 'Sándwich Clásico', 'Sándwich Clásico delicioso y recién preparado.', 90.60, NULL);
+INSERT INTO `productos`( `idCategoria`, `idEmpresa`, `producto`, `descripcion`, `precio`, `imagen`) VALUES ( 3, 5, 'Sub Italiano', 'Sub Italiano delicioso y recién preparado.', 115.43, NULL);
+INSERT INTO `productos`( `idCategoria`, `idEmpresa`, `producto`, `descripcion`, `precio`, `imagen`) VALUES ( 3, 5, 'Wrap de Pollo', 'Wrap de Pollo delicioso y recién preparado.', 105.32, NULL);
+INSERT INTO `productos`( `idCategoria`, `idEmpresa`, `producto`, `descripcion`, `precio`, `imagen`) VALUES ( 3, 6, 'Sándwich Clásico', 'Sándwich Clásico delicioso y recién preparado.', 89.74, NULL);
+INSERT INTO `productos`( `idCategoria`, `idEmpresa`, `producto`, `descripcion`, `precio`, `imagen`) VALUES ( 3, 6, 'Sub de Pollo', 'Sub de Pollo delicioso y recién preparado.', 97.11, NULL);
+INSERT INTO `productos`( `idCategoria`, `idEmpresa`, `producto`, `descripcion`, `precio`, `imagen`) VALUES ( 3, 6, 'Wrap de Pollo', 'Wrap de Pollo delicioso y recién preparado.', 112.36, NULL);
+INSERT INTO `productos`( `idCategoria`, `idEmpresa`, `producto`, `descripcion`, `precio`, `imagen`) VALUES ( 3, 6, 'Sub Veggie', 'Sub Veggie delicioso y recién preparado.', 108.22, NULL);
+INSERT INTO `productos`( `idCategoria`, `idEmpresa`, `producto`, `descripcion`, `precio`, `imagen`) VALUES ( 3, 6, 'Sub Italiano', 'Sub Italiano delicioso y recién preparado.', 120.89, NULL);

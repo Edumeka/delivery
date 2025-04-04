@@ -22,8 +22,6 @@ idRol int  NOT NULL,
     FOREIGN KEY (idRol) REFERENCES roles(idRol)
 );
 
-
-
 CREATE TABLE empresas (
     idEmpresa INT AUTO_INCREMENT PRIMARY KEY,
     idUsuarioAdministrador INT NOT NULL,
@@ -142,7 +140,7 @@ CREATE TABLE carritos (
     cantidad INT,
     precioUnitario DECIMAL(10,2),
     subTotal DECIMAL(10,2),
-    fechaCreacion DATETIME DEFAULT CURRENT_TIMESTAMP,
+    fechaCreacion DATETIME DEFAULT,
     FOREIGN KEY (idUsuario) REFERENCES usuarios(idUsuario),
     FOREIGN KEY (idProducto) REFERENCES productos(idProducto)
 );

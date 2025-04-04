@@ -1,0 +1,6 @@
+INSERT INTO `categorias`(`idCategoria`, `categoria`) VALUES (1, 'Pizzas');
+INSERT INTO `categorias`(`idCategoria`, `categoria`) VALUES (2, 'Hamburguesas y Pollo');
+INSERT INTO `categorias`(`idCategoria`, `categoria`) VALUES (3, 'Subs y Sándwiches');
+INSERT INTO `categorias`(`idCategoria`, `categoria`) VALUES (4, 'Tex-Mex');
+INSERT INTO `categorias`(`idCategoria`, `categoria`) VALUES (5, 'Platos Fuertes');
+INSERT INTO `categorias`(`idCategoria`, `categoria`) VALUES (6, 'Postres y Donas');

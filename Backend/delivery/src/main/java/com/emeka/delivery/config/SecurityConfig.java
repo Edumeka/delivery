@@ -63,9 +63,11 @@ public class SecurityConfig {
 
                         .requestMatchers("/delivery/v1/empresas/obtenerEmpresas/*").permitAll()
                         .requestMatchers("/delivery/v1/clientes/crearDireccionCliente").permitAll()
-                       
+                        .requestMatchers("/delivery/v1/productos/*").permitAll()
                         .requestMatchers("/delivery/v1/empresas/crearDireccionEmpresa").hasAnyAuthority("VENDEDOR")
-                        .requestMatchers("/delivery/v1/empresas/crearDireccionEmpresa").hasAnyAuthority("ADMINISTRADOR")
+                        
+                        .requestMatchers("/delivery/v1/carritos/guardarCarrito").permitAll()
+                        .requestMatchers("/delivery/v1/carritos/verCarrito").permitAll()
                         .requestMatchers("/delivery/v1/empresas/guardarEmpresa").hasAnyAuthority("VENDEDOR")
                         .requestMatchers("/delivery/v1/empresas/guardarEmpresa").hasAnyAuthority("ADMINISTRADOR")
                         
@@ -92,7 +94,7 @@ public WebMvcConfigurer corsConfigurer() {
         @Override
         public void addCorsMappings(@SuppressWarnings("null") CorsRegistry registry) {
             registry.addMapping("/**")
-                   .allowedOrigins("http://localhost") // ⚠️ Cambia según tu frontend                
+                   .allowedOrigins("http://localhost:8000") // ⚠️ Cambia según tu frontend                
                  .allowedMethods("GET", "POST", "PUT", "DELETE")
                     .allowCredentials(true); // 🔥 Permitir el uso de cookies
         }

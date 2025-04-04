@@ -12,6 +12,7 @@
     <link rel="icon" type="image/png" href="{{ asset('img/logo_delivery.png') }}">
 
 
+
     <style>
         body {
             background: linear-gradient(to right, #1f1c2c, #928DAB);
@@ -66,6 +67,16 @@
 
                         </a>
                     </li>
+                    <li class="nav-item" id="liCarrito">
+                        <a class="nav-link position-relative" href="/carrito">
+                            <img src="{{ asset('img/carrito.png') }}" width="50">
+                            <span id="carrito-count"
+                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                0
+                            </span>
+                        </a>
+                    </li>
+
                     <li>
                         <a class="nav-link" title="Cerrar Sesión" id="btnCerrarSesion" href="#">
 
@@ -80,6 +91,8 @@
         {{ $slot }}
     </main>
     <script>
+        actualizarContadorCarrito();
+
         function getCookie(name) {
             const cookies = document.cookie.split("; ");
 
@@ -100,12 +113,15 @@
             if (jwtToken) {
 
                 $('#btnCerrarSesion').show(); // Mostrar el botón de cerrar sesión
+                $('#liCarrito').show();
             } else {
                 // Si no existe la cookie JWT, mostrar 'Iniciar sesión'
                 $('#btnCerrarSesion').hide(); // Mostrar el botón de cerrar sesión
                 document.getElementById('auth-link').textContent = 'Iniciar sesión';
                 document.getElementById('auth-link').setAttribute('href',
-                '{{ route('login') }}'); // Redirige a la página de login
+                    '{{ route('login') }}'); // Redirige a la página de login
+
+                $('#liCarrito').hide();
             }
         }
 
@@ -157,6 +173,35 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     cerrarSesion();
+                }
+            });
+        }
+
+        function actualizarContadorCarrito() {
+            const token = getCookie("jwt");
+            if (!token) {
+                document.getElementById("carrito-count").textContent = "0";
+                return;
+            }
+
+            $.ajax({
+                url: "http://localhost:8080/delivery/v1/carritos/verCarrito",
+                method: "GET",
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                },
+                success: function(carrito) {
+                    console.log("Carrito:", carrito);
+                    let totalCantidad = 0;
+                    carrito.forEach(item => {
+                        totalCantidad++;
+                    });
+
+                    document.getElementById("carrito-count").textContent = totalCantidad;
+                },
+                error: function(e) {
+                    console.error("Error al obtener el carrito:", e);
+                    document.getElementById("carrito-count").textContent = "0";
                 }
             });
         }

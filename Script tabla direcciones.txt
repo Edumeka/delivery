@@ -20,4 +20,17 @@ VALUES
 ( 'Calle La Ceiba, Col. El Roble', 'Sucursal Krispy Kreme', 24, NULL, 18, ST_GeomFromText('POINT(-87.1893 13.9511)')),
 ( 'Avenida México, Col. Miraflor', 'Sucursal Five Guys', 24, NULL, 19, ST_GeomFromText('POINT(-87.2008 13.9694)')),
 ( 'Avenida 1 de Mayo, Col. Los Pinos', 'Sucursal Jersey Mike\'s', 24, NULL, 20, ST_GeomFromText('POINT(-87.1914 13.9622)'));
-s
+
+
+INSERT INTO `direcciones`(`direccion`, `descripcion`, `idLugar`, `idUsuario`, `idEmpresa`, `ubicacion`) VALUES
+('Boulevard Juan Pablo II, Novacentro', 'A la par de Banco Ficohsa', 24, NULL, 31, ST_PointFromText('POINT(14.081800 -87.185300)')),
+('Colonia Tepeyac, Calle San Jorge', 'Frente a Clínica Dental Tepeyac', 24, NULL, 32, ST_PointFromText('POINT(14.082200 -87.185700)')),
+('Boulevard Morazán, Plaza Criolla', 'Frente a Little Caesars', 24, NULL, 33, ST_PointFromText('POINT(14.080200 -87.186600)')),
+('Colonia Palmira, Avenida República de Argentina', 'Cerca de Café El Indio', 24, NULL, 34, ST_PointFromText('POINT(14.079900 -87.185100)')),
+('Colonia Tepeyac, Torre Libertad', 'A la par de Laboratorio HMC', 24, NULL, 35, ST_PointFromText('POINT(14.081300 -87.185900)')),
+('Boulevard Suyapa, frente a Mall Multiplaza', 'Dentro de Taco Express', 24, NULL, 36, ST_PointFromText('POINT(14.081600 -87.183800)')),
+('Colonia Alameda, Avenida La Paz', 'Frente a Restaurante El Patio', 24, NULL, 37, ST_PointFromText('POINT(14.080800 -87.187000)')),
+('Colonia Lomas del Mayab, Torre Metrópolis', 'A la par de Espresso Americano', 24, NULL, 38, ST_PointFromText('POINT(14.081100 -87.184900)')),
+('Boulevard Los Próceres, Centro Comercial Mayab', 'A la par de Wendys', 24, NULL, 39, ST_PointFromText('POINT(14.080400 -87.186400)')),
+('Colonia Tepeyac, Calle Principal', 'Frente a Pollo Campero', 24, NULL, 40, ST_PointFromText('POINT(14.080900 -87.185200)'));
+

@@ -1,0 +1,146 @@
+USE delivery;
+
+CREATE TABLE estados (
+    idEstado INT AUTO_INCREMENT PRIMARY KEY,
+    estado VARCHAR(20) NOT NULL
+);
+CREATE TABLE roles (
+    idRol INT AUTO_INCREMENT PRIMARY KEY,  
+    rol VARCHAR(20) NOT NULL  
+);
+
+CREATE TABLE usuarios (
+    idUsuario INT AUTO_INCREMENT PRIMARY KEY,
+    idEstado INT,
+    nombre VARCHAR(20) NOT NULL,
+    apellido VARCHAR(20),
+    correo VARCHAR(30) UNIQUE NOT NULL,
+    contrasenia VARCHAR(255) NOT NULL,
+    dni VARCHAR(20) UNIQUE NOT NULL,
+    idUbicacionRepartidor INT NULL,
+idRol int  NOT NULL,
+    FOREIGN KEY (idEstado) REFERENCES estados(idEstado),
+    FOREIGN KEY (idRol) REFERENCES roles(idRol)
+);
+
+CREATE TABLE empresas (
+    idEmpresa INT AUTO_INCREMENT PRIMARY KEY,
+    idUsuarioAdministrador INT NOT NULL,
+    empresa VARCHAR(50) NOT NULL,
+    RTN VARCHAR(50) NOT NULL UNIQUE,
+    costoEnvio DOUBLE NOT NULL DEFAULT 0.0,
+    FOREIGN KEY (idUsuarioAdministrador) REFERENCES usuarios(idUsuario) ON DELETE CASCADE
+);
+
+CREATE TABLE lugares (
+    idLugar INT AUTO_INCREMENT PRIMARY KEY,
+    lugar VARCHAR(30) NOT NULL,
+    idLugarSuperior INT NULL,
+    FOREIGN KEY (idLugarSuperior) REFERENCES lugares(idLugar) ON DELETE SET NULL
+);
+
+CREATE TABLE direcciones (
+    idDireccion INT AUTO_INCREMENT PRIMARY KEY,
+    direccion TEXT NOT NULL,
+descripcion varchar (255) NULL,
+    idLugar INT NOT NULL,
+    idUsuario INT NULL,
+    idEmpresa INT NULL,
+    ubicacion POINT NOT NULL,
+    FOREIGN KEY (idLugar) REFERENCES lugares(idLugar),
+    FOREIGN KEY (idUsuario) REFERENCES usuarios(idUsuario) ON DELETE CASCADE,
+    FOREIGN KEY (idEmpresa) REFERENCES empresas(idEmpresa) ON DELETE CASCADE
+);
+
+-- Agregar FK de direcciones en usuarios
+ALTER TABLE usuarios 
+ADD FOREIGN KEY (idUbicacionRepartidor) REFERENCES direcciones(idDireccion) ON DELETE SET NULL;
+
+
+
+CREATE TABLE vehiculos (
+    idVehiculo INT AUTO_INCREMENT PRIMARY KEY,
+    idRepartidor INT NOT NULL,
+    vehiculo VARCHAR(40) NOT NULL,
+    modelo VARCHAR(40) NOT NULL,
+    marca VARCHAR(40) NOT NULL,
+    anio int NOT NULL,
+    velocidad INT NOT NULL,
+    FOREIGN KEY (idRepartidor) REFERENCES usuarios(idUsuario)
+);
+
+
+CREATE TABLE metodopagos (
+    idMetodoPago INT AUTO_INCREMENT PRIMARY KEY,
+    metodoPago VARCHAR(30) NOT NULL
+);
+
+CREATE TABLE pagos (
+    idPago INT AUTO_INCREMENT PRIMARY KEY,
+    idMetodoPago INT NOT NULL,
+    factura VARCHAR(50) NOT NULL UNIQUE,
+    totalFactura DOUBLE NOT NULL,
+    FOREIGN KEY (idMetodoPago) REFERENCES metodopagos(idMetodoPago) ON DELETE CASCADE
+);
+
+
+CREATE TABLE pedidos (
+    idPedido INT AUTO_INCREMENT PRIMARY KEY,
+    idComprador INT NOT NULL,
+    idEmpresa INT NOT NULL,
+    idRepartidor INT NULL,
+    idEstado INT NOT NULL,
+    idPago INT NOT NULL,
+    fechaPedido dateTime,
+    fechaFinal dateTime NULL,
+    costoEnvioTotal DOUBLE NOT NULL,
+    montoTotalDeProductos DOUBLE NOT NULL,
+    FOREIGN KEY (idComprador) REFERENCES usuarios(idUsuario) ON DELETE CASCADE,
+    FOREIGN KEY (idRepartidor) REFERENCES usuarios(idUsuario) ON DELETE SET NULL,
+    FOREIGN KEY (idEmpresa) REFERENCES empresas(idEmpresa) ON DELETE CASCADE,
+    FOREIGN KEY (idEstado) REFERENCES estados(idEstado),
+    FOREIGN KEY (idPago) REFERENCES pagos(idPago) ON DELETE CASCADE
+);
+
+CREATE TABLE categorias (
+    idCategoria INT AUTO_INCREMENT PRIMARY KEY,
+    categoria VARCHAR(30) NOT NULL
+);
+
+CREATE TABLE productos (
+    idProducto INT AUTO_INCREMENT PRIMARY KEY,
+    idCategoria INT NOT NULL,
+    idEmpresa INT NOT NULL,
+    producto VARCHAR(40) NOT NULL,
+    descripcion TEXT NOT NULL,
+    precio DOUBLE,
+    imagen TEXT,
+    FOREIGN KEY (idCategoria) REFERENCES categorias(idCategoria) ON DELETE CASCADE,
+    FOREIGN KEY (idEmpresa) REFERENCES empresas(idEmpresa) ON DELETE CASCADE
+);
+
+
+CREATE TABLE pedidosproductos (
+    idPedido INT NOT NULL,
+    idProducto INT NOT NULL,
+    cantidad INT,
+ precioUnitario DECIMAL(10,2),
+    subTotal DECIMAL(10,2),
+
+    PRIMARY KEY (idPedido, idProducto),
+    FOREIGN KEY (idPedido) REFERENCES pedidos(idPedido) ON DELETE CASCADE,
+    FOREIGN KEY (idProducto) REFERENCES productos(idProducto) ON DELETE CASCADE
+);
+
+CREATE TABLE carritos (
+    idCarrito INT AUTO_INCREMENT PRIMARY KEY,
+    idUsuario INT,
+    idProducto INT,
+    cantidad INT,
+    precioUnitario DECIMAL(10,2),
+    subTotal DECIMAL(10,2),
+    fechaCreacion DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (idUsuario) REFERENCES usuarios(idUsuario),
+    FOREIGN KEY (idProducto) REFERENCES productos(idProducto)
+);
+

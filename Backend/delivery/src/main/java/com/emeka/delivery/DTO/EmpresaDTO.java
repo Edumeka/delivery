@@ -13,8 +13,9 @@ public class EmpresaDTO {
      private int idEmpresa;
 
     private String empresa;
-
+   
     private String rtn;
+    private String imagen;
   
     private double costoEnvio;
     

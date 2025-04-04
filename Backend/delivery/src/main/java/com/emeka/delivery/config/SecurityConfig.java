@@ -59,7 +59,7 @@ public class SecurityConfig {
                         .requestMatchers("/delivery/v1/direcciones/paises").permitAll()
                         .requestMatchers("/delivery/v1/direcciones/departamentos/*").permitAll()
                         .requestMatchers("/delivery/v1/direcciones/municipios/*").permitAll()
-                        .requestMatchers("/delivery/v1/clientes/obtenerDireccionCliente/").hasAnyAuthority("CLIENTE")
+                        .requestMatchers("/delivery/v1/clientes/obtenerDireccionCliente").permitAll()
 
                         .requestMatchers("/delivery/v1/empresas/obtenerEmpresas/*").permitAll()
                         .requestMatchers("/delivery/v1/clientes/crearDireccionCliente").permitAll()
@@ -71,16 +71,6 @@ public class SecurityConfig {
                         
                         
 
-                                .requestMatchers("/api/usuario/areas").permitAll()
-                                .requestMatchers("/delivery/v1/auth/register").permitAll()
-                                .requestMatchers("/admin").hasAnyAuthority("ADMIN")
-                                .requestMatchers("/user").hasAnyAuthority("USUARIO")
-                                .requestMatchers("/usuario/actualizar/**").permitAll()
-                                .requestMatchers("/usuario/actualizarClave/**").permitAll()                                
-                                .requestMatchers("/usuario/**").permitAll()
-                                
-                                .requestMatchers("/api/areasoporte/**").permitAll()
-                                .requestMatchers("/user/ticket/**").permitAll()
                                 
                                 .anyRequest().authenticated()
                 )
@@ -102,8 +92,7 @@ public WebMvcConfigurer corsConfigurer() {
         @Override
         public void addCorsMappings(@SuppressWarnings("null") CorsRegistry registry) {
             registry.addMapping("/**")
-                   .allowedOrigins("http://localhost:8000") // ⚠️ Cambia según tu frontend
-                
+                   .allowedOrigins("http://localhost") // ⚠️ Cambia según tu frontend                
                  .allowedMethods("GET", "POST", "PUT", "DELETE")
                     .allowCredentials(true); // 🔥 Permitir el uso de cookies
         }

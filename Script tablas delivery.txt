@@ -16,12 +16,13 @@ CREATE TABLE usuarios (
     apellido VARCHAR(20),
     correo VARCHAR(30) UNIQUE NOT NULL,
     contrasenia VARCHAR(255) NOT NULL,
-    dni VARCHAR(20) UNIQUE NOT NULL,
-    idUbicacionRepartidor INT NULL,
+    dni VARCHAR(20) UNIQUE NOT NULL, 
 idRol int  NOT NULL,
     FOREIGN KEY (idEstado) REFERENCES estados(idEstado),
     FOREIGN KEY (idRol) REFERENCES roles(idRol)
 );
+
+
 
 CREATE TABLE empresas (
     idEmpresa INT AUTO_INCREMENT PRIMARY KEY,
@@ -52,11 +53,13 @@ descripcion varchar (255) NULL,
     FOREIGN KEY (idEmpresa) REFERENCES empresas(idEmpresa) ON DELETE CASCADE
 );
 
--- Agregar FK de direcciones en usuarios
-ALTER TABLE usuarios 
-ADD FOREIGN KEY (idUbicacionRepartidor) REFERENCES direcciones(idDireccion) ON DELETE SET NULL;
-
-
+create table ubicacionesRepartidores(
+    idUbicacionRepartidor int AUTO_INCREMENT PRIMARY KEY,
+    idRepartidor int Not Null,
+    idDireccion int NOT NULL,
+     FOREIGN KEY (idRepartidor) REFERENCES usuarios(idUsuario),
+    FOREIGN KEY (idDireccion) REFERENCES direcciones(idDireccion)
+);
 
 CREATE TABLE vehiculos (
     idVehiculo INT AUTO_INCREMENT PRIMARY KEY,

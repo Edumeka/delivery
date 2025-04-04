@@ -1,0 +1,23 @@
+INSERT INTO `direcciones`( `direccion`, `descripcion`, `idLugar`, `idUsuario`, `idEmpresa`, `ubicacion`) 
+VALUES
+('Boulevard Morazán, Col. Palmira', 'Sucursal principal Little Caesars', 24, NULL, 1, ST_GeomFromText('POINT(-87.1932 13.9675)')),
+( 'Avenida La Paz, Frente a La Ceiba', 'Sucursal Pizza Hut', 24, NULL, 2, ST_GeomFromText('POINT(-87.1997 13.9653)')),
+( 'Boulevard Suyapa, Col. Alameda', 'Sucursal KFC', 24, NULL, 3, ST_GeomFromText('POINT(-87.1865 13.9934)')),
+( 'Calle 5, Col. La Joya', 'Sucursal McDonald\'s', 24, NULL, 4, ST_GeomFromText('POINT(-87.1789 13.9805)')),
+( 'Avenida San Juan, Col. Miraflores', 'Sucursal Subway', 24, NULL, 5, ST_GeomFromText('POINT(-87.1971 13.9519)')),
+( 'Avenida Juan Pablo II, Col. El Trapiche', 'Sucursal Domino\'s Pizza', 24, NULL, 6, ST_GeomFromText('POINT(-87.2015 13.9671)')),
+( 'Calle Los Arcos, Col. La Puerta', 'Sucursal Papa John\'s', 24, NULL, 7, ST_GeomFromText('POINT(-87.1830 13.9792)')),
+( 'Avenida Las Américas, Col. Las Palmas', 'Sucursal Taco Bell', 24, NULL, 8, ST_GeomFromText('POINT(-87.1987 13.9689)')),
+( 'Avenida La Cumbre, Col. Colón', 'Sucursal Denny\'s', 24, NULL, 9, ST_GeomFromText('POINT(-87.1921 13.9453)')),
+( 'Avenida 10 de Septiembre, Col. Zacatecoluca', 'Sucursal Burger King', 24, NULL, 10, ST_GeomFromText('POINT(-87.1794 13.9586)')),
+( 'Calle Pinares, Col. El Cacao', 'Sucursal Wendy\'s', 24, NULL, 11, ST_GeomFromText('POINT(-87.1879 13.9913)')),
+( 'Boulevard Los Próceres, Col. Lempira', 'Sucursal Chili\'s', 24, NULL, 12, ST_GeomFromText('POINT(-87.1980 13.9672)')),
+( 'Calle de la Loma, Col. Miramar', 'Sucursal Hardee\'s', 24, NULL, 13, ST_GeomFromText('POINT(-87.1802 13.9751)')),
+( 'Boulevard Santa Fe, Col. El Pedregal', 'Sucursal Popeyes', 24, NULL, 14, ST_GeomFromText('POINT(-87.2067 13.9535)')),
+( 'Calle Los Laureles, Col. Santa Rosa', 'Sucursal Shake Shack', 24, NULL, 15, ST_GeomFromText('POINT(-87.1963 13.9584)')),
+( 'Avenida Las Maderas, Col. Montecillos', 'Sucursal Pizza Factory', 24, NULL, 16, ST_GeomFromText('POINT(-87.1952 13.9560)')),
+( 'Avenida Principal, Col. Los Andes', 'Sucursal Wingstop', 24, NULL, 17, ST_GeomFromText('POINT(-87.2019 13.9658)')),
+( 'Calle La Ceiba, Col. El Roble', 'Sucursal Krispy Kreme', 24, NULL, 18, ST_GeomFromText('POINT(-87.1893 13.9511)')),
+( 'Avenida México, Col. Miraflor', 'Sucursal Five Guys', 24, NULL, 19, ST_GeomFromText('POINT(-87.2008 13.9694)')),
+( 'Avenida 1 de Mayo, Col. Los Pinos', 'Sucursal Jersey Mike\'s', 24, NULL, 20, ST_GeomFromText('POINT(-87.1914 13.9622)'));
+s

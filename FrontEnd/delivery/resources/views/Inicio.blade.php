@@ -1,5 +1,7 @@
 <script src="{{ asset('js/deliveryApp.js') }}"></script>
 <script>
+    const empresasCercanasAlCliente = "{{ route('empresasCercanasAlCliente') }}";
+    
     var urlBienvenida = "{{ route('bienvenida') }}";
     comprobarLogueo();
 </script>
@@ -10,6 +12,8 @@
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 
 <x-plantilla>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <div class="container mt-4">
         <h2 class="text-center mb-4">Selecciona una dirección de entrega</h2>
 

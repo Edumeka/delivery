@@ -13,20 +13,53 @@ $(document).ready(function () {
         `);
         return;
     }
+// Seleccionar dirección
+$(document).on("click", ".seleccionarDireccion", function () {
+    let direccionId = $(this).closest(".direccion-card").data("id");
+    let direccion = $(this).closest(".direccion-card").data("direccion");
 
+    // Guardar la dirección en localStorage
+    localStorage.setItem('idDireccion', direccionId);  // Guarda el id  
 
-    // Seleccionar dirección
-    $(document).on("click", ".seleccionarDireccion", function () {
+    // Mostrar el SweetAlert con el botón "Aceptar"
+    Swal.fire({
+        title: "Dirección seleccionada",
+        text: "Has seleccionado la dirección: " + direccion,
+        icon: "success",
+        confirmButtonText: "Aceptar"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Crear el formulario oculto
+            var form = $('<form>', {
+                method: 'POST',
+                action: empresasCercanasAlCliente,  // Ruta para enviar los datos
+                style: 'display:none;'  // Asegurarnos de que el formulario no sea visible
+            });
 
-        let direccionId = $(this).closest(".direccion-card").data("id");
-        let direccion = $(this).closest(".direccion-card").data("direccion");
-        Swal.fire({
-            title: "Dirección seleccionada",
-            text: "Has seleccionado la direccion: " + direccion,
-            icon: "success",
-            confirmButtonText: "Aceptar"
-        });
+            // Agregar el token CSRF
+            form.append($('<input>', {
+                type: 'hidden',
+                name: '_token',
+                value: $('meta[name="csrf-token"]').attr('content')  // Obtenemos el token CSRF
+            }));
+
+            // Agregar el idDireccion al formulario
+            form.append($('<input>', {
+                type: 'hidden',
+                name: 'idDireccion',
+                value: direccionId  // El idDireccion que se enviará
+            }));
+
+            // Agregar el formulario al body y enviarlo
+            $('body').append(form);
+            form.submit();  // Enviar el formulario
+        }
     });
+});
+
+
+
+    
 });
 
 function verDireccionesDelCliente() {
@@ -35,7 +68,7 @@ function verDireccionesDelCliente() {
     const token = getCookie("jwt");
 
     $.ajax({
-        url: "http://localhost:8080/delivery/v1/clientes/obtenerDireccionCliente/",
+        url: "http://localhost:8080/delivery/v1/clientes/obtenerDireccionCliente",
         type: "GET",
         headers: { "Authorization": "Bearer " + token },
         success: function (data) {
@@ -333,5 +366,37 @@ function buscarDireccionEnMapa(direccion, map, marker) {
             console.error("Error al geocodificar la dirección", error);
         }
     });
+}
+
+function obtenerDireccionCliente() {
+    // Recuperar los datos almacenados en localStorage
+    let idDireccion = localStorage.getItem('idDireccion');
+
+    // Verificar si hay un idDireccion
+    if (idDireccion) {
+        console.log("Dirección seleccionada: " + idDireccion);
+        return idDireccion;  // Retorna el idDireccion si existe
+    } else {
+        console.log("No se ha seleccionado ninguna dirección.");
+        return null;  // Retorna null si no se ha seleccionado ninguna dirección
+    }
+}
+
+
+function comprobarDireccionDelCliente() {
+    let direccionSeleccionada = obtenerDireccionCliente();
+
+if (direccionSeleccionada) {
+    console.log("La dirección seleccionada es: " + direccionSeleccionada);
+} else {
+    console.log("No se ha seleccionado ninguna dirección.");
+}
+    
+}
+
+function eliminarDireccion(idDireccion) {
+    // Eliminar la dirección con la clave 'idDireccion' de localStorage
+    localStorage.removeItem('idDireccion');
+    console.log("Dirección con ID " + idDireccion + " eliminada.");
 }
 

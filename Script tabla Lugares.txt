@@ -1,0 +1,52 @@
+-- Nivel 1: El Mundo
+INSERT INTO `lugares`(`idLugar`, `lugar`, `idLugarSuperior`, `tipo`) VALUES
+(1, 'El Mundo', NULL, 'Mundo');
+
+-- Nivel 2: Continentes
+INSERT INTO `lugares`(`idLugar`, `lugar`, `idLugarSuperior`, `tipo`) VALUES
+(2, 'América', 1, 'Continente'),
+(3, 'Europa', 1, 'Continente'),
+(4, 'Asia', 1, 'Continente');
+
+-- Nivel 3: Países (solo Honduras)
+INSERT INTO `lugares`(`idLugar`, `lugar`, `idLugarSuperior`, `tipo`) VALUES
+(5, 'Honduras', 2, 'País');
+
+-- Nivel 4: Departamentos de Honduras
+INSERT INTO `lugares`(`idLugar`, `lugar`, `idLugarSuperior`, `tipo`) VALUES
+(6, 'Atlántida', 5, 'Departamento'),
+(7, 'Choluteca', 5, 'Departamento'),
+(8, 'Colón', 5, 'Departamento'),
+(9, 'Comayagua', 5, 'Departamento'),
+(10, 'Copán', 5, 'Departamento'),
+(11, 'Cortés', 5, 'Departamento'),
+(12, 'El Paraíso', 5, 'Departamento'),
+(13, 'Francisco Morazán', 5, 'Departamento'),
+(14, 'Gracias a Dios', 5, 'Departamento'),
+(15, 'Intibucá', 5, 'Departamento'),
+(16, 'Islas de la Bahía', 5, 'Departamento'),
+(17, 'La Paz', 5, 'Departamento'),
+(18, 'Lempira', 5, 'Departamento'),
+(19, 'Ocotepeque', 5, 'Departamento'),
+(20, 'Olancho', 5, 'Departamento'),
+(21, 'Santa Bárbara', 5, 'Departamento'),
+(22, 'Valle', 5, 'Departamento'),
+(23, 'Yoro', 5, 'Departamento');
+
+INSERT INTO `lugares`(`idLugar`, `lugar`, `idLugarSuperior`, `tipo`) VALUES
+(24, 'Distrito Central (Tegucigalpa y Comayagüela)', 13, 'Municipio'),
+(25, 'Cedros', 13, 'Municipio'),
+(26, 'Talanga', 13, 'Municipio'),
+(27, 'Valle de Ángeles', 13, 'Municipio'),
+(28, 'Santa Lucía', 13, 'Municipio'),
+(29, 'Guaimaca', 13, 'Municipio'),
+(30, 'Cantarranas', 13, 'Municipio');
+
+INSERT INTO `lugares`(`idLugar`, `lugar`, `idLugarSuperior`, `tipo`) VALUES
+(31, 'San Pedro Sula', 11, 'Municipio'),
+(32, 'Choloma', 11, 'Municipio'),
+(33, 'Puerto Cortés', 11, 'Municipio'),
+(34, 'La Lima', 11, 'Municipio'),
+(35, 'Villanueva', 11, 'Municipio'),
+(36, 'Pimienta', 11, 'Municipio'),
+(37, 'Omoa', 11, 'Municipio');

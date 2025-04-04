@@ -28,8 +28,8 @@ public class Empresa {
 
     private String empresa;
 
-    
     private String rtn;
+    private String imagen;
 
     @Column(name = "costoenvio")
     private double costoEnvio;

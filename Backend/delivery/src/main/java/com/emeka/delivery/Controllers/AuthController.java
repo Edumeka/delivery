@@ -15,7 +15,6 @@ import com.emeka.delivery.DTO.LoginDTO;
 import com.emeka.delivery.DTO.RegisterDTO;
 import com.emeka.delivery.DTO.UsuarioDTO;
 import com.emeka.delivery.Security.JwtGenerator;
-//import com.emeka.delivery.Services.RolService;
 import com.emeka.delivery.Services.UserService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;

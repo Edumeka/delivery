@@ -25,5 +25,9 @@ public interface DireccionRepository extends JpaRepository<Direccion, Integer> {
     
     Optional<Direccion> findByEmpresa(Empresa empresa);
 
+    
+    // Método para obtener la primera dirección de un usuario (si existe)
+    Optional<Direccion> findFirstByUsuario(Usuario usuario);
+
 
 }

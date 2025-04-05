@@ -99,6 +99,7 @@ public class EmpresaService {
                 .collect(Collectors.toList());
     }
 
+
     /**
      * Método para calcular la distancia entre dos puntos geográficos.
      *
@@ -170,5 +171,40 @@ public class EmpresaService {
     }
     
 
+    public double calcularDistanciaDelUsuario(int idEmpresa, String correo) {
+
+        // Obtener la dirección del usuario por correo
+        Optional<Usuario> usuarioOpt = usuarioRepository.findByCorreo(correo);
+        if (usuarioOpt.isPresent()) {
+            Usuario usuario = usuarioOpt.get();
     
+            // Obtener la dirección del usuario
+            Optional<Direccion> direccionUsuarioOpt = direccionRepository.findFirstByUsuario(usuario);
+            if (direccionUsuarioOpt.isPresent()) {
+                Direccion direccionUsuario = direccionUsuarioOpt.get();
+                Point ubicacionUsuario = direccionUsuario.getUbicacion(); // Obtener ubicación de la dirección del usuario
+    
+                // Obtener la empresa por ID
+                Optional<Empresa> empresaOpt = empresaRepository.findById(idEmpresa);
+                if (empresaOpt.isPresent()) {
+                    Empresa empresa = empresaOpt.get();
+    
+                    // Obtener la dirección de la empresa
+                    Optional<Direccion> direccionEmpresaOpt = direccionRepository.findByEmpresa(empresa);
+                    if (direccionEmpresaOpt.isPresent()) {
+                        Direccion direccionEmpresa = direccionEmpresaOpt.get();
+                        Point ubicacionEmpresa = direccionEmpresa.getUbicacion(); // Obtener ubicación de la dirección de la empresa
+    
+                        System.out.println("Ubicación del usuario: " + ubicacionUsuario);
+                        System.out.println("Ubicación de la empresa: " + ubicacionEmpresa);
+                        // Calcular y devolver la distancia entre el usuario y la empresa
+                        return calcularDistancia(ubicacionUsuario, ubicacionEmpresa);
+                    }
+                }
+            }
+        }
+    
+        // Retorna -1 en caso de que no se encuentren los datos necesarios
+        return -1;
+    }
 }

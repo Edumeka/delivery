@@ -1,6 +1,7 @@
 package com.emeka.delivery.DTO;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,6 +28,6 @@ public class ProductoDTO {
 
     private EmpresaDTO empresa;
 
-
+@JsonIgnore
     private Set<PedidoDTO> pedidos;
 }

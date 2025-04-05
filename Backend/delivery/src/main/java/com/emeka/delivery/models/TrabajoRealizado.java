@@ -1,5 +1,4 @@
 package com.emeka.delivery.models;
-
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
@@ -20,20 +19,22 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "pagos")
-public class Pago {
+@Table(name = "trabajosrealizados")
+public class TrabajoRealizado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idpago")
-    private int idPago;
-   
-    private String factura;
-    @Column(name = "totalfactura")
-    private double totalFactura;
+    @Column(name = "idTrabajo")
+    private int idTrabajo;
+    @Column(name = "kmrecorrido")
+    private double kmRecorrido;
 
+    private double ganancia;  
+    
     private LocalDateTime fecha;
     @OneToOne
-    @JoinColumn(name = "idmetodopago", referencedColumnName = "idmetodopago")
-    private MetodoPago metodoPago;
-    
+    @JoinColumn(name = "idpedido", referencedColumnName = "idpedido")
+    private Pedido pedido;
+@OneToOne
+@JoinColumn(name = "idrepartidor", referencedColumnName = "idusuario")
+    private Usuario repartidor;
 }

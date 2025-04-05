@@ -146,3 +146,13 @@ CREATE TABLE carritos (
     FOREIGN KEY (idProducto) REFERENCES productos(idProducto)
 );
 
+create table trabajosrealizados(
+    idTrabajo int AUTO_INCREMENT PRIMARY KEY,
+    idPedido int,
+    idRepartidor int,
+    kmRecorrido double,
+    ganancia double,
+    fecha dateTime,
+    FOREIGN KEY (idRepartidor) REFERENCES usuarios(idUsuario),
+    FOREIGN KEY (idPedido) REFERENCES pedidos(idPedido)
+);

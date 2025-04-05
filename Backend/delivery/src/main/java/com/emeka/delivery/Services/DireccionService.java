@@ -53,10 +53,7 @@ public String crearDireccionCliente(DireccionDTO direccionDTO, String correo) {
      // Buscar el usuario en la base de datos utilizando el correo extraído del token
     Usuario usuarioExistente = usuarioRepository.findByCorreo(correo)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuario no encontrado"));
-
-    
-   
-    try {
+       try {
     
 
         // Verificar si ya existe una dirección con ese usuario y dirección

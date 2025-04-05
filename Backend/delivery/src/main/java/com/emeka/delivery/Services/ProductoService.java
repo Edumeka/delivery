@@ -9,6 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.emeka.delivery.DTO.EmpresaDTO;
 import com.emeka.delivery.DTO.ProductoDTO;
 import com.emeka.delivery.Repositories.EmpresaRepository;
 import com.emeka.delivery.Repositories.ProductoRepository;
@@ -46,6 +47,21 @@ public class ProductoService {
                     .collect(Collectors.toList());
         } else {
             return Collections.emptyList(); // Retorna lista vacía si el usuario no existe o la empresa no se encontró
+        }
+    }
+
+    public EmpresaDTO obtenerEmpresaPorIdProducto(int idProducto) {
+        // Obtener el producto por ID
+        Producto producto = productoRepository.findById(idProducto).orElse(null);
+    
+        if (producto != null) {
+            // Obtener la empresa asociada al producto
+            Empresa empresa = producto.getEmpresa();
+    
+            // Convertir la empresa a DTO
+            return modelMapper.map(empresa, EmpresaDTO.class);
+        } else {
+            return null; // Retorna null si el producto no se encontró
         }
     }
     

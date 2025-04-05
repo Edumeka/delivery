@@ -74,7 +74,10 @@ public class SecurityConfig {
                         .requestMatchers("/delivery/v1/empresas/guardarEmpresa").hasAnyAuthority("ADMINISTRADOR")
                         
                         .requestMatchers("/delivery/v1/pedidos/guardarPedido").permitAll()
-
+                        .requestMatchers("/delivery/v1/metodopago/obtenerMetodoPago").permitAll()
+                        .requestMatchers("/delivery/v1/pagos/pagar").permitAll()
+                        .requestMatchers("/delivery/v1/productos/obtenerEmpresaPorProducto/*").permitAll()
+                        .requestMatchers("/delivery/v1/empresas/obtenerDistancia/*").permitAll()
                                 
                                 .anyRequest().authenticated()
                 )

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.emeka.delivery.DTO.EmpresaDTO;
 import com.emeka.delivery.DTO.ProductoDTO;
 import com.emeka.delivery.Security.JwtGenerator;
 import com.emeka.delivery.Services.ProductoService;
@@ -58,6 +59,11 @@ public class ProductoController {
 
 
 
+    }
+
+        @GetMapping("/obtenerEmpresaPorProducto/{idProducto}")
+    public EmpresaDTO obtenerEmpresaPorIdProducto(@PathVariable int idProducto) {
+        return productoService.obtenerEmpresaPorIdProducto(idProducto);
     }
     
 }

@@ -53,6 +53,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
                         authorization -> authorization
+                        .requestMatchers("/delivery/v1/auth/register").permitAll()
                         .requestMatchers("/delivery/v1/auth/login").permitAll()
                         .requestMatchers("/delivery/v1/auth/logued").permitAll()
                         .requestMatchers("/delivery/v1/auth/logout").permitAll()
@@ -68,10 +69,11 @@ public class SecurityConfig {
                         
                         .requestMatchers("/delivery/v1/carritos/guardarCarrito").permitAll()
                         .requestMatchers("/delivery/v1/carritos/verCarrito").permitAll()
+                        .requestMatchers("/delivery/v1/carritos/eliminarCarrito/*").permitAll()
                         .requestMatchers("/delivery/v1/empresas/guardarEmpresa").hasAnyAuthority("VENDEDOR")
                         .requestMatchers("/delivery/v1/empresas/guardarEmpresa").hasAnyAuthority("ADMINISTRADOR")
                         
-                        
+                        .requestMatchers("/delivery/v1/pedidos/guardarPedido").permitAll()
 
                                 
                                 .anyRequest().authenticated()

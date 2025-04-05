@@ -35,6 +35,7 @@ CREATE TABLE lugares (
     idLugar INT AUTO_INCREMENT PRIMARY KEY,
     lugar VARCHAR(30) NOT NULL,
     idLugarSuperior INT NULL,
+    tipo varchar(50),
     FOREIGN KEY (idLugarSuperior) REFERENCES lugares(idLugar) ON DELETE SET NULL
 );
 
@@ -140,7 +141,7 @@ CREATE TABLE carritos (
     cantidad INT,
     precioUnitario DECIMAL(10,2),
     subTotal DECIMAL(10,2),
-    fechaCreacion DATETIME DEFAULT,
+    fechaCreacion DATETIME,
     FOREIGN KEY (idUsuario) REFERENCES usuarios(idUsuario),
     FOREIGN KEY (idProducto) REFERENCES productos(idProducto)
 );

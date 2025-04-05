@@ -16,4 +16,6 @@ public interface CarritoRepository extends JpaRepository<Carrito, Integer> {
 
      List<Carrito> findByUsuario(Usuario usuario); // Método para obtener el carrito de un usuario específico
 
+     Carrito deleteByUsuario(Usuario usuario);
+
 }

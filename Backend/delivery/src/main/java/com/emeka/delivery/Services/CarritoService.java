@@ -90,4 +90,21 @@ public List<CarritoDTO> verCarrito(String correo) {
         throw new ResponseStatusException(HttpStatus.NOT_FOUND, null);
     }
 }
+
+/*
+ * Método para eliminar un carrito por su ID.
+ * Si el carrito existe, se elimina; si no, se lanza una excepción.
+ * @param idCarrito ID del carrito a eliminar.
+ * @return Mensaje indicando si el carrito fue eliminado o no encontrado.
+ */
+public String eliminarCarrito(int idCarrito) {
+    Optional<Carrito> carrito = carritoRepository.findById(idCarrito);
+    if (carrito.isPresent()) {
+        carritoRepository.delete(carrito.get());
+        return "Carrito eliminado con éxito";
+    } else {
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Carrito no encontrado");
+    }
+}
+
 }

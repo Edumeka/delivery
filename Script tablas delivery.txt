@@ -17,6 +17,7 @@ CREATE TABLE usuarios (
     correo VARCHAR(30) UNIQUE NOT NULL,
     contrasenia VARCHAR(255) NOT NULL,
     dni VARCHAR(20) UNIQUE NOT NULL, 
+telefono VARCHAR(20),
 idRol int  NOT NULL,
     FOREIGN KEY (idEstado) REFERENCES estados(idEstado),
     FOREIGN KEY (idRol) REFERENCES roles(idRol)
@@ -55,9 +56,8 @@ descripcion varchar (255) NULL,
 create table ubicacionesRepartidores(
     idUbicacionRepartidor int AUTO_INCREMENT PRIMARY KEY,
     idRepartidor int Not Null,
-    idDireccion int NOT NULL,
+    ubicacion POINT,
      FOREIGN KEY (idRepartidor) REFERENCES usuarios(idUsuario),
-    FOREIGN KEY (idDireccion) REFERENCES direcciones(idDireccion)
 );
 
 CREATE TABLE vehiculos (

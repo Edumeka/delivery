@@ -1,11 +1,17 @@
 package com.emeka.delivery.models;
 
+import java.util.Set;
+
+import org.hibernate.annotations.ManyToAny;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -35,13 +41,10 @@ public class Usuario {
     @JoinColumn(name = "idestado", referencedColumnName = "idestado")
     private Estado estado;
 
-    @OneToOne(optional = true)
-    @JoinColumn(name = "idubicacionrepartidor", referencedColumnName = "iddireccion")
-    private Direccion ubicacionRepartidor;
-
     @OneToOne
     @JoinColumn(name = "idrol", referencedColumnName = "idrol")
     private Rol rol;
 
-
+@OneToMany(mappedBy = "comprador")
+private Set<Pedido> pedidos;  // Relación OneToMany con Pedido
 }

@@ -5,6 +5,7 @@ use App\Http\Controllers\EmpresasController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\InicioController;
+use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ProductoController;
 
 Route::get('/', function () {
@@ -22,3 +23,4 @@ Route::post('/empresasCercanasAlCliente', [EmpresasController::class, 'empresasC
 Route::get('/productos/{idEmpresa}', [ProductoController::class, 'productos'])->name('productos');
 
 Route::get('/carrito', [CarritoController::class, 'verCarrito'])->name('carrito');
+Route::get('/pedido', [PedidoController::class, 'pedido'])->name('pedido');

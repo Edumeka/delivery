@@ -78,6 +78,8 @@ public class SecurityConfig {
                         .requestMatchers("/delivery/v1/pagos/pagar").permitAll()
                         .requestMatchers("/delivery/v1/productos/obtenerEmpresaPorProducto/*").permitAll()
                         .requestMatchers("/delivery/v1/empresas/obtenerDistancia/*").permitAll()
+
+                        .requestMatchers("/delivery/v1/pedidos/buscarRepartidor").permitAll()
                                 
                                 .anyRequest().authenticated()
                 )

@@ -2,12 +2,15 @@ package com.emeka.delivery.Services;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.emeka.delivery.DTO.UsuarioDTO;
 import com.emeka.delivery.Repositories.CarritoRepository;
 import com.emeka.delivery.Repositories.EstadoRepository;
 import com.emeka.delivery.Repositories.PedidoProductoRepository;
@@ -44,6 +47,9 @@ public class PedidoService {
 
     @Autowired
     private TrabajoRealizadoRepository trabajoRepository;
+
+    @Autowired
+    private ModelMapper modelMapper;
 
    
     @Transactional
@@ -190,7 +196,68 @@ pedido.setEstado(estadoEnProceso); // Asignar el estado al pedido
     }
 
 
+    @Transactional
+    public UsuarioDTO buscarRepartidor(String correo) {
+     
+        // 1. Buscar al usuario comprador
+        Usuario comprador = usuarioRepository.findByCorreo(correo)
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuario no encontrado"));
+         
+        // 2. Buscar el estado "EN PROCESO"
+        Estado estadoEnProceso = estadoRepository.findByEstado("En Proceso")
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Estado 'EN PROCESO' no encontrado"));
+       
+      // 3. Buscar el último pedido del comprador con estado "EN PROCESO"
+    Pedido pedido = pedidoRepository.findTopByCompradorAndEstadoOrderByFechaPedidoDesc(comprador, estadoEnProceso)
+    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No hay pedidos en proceso"));
 
+          
+        // 4. Buscar el estado "DISPONIBLE"
+        Estado estadoDisponible = estadoRepository.findByEstado("DISPONIBLE")
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Estado 'DISPONIBLE' no encontrado"));
+            System.out.println("Estado: "+estadoDisponible.getEstado());
+       
+            // 5. Buscar el repartidor con el estado "DISPONIBLE"
+    // 1. Obtener todos los usuarios
+List<Usuario> todosLosUsuarios = usuarioRepository.findAll();
+
+// 2. Recorrer la lista de usuarios para encontrar el primero que esté disponible
+Usuario repartidor = null;
+for (Usuario usuario : todosLosUsuarios) {
+    if (usuario.getEstado().getEstado().equals("DISPONIBLE")) {
+        repartidor = usuario;
+        break; // Terminar el loop al encontrar el primer repartidor disponible
+    }
+}
+
+// 3. Verificar si encontramos un repartidor disponible
+if (repartidor == null) {
+    throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No hay repartidores disponibles");
+}
+
+System.out.println("Repartidor disponible: " + repartidor.getNombre());
+         
+        // 6. Crear el estado 'PENDIENTE'
+        Estado estado = new Estado();
+        estado.setEstado("PENDIENTE");
+    
+        // 7. Asignar repartidor al pedido
+        pedido.setRepartidor(repartidor);
+        pedido.setEstado(estado);  // Cambiar el estado a 'PENDIENTE'
+        System.out.println("Pedido: "+pedido.getIdPedido());
+        
+      Pedido pedidoActualizado=  pedidoRepository.save(pedido); // Guardar el pedido actualizado
+
+      System.out.println("Pedido Actualizado: "+pedidoActualizado.getRepartidor().getNombre());
+        // 8. Crear el DTO de usuario para retornar
+        UsuarioDTO usuarioDTO =this.modelMapper.map(repartidor,UsuarioDTO.class);
+        System.out.println("Aqui se queda" + usuarioDTO.getNombre());
+        // 9. Retornar los detalles del usuario con los datos del pedido actualizado
+        return usuarioDTO;
+    }
+    
+    
+    
 
 
 }

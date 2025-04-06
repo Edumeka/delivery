@@ -3,6 +3,7 @@ package com.emeka.delivery.models;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,6 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -38,15 +40,15 @@ public class Pedido {
     @Column(name = "montototaldeproductos")
     private double montoTotalDeProductos;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "idcomprador", referencedColumnName = "idusuario")
     private Usuario comprador;
 
-    @OneToOne(optional = true)
+    @ManyToOne(optional = true)
     @JoinColumn(name = "idrepartidor", referencedColumnName = "idusuario")
     private Usuario repartidor;
 
-    @OneToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idestado", referencedColumnName = "idestado")
     private Estado estado;
 

@@ -102,7 +102,6 @@ if (opcionEstado.isPresent()) {
 
 // Asignamos el estado al usuario
 user.setEstado(estado);
-user.setUbicacionRepartidor(null); // Asignar null o una dirección predeterminada si es necesario     
        
         //user.setCreado(LocalDate.now());
         userRepository.save(user);

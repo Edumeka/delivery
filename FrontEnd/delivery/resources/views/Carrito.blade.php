@@ -37,6 +37,8 @@
 
 </x-plantilla>
 <script>
+    const urlPedido = "{{ route('pedido') }}";
+
     function verCarrito() {
         const token = getCookie("jwt");
 
@@ -282,7 +284,8 @@
                                 "Authorization": "Bearer " + token
                             },
                             success: function(resp) {
-                                console.log("PagoDTO:", pagoDTO);
+                                window.location.href = urlPedido;
+
                                 Swal.fire({
                                     icon: 'success',
                                     title: '¡Pago realizado!',

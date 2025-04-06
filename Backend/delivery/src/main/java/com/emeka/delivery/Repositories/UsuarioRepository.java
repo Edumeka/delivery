@@ -13,4 +13,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer>  {
     Optional<Usuario> findByCorreo(String correo);
     Boolean existsByCorreo(String correo);
     Optional<Usuario> findByEstado(Estado estado); // Esto buscaría un usuario por estado
+    Optional<Usuario> findTopByEstado_Estado(String estado);
+    Optional<Usuario> findFirstByEstado_Estado(String estado);
+
 }

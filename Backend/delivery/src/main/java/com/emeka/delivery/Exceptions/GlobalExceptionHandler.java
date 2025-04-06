@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.server.ResponseStatusException;
 
 import io.jsonwebtoken.ExpiredJwtException;
 
@@ -66,6 +67,17 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                              .body("Tu sesión ha caducado. Por favor, vuelve a iniciar sesión.");
     }
+// Manejo de ResponseStatusException (por ejemplo, no hay repartidores disponibles)
+@ExceptionHandler(ResponseStatusException.class)
+public ResponseEntity<ErrorObject> handleResponseStatusException(ResponseStatusException ex) {
+    ErrorObject errorObject = new ErrorObject();
+
+    errorObject.setStatusCode(ex.getStatusCode().value());  // Usa el código de estado con getStatusCode()
+    errorObject.setMessage(ex.getReason());  // Usa el mensaje de la excepción
+    errorObject.setTimestamp(new Date());
+
+    return new ResponseEntity<>(errorObject, ex.getStatusCode());
+}
 
 
 }

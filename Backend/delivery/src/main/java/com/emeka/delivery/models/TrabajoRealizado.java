@@ -23,7 +23,7 @@ import lombok.Setter;
 public class TrabajoRealizado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idTrabajo")
+    @Column(name = "idtrabajo")
     private int idTrabajo;
     @Column(name = "kmrecorrido")
     private double kmRecorrido;

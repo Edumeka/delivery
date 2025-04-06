@@ -20,4 +20,12 @@ class AdministradorController extends Controller
     {
         return view('adminusuarios');
     }
+    public function empresas()
+    {
+        return view('adminempresas');
+    }
+    public function productosMasVendidos()
+    {
+        return view('AdminPedidosMasVendidos');
+    }
 }

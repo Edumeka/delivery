@@ -131,6 +131,16 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.empresas') }}">
+                        <i class="fas fa-briefcase"></i> Empresas
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.productosMasVendidos') }}">
+                        <i class="fas fa-box"></i> Productos Mas Vendidos
+                    </a>
+                </li>
+                <li class="nav-item" hidden>
                     <a class="nav-link" href="#">
                         <i class="fas fa-chart-line"></i> Reportes
                     </a>

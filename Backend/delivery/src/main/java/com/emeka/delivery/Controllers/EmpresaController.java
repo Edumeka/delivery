@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -78,6 +80,21 @@ public ResponseEntity<Double> calcularDistanciaDelUsuario(@RequestHeader("Author
             return null;
         }
 }
+
+@GetMapping("/obtenerEmpresas")
+public List<EmpresaDTO> obtenerEmpresas() {
+    return empresaService.obtenerEmpresas();
+}
+
+
+@PostMapping("/editarEmpresa")
+public String editarEmpresa(@RequestBody EmpresaDTO empresaDTO) {
+    
+    return empresaService.editarEmpresa(empresaDTO);
+}
+
+
+
 
     
 }

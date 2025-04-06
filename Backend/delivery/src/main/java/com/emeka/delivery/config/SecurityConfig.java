@@ -90,6 +90,10 @@ public class SecurityConfig {
                         .requestMatchers("/delivery/v1/clientes/editarUsuario").permitAll()
                         .requestMatchers("/delivery/v1/roles/obtenerRoles").permitAll()
                         .requestMatchers("/delivery/v1/estados/obtenerEstados").permitAll()
+                        .requestMatchers("/delivery/v1/empresas/obtenerEmpresas").permitAll()
+                        .requestMatchers("/delivery/v1/empresas/editarEmpresa").permitAll()
+                        .requestMatchers("/delivery/v1/productos/productosMasVendidos").permitAll()
+                        
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session

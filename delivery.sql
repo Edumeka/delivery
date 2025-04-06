@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-04-2025 a las 07:35:00
+-- Tiempo de generación: 06-04-2025 a las 20:19:20
 -- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
+-- Versión de PHP: 8.4.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -81,30 +81,28 @@ CREATE TABLE `direcciones` (
 --
 
 INSERT INTO `direcciones` (`idDireccion`, `direccion`, `descripcion`, `idLugar`, `idUsuario`, `idEmpresa`, `ubicacion`) VALUES
-(21, 'Honduras Medical Center', 'Trabajo', 24, 1, NULL, 0x0000000001010000009f2876592dcc55c0064fd7c9cf302c40),
-(22, 'Boulevard Morazán, Col. Palmira', 'Sucursal principal Little Caesars', 24, NULL, 1, 0x000000000101000000956588635dcc55c08fc2f5285cef2b40),
-(23, 'Avenida La Paz, Frente a La Ceiba', 'Sucursal Pizza Hut', 24, NULL, 2, 0x000000000101000000b84082e2c7cc55c058a835cd3bee2b40),
-(24, 'Boulevard Suyapa, Col. Alameda', 'Sucursal KFC', 24, NULL, 3, 0x0000000001010000000e2db29defcb55c05bb1bfec9efc2b40),
-(25, 'Calle 5, Col. La Joya', 'Sucursal McDonald\'s', 24, NULL, 4, 0x0000000001010000004850fc1873cb55c0bc74931804f62b40),
-(26, 'Avenida San Juan, Col. Miraflores', 'Sucursal Subway', 24, NULL, 5, 0x000000000101000000aa8251499dcc55c0f31fd26f5fe72b40),
-(27, 'Avenida Juan Pablo II, Col. El Trapiche', 'Sucursal Domino\'s Pizza', 24, NULL, 6, 0x00000000010100000037894160e5cc55c057ec2fbb27ef2b40),
-(28, 'Calle Los Arcos, Col. La Puerta', 'Sucursal Papa John\'s', 24, NULL, 7, 0x000000000101000000c1caa145b6cb55c0857cd0b359f52b40),
-(29, 'Avenida Las Américas, Col. Las Palmas', 'Sucursal Taco Bell', 24, NULL, 8, 0x000000000101000000c66d3480b7cc55c055302aa913f02b40),
-(30, 'Avenida La Cumbre, Col. Colón', 'Sucursal Denny\'s', 24, NULL, 9, 0x000000000101000000f163cc5d4bcc55c04ed1915cfee32b40),
-(31, 'Avenida 10 de Septiembre, Col. Zacatecoluca', 'Sucursal Burger King', 24, NULL, 10, 0x000000000101000000c139234a7bcb55c026e4839ecdea2b40),
-(32, 'Calle Pinares, Col. El Cacao', 'Sucursal Wendy\'s', 24, NULL, 11, 0x000000000101000000c7bab88d06cc55c0b30c71ac8bfb2b40),
-(33, 'Boulevard Los Próceres, Col. Lempira', 'Sucursal Chili\'s', 24, NULL, 12, 0x000000000101000000e9263108accc55c0e561a1d634ef2b40),
-(34, 'Calle de la Loma, Col. Miramar', 'Sucursal Hardee\'s', 24, NULL, 13, 0x0000000001010000004faf946588cb55c0c1a8a44e40f32b40),
-(35, 'Boulevard Santa Fe, Col. El Pedregal', 'Sucursal Popeyes', 24, NULL, 14, 0x0000000001010000005305a3923acd55c0d578e92631e82b40),
-(36, 'Calle Los Laureles, Col. Santa Rosa', 'Sucursal Shake Shack', 24, NULL, 15, 0x0000000001010000001b0de02d90cc55c009f9a067b3ea2b40),
-(37, 'Avenida Las Maderas, Col. Montecillos', 'Sucursal Pizza Factory', 24, NULL, 16, 0x000000000101000000780b24287ecc55c0b6f3fdd478e92b40),
-(38, 'Avenida Principal, Col. Los Andes', 'Sucursal Wingstop', 24, NULL, 17, 0x000000000101000000fe43faedebcc55c01ff46c567dee2b40),
-(39, 'Calle La Ceiba, Col. El Roble', 'Sucursal Krispy Kreme', 24, NULL, 18, 0x0000000001010000008048bf7d1dcc55c082734694f6e62b40),
-(40, 'Avenida México, Col. Miraflor', 'Sucursal Five Guys', 24, NULL, 19, 0x0000000001010000005b423ee8d9cc55c01c7c613255f02b40),
-(41, 'Avenida 1 de Mayo, Col. Los Pinos', 'Sucursal Jersey Mike\'s', 24, NULL, 20, 0x000000000101000000151dc9e53fcc55c0226c787aa5ec2b40),
-(52, 'La Kennedy', 'Casa', 24, 1, NULL, 0x000000000101000000a9237450accc55c0de48ea4ec1232c40),
-(53, 'CAlpules', 'Mi casa', 24, 13, NULL, 0x0000000001010000001952ea37b8cc55c096253acb2c1a2c40),
-(54, 'Hon', 'Trabajo', 24, 13, NULL, 0x0000000001010000009f2876592dcc55c0064fd7c9cf302c40);
+(1, 'Boulevard Morazán, Col. Palmira', 'Sucursal principal Little Caesars', 24, NULL, 1, 0x000000000101000000956588635dcc55c08fc2f5285cef2b40),
+(2, 'Avenida La Paz, Frente a La Ceiba', 'Sucursal Pizza Hut', 24, NULL, 2, 0x000000000101000000b84082e2c7cc55c058a835cd3bee2b40),
+(3, 'Boulevard Suyapa, Col. Alameda', 'Sucursal KFC', 24, NULL, 3, 0x0000000001010000000e2db29defcb55c05bb1bfec9efc2b40),
+(4, 'Calle 5, Col. La Joya', 'Sucursal McDonald\'s', 24, NULL, 4, 0x0000000001010000004850fc1873cb55c0bc74931804f62b40),
+(5, 'Avenida San Juan, Col. Miraflores', 'Sucursal Subway', 24, NULL, 5, 0x000000000101000000aa8251499dcc55c0f31fd26f5fe72b40),
+(6, 'Avenida Juan Pablo II, Col. El Trapiche', 'Sucursal Domino\'s Pizza', 24, NULL, 6, 0x00000000010100000037894160e5cc55c057ec2fbb27ef2b40),
+(7, 'Calle Los Arcos, Col. La Puerta', 'Sucursal Papa John\'s', 24, NULL, 7, 0x000000000101000000c1caa145b6cb55c0857cd0b359f52b40),
+(8, 'Avenida Las Américas, Col. Las Palmas', 'Sucursal Taco Bell', 24, NULL, 8, 0x000000000101000000c66d3480b7cc55c055302aa913f02b40),
+(9, 'Avenida La Cumbre, Col. Colón', 'Sucursal Denny\'s', 24, NULL, 9, 0x000000000101000000f163cc5d4bcc55c04ed1915cfee32b40),
+(10, 'Avenida 10 de Septiembre, Col. Zacatecoluca', 'Sucursal Burger King', 24, NULL, 10, 0x000000000101000000c139234a7bcb55c026e4839ecdea2b40),
+(11, 'Calle Pinares, Col. El Cacao', 'Sucursal Wendy\'s', 24, NULL, 11, 0x000000000101000000c7bab88d06cc55c0b30c71ac8bfb2b40),
+(12, 'Boulevard Los Próceres, Col. Lempira', 'Sucursal Chili\'s', 24, NULL, 12, 0x000000000101000000e9263108accc55c0e561a1d634ef2b40),
+(13, 'Calle de la Loma, Col. Miramar', 'Sucursal Hardee\'s', 24, NULL, 13, 0x0000000001010000004faf946588cb55c0c1a8a44e40f32b40),
+(14, 'Boulevard Santa Fe, Col. El Pedregal', 'Sucursal Popeyes', 24, NULL, 14, 0x0000000001010000005305a3923acd55c0d578e92631e82b40),
+(15, 'Calle Los Laureles, Col. Santa Rosa', 'Sucursal Shake Shack', 24, NULL, 15, 0x0000000001010000001b0de02d90cc55c009f9a067b3ea2b40),
+(16, 'Avenida Las Maderas, Col. Montecillos', 'Sucursal Pizza Factory', 24, NULL, 16, 0x000000000101000000780b24287ecc55c0b6f3fdd478e92b40),
+(17, 'Avenida Principal, Col. Los Andes', 'Sucursal Wingstop', 24, NULL, 17, 0x000000000101000000fe43faedebcc55c01ff46c567dee2b40),
+(18, 'Calle La Ceiba, Col. El Roble', 'Sucursal Krispy Kreme', 24, NULL, 18, 0x0000000001010000008048bf7d1dcc55c082734694f6e62b40),
+(19, 'Avenida México, Col. Miraflor', 'Sucursal Five Guys', 24, NULL, 19, 0x0000000001010000005b423ee8d9cc55c01c7c613255f02b40),
+(20, 'Avenida 1 de Mayo, Col. Los Pinos', 'Sucursal Jersey Mike\'s', 24, NULL, 20, 0x000000000101000000151dc9e53fcc55c0226c787aa5ec2b40),
+(31, 'Honduras Medical Center', 'Trabajo', 24, 2, NULL, 0x0000000001010000009f2876592dcc55c0064fd7c9cf302c40),
+(32, 'Calpules, Tegucigalpa', 'Mi Casa', 24, 2, NULL, 0x0000000001010000001952ea37b8cc55c096253acb2c1a2c40);
 
 -- --------------------------------------------------------
 
@@ -164,13 +162,12 @@ CREATE TABLE `estados` (
 
 INSERT INTO `estados` (`idEstado`, `estado`) VALUES
 (1, 'ACTIVO'),
-(2, 'EN PROCESO'),
-(3, 'PENDIENTE'),
-(4, 'EN CAMINO'),
-(5, 'DISPONIBLE'),
-(6, 'EN RUTA'),
-(7, 'FINALIZADO'),
-(18, 'OCUPADO');
+(2, 'DISPONIBLE'),
+(3, 'OCUPADO'),
+(4, 'PENDIENTE'),
+(5, 'EN PROCESO'),
+(6, 'INACTIVO'),
+(7, 'FINALIZADO');
 
 -- --------------------------------------------------------
 
@@ -213,7 +210,7 @@ INSERT INTO `lugares` (`idLugar`, `lugar`, `idLugarSuperior`, `tipo`) VALUES
 (21, 'Santa Bárbara', 5, 'Departamento'),
 (22, 'Valle', 5, 'Departamento'),
 (23, 'Yoro', 5, 'Departamento'),
-(24, 'Distrito Central (Tegucigalpa y Comayagüela)', 13, 'Municipio'),
+(24, 'Distrito Central (Tegucigalpa ', 13, 'Municipio'),
 (25, 'Cedros', 13, 'Municipio'),
 (26, 'Talanga', 13, 'Municipio'),
 (27, 'Valle de Ángeles', 13, 'Municipio'),
@@ -266,39 +263,11 @@ CREATE TABLE `pagos` (
 --
 
 INSERT INTO `pagos` (`idPago`, `idMetodoPago`, `factura`, `totalFactura`, `fecha`) VALUES
-(1, 2, 'FAC-4445', 460, '2025-04-05 15:47:58.000000'),
-(2, 1, 'FAC-5513', 397.68986626029226, '2025-04-05 15:52:53.000000'),
-(3, 1, 'FAC-1834', 162.8550860453558, '2025-04-05 15:58:47.000000'),
-(4, 1, 'FAC-2978', 371.86, '2025-04-05 15:59:45.000000'),
-(5, 2, 'FAC-2303', 262.2, '2025-04-05 16:00:53.000000'),
-(6, 2, 'FAC-9402', 377.86, '2025-04-05 16:06:32.000000'),
-(7, 1, 'FAC-3152', 377.86, '2025-04-05 16:07:01.000000'),
-(8, 1, 'FAC-2871', 352.2, '2025-04-05 16:27:22.000000'),
-(9, 1, 'FAC-5603', 352.2, '2025-04-05 16:28:17.000000'),
-(10, 1, 'FAC-7719', 162.86, '2025-04-05 16:28:31.000000'),
-(11, 1, 'FAC-6980', 247.47, '2025-04-05 17:54:59.000000'),
-(12, 1, 'FAC-5346', 629.17, '2025-04-05 19:42:57.000000'),
-(13, 1, 'FAC-9376', 162.86, '2025-04-05 19:56:29.000000'),
-(14, 1, 'FAC-7735', 222.7, '2025-04-05 20:28:59.000000'),
-(15, 1, 'FAC-1743', 162.86, '2025-04-05 20:34:35.000000'),
-(16, 2, 'FAC-7529', 162.86, '2025-04-05 20:36:02.000000'),
-(17, 2, 'FAC-5803', 242.86, '2025-04-05 20:37:54.000000'),
-(18, 2, 'FAC-6429', 232.01, '2025-04-05 20:38:17.000000'),
-(19, 2, 'FAC-9671', 162.86, '2025-04-05 20:45:18.000000'),
-(20, 1, 'FAC-9409', 162.86, '2025-04-05 20:51:38.000000'),
-(21, 2, 'FAC-5322', 242.86, '2025-04-05 20:53:44.000000'),
-(22, 2, 'FAC-9397', 246.71, '2025-04-05 20:54:35.000000'),
-(23, 2, 'FAC-7202', 162.86, '2025-04-05 20:54:57.000000'),
-(24, 2, 'FAC-8907', 262.2, '2025-04-05 21:44:18.000000'),
-(25, 1, 'FAC-5308', 217.86, '2025-04-05 21:52:20.000000'),
-(26, 2, 'FAC-3996', 242.86, '2025-04-05 21:53:07.000000'),
-(27, 1, 'FAC-1462', 242.86, '2025-04-05 22:32:17.000000'),
-(28, 1, 'FAC-3033', 162.86, '2025-04-05 22:34:40.000000'),
-(29, 2, 'FAC-7120', 242.86, '2025-04-05 22:36:24.000000'),
-(30, 1, 'FAC-2076', 251.86, '2025-04-05 22:38:00.000000'),
-(31, 2, 'FAC-5533', 246.71, '2025-04-05 22:42:36.000000'),
-(32, 1, 'FAC-2550', 162.86, '2025-04-05 22:53:19.000000'),
-(33, 2, 'FAC-9559', 512.86, '2025-04-05 23:01:06.000000');
+(1, 1, 'FAC-1476', 171.09, '2025-04-06 12:00:51.000000'),
+(2, 1, 'FAC-1731', 572.48, '2025-04-06 12:04:55.000000'),
+(3, 1, 'FAC-5152', 462.48, '2025-04-06 12:06:12.000000'),
+(4, 1, 'FAC-8723', 397.29, '2025-04-06 12:08:54.000000'),
+(5, 2, 'FAC-3501', 291.36, '2025-04-06 12:09:28.000000');
 
 -- --------------------------------------------------------
 
@@ -324,37 +293,11 @@ CREATE TABLE `pedidos` (
 --
 
 INSERT INTO `pedidos` (`idPedido`, `idComprador`, `idEmpresa`, `idRepartidor`, `idEstado`, `idPago`, `fechaPedido`, `fechaFinal`, `costoEnvioTotal`, `montoTotalDeProductos`) VALUES
-(1, 1, 11, 7, 20, 1, '2025-04-05 15:47:58', NULL, 50, 460),
-(2, 1, 3, 7, 15, 2, '2025-04-05 15:52:53', NULL, 70, 270.98),
-(3, 13, 11, 7, 9, 3, '2025-04-05 15:58:47', NULL, 107.8550860453558, 55),
-(4, 1, 3, 7, 14, 4, '2025-04-05 15:59:45', NULL, 126.70986626029223, 245.15),
-(5, 1, 3, 7, 13, 5, '2025-04-05 16:00:53', NULL, 126.71000000000001, 135.49),
-(7, 1, 11, 7, 12, 7, '2025-04-05 16:07:01', NULL, 107.86, 270),
-(8, 1, 3, 7, 11, 8, '2025-04-05 16:27:22', NULL, 126.71000000000001, 225.49),
-(9, 1, 11, NULL, 7, 10, '2025-04-05 16:28:31', NULL, 107.86, 55),
-(10, 13, 17, 7, 8, 11, '2025-04-05 17:54:59', NULL, 112.47, 135),
-(11, 1, 3, 7, 10, 12, '2025-04-05 19:42:57', NULL, 126.71000000000001, 502.46000000000004),
-(12, 1, 11, 7, 19, 13, '2025-04-05 19:56:29', NULL, 107.86, 55),
-(13, 1, 3, 7, 3, 14, '2025-04-05 20:28:59', NULL, 126.71000000000001, 95.99),
-(14, 1, 11, 7, 3, 15, '2025-04-05 20:34:35', NULL, 107.86, 55),
-(15, 1, 11, 7, 3, 16, '2025-04-05 20:36:02', NULL, 107.86, 55),
-(16, 1, 11, 7, 3, 17, '2025-04-05 20:37:54', NULL, 107.86, 135),
-(17, 1, 3, 8, 3, 18, '2025-04-05 20:38:17', NULL, 126.71000000000001, 105.3),
-(18, 1, 11, 9, 3, 19, '2025-04-05 20:45:18', NULL, 107.86, 55),
-(19, 1, 11, 10, 3, 20, '2025-04-05 20:51:38', NULL, 107.86, 55),
-(20, 1, 11, 11, 7, 21, '2025-04-05 20:53:44', NULL, 107.86, 135),
-(21, 1, 3, 15, 3, 22, '2025-04-05 20:54:35', NULL, 126.71000000000001, 120),
-(22, 1, 11, 14, 3, 23, '2025-04-05 20:54:57', NULL, 107.86, 55),
-(23, 1, 3, 16, 7, 24, '2025-04-05 21:44:18', NULL, 126.71000000000001, 135.49),
-(24, 1, 11, 17, 7, 25, '2025-04-05 21:52:20', NULL, 107.86, 110),
-(25, 1, 11, 18, 7, 26, '2025-04-05 21:53:07', NULL, 107.86, 135),
-(26, 1, 11, 19, 3, 27, '2025-04-05 22:32:17', NULL, 107.86, 135),
-(27, 1, 11, 20, 3, 28, '2025-04-05 22:34:40', NULL, 107.86, 55),
-(28, 1, 11, 21, 3, 29, '2025-04-05 22:36:24', NULL, 107.86, 135),
-(29, 1, 3, 22, 3, 30, '2025-04-05 22:38:00', NULL, 126.71000000000001, 125.15),
-(30, 1, 3, 23, 7, 31, '2025-04-05 22:42:36', NULL, 126.71000000000001, 120),
-(31, 1, 11, 24, 7, 32, '2025-04-05 22:53:19', NULL, 107.86, 55),
-(32, 1, 11, 25, 7, 33, '2025-04-05 23:01:06', NULL, 107.86, 405);
+(1, 2, 1, 3, 7, 1, '2025-04-06 12:00:51', NULL, 121.09, 50),
+(2, 2, 2, 9, 7, 2, '2025-04-06 12:04:55', NULL, 132.48000000000002, 440),
+(3, 2, 2, 4, 7, 3, '2025-04-06 12:06:12', NULL, 132.48000000000002, 330),
+(4, 2, 17, 5, 7, 4, '2025-04-06 12:08:54', NULL, 137.29000000000002, 260),
+(5, 2, 12, 5, 7, 5, '2025-04-06 12:09:28', NULL, 131.36, 160);
 
 -- --------------------------------------------------------
 
@@ -377,41 +320,11 @@ CREATE TABLE `pedidosproductos` (
 --
 
 INSERT INTO `pedidosproductos` (`idPedido`, `idProducto`, `cantidad`, `preciounitario`, `subtotal`, `fechacreacion`, `idusuario`) VALUES
-(1, 21, 3, 135, 405, NULL, NULL),
-(1, 22, 1, 55, 55, NULL, NULL),
-(2, 43, 2, 135.49, 270.98, NULL, NULL),
-(3, 22, 1, 55, 55, NULL, NULL),
-(4, 5, 1, 120, 120, NULL, NULL),
-(4, 44, 1, 125.15, 125.15, NULL, NULL),
-(5, 43, 1, 135.49, 135.49, NULL, NULL),
-(7, 21, 2, 135, 270, NULL, NULL),
-(8, 6, 1, 90, 90, NULL, NULL),
-(8, 43, 1, 135.49, 135.49, NULL, NULL),
-(9, 22, 1, 55, 55, NULL, NULL),
-(10, 34, 1, 135, 135, NULL, NULL),
-(11, 41, 1, 95.99, 95.99, NULL, NULL),
-(11, 43, 3, 135.49, 406.47, NULL, NULL),
-(12, 22, 1, 55, 55, NULL, NULL),
-(13, 41, 1, 95.99, 95.99, NULL, NULL),
-(14, 22, 1, 55, 55, NULL, NULL),
-(15, 22, 1, 55, 55, NULL, NULL),
-(16, 21, 1, 135, 135, NULL, NULL),
-(17, 45, 1, 105.3, 105.3, NULL, NULL),
-(18, 22, 1, 55, 55, NULL, NULL),
-(19, 22, 1, 55, 55, NULL, NULL),
-(20, 21, 1, 135, 135, NULL, NULL),
-(21, 5, 1, 120, 120, NULL, NULL),
-(22, 22, 1, 55, 55, NULL, NULL),
-(23, 43, 1, 135.49, 135.49, NULL, NULL),
-(24, 22, 2, 55, 110, NULL, NULL),
-(25, 21, 1, 135, 135, NULL, NULL),
-(26, 21, 1, 135, 135, NULL, NULL),
-(27, 22, 1, 55, 55, NULL, NULL),
-(28, 21, 1, 135, 135, NULL, NULL),
-(29, 44, 1, 125.15, 125.15, NULL, NULL),
-(30, 5, 1, 120, 120, NULL, NULL),
-(31, 22, 1, 55, 55, NULL, NULL),
-(32, 21, 3, 135, 405, NULL, NULL);
+(1, 2, 1, 50, 50, NULL, NULL),
+(2, 4, 4, 110, 440, NULL, NULL),
+(3, 4, 3, 110, 330, NULL, NULL),
+(4, 33, 2, 130, 260, NULL, NULL),
+(5, 24, 1, 160, 160, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -498,6 +411,30 @@ INSERT INTO `productos` (`idProducto`, `idCategoria`, `idEmpresa`, `producto`, `
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `productosmasvendidos`
+--
+
+CREATE TABLE `productosmasvendidos` (
+  `idProductoMasVendido` int(11) NOT NULL,
+  `idProducto` int(11) DEFAULT NULL,
+  `cantidadVendida` int(11) DEFAULT NULL,
+  `ultimaFechaVenta` datetime DEFAULT NULL,
+  `totalingresos` double DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `productosmasvendidos`
+--
+
+INSERT INTO `productosmasvendidos` (`idProductoMasVendido`, `idProducto`, `cantidadVendida`, `ultimaFechaVenta`, `totalingresos`) VALUES
+(1, 2, 1, '2025-04-06 12:00:51', 50),
+(2, 4, 7, '2025-04-06 12:06:12', 770),
+(3, 33, 2, '2025-04-06 12:08:54', 260),
+(4, 24, 1, '2025-04-06 12:09:28', 160);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `roles`
 --
 
@@ -535,55 +472,11 @@ CREATE TABLE `trabajosrealizados` (
 --
 
 INSERT INTO `trabajosrealizados` (`idTrabajo`, `idPedido`, `idRepartidor`, `kmRecorrido`, `ganancia`, `fecha`) VALUES
-(1, 7, NULL, 11.571017209071162, 57.86, '2025-04-05 16:07:01'),
-(2, 8, NULL, 11.341973252058446, 56.71, '2025-04-05 16:27:22'),
-(3, 9, NULL, 11.571017209071162, 57.86, '2025-04-05 16:28:31'),
-(4, 10, NULL, 9.493593502742998, 47.47, '2025-04-05 17:54:59'),
-(5, 11, NULL, 11.341973252058446, 56.71, '2025-04-05 19:42:57'),
-(6, 12, NULL, 11.571017209071162, 57.86, '2025-04-05 19:56:29'),
-(7, 13, NULL, 11.341973252058446, 56.71, '2025-04-05 20:29:00'),
-(8, 14, NULL, 11.571017209071162, 57.86, '2025-04-05 20:34:35'),
-(9, 15, NULL, 11.571017209071162, 57.86, '2025-04-05 20:36:02'),
-(10, 16, NULL, 11.571017209071162, 57.86, '2025-04-05 20:37:54'),
-(11, 17, NULL, 11.341973252058446, 56.71, '2025-04-05 20:38:17'),
-(12, 18, NULL, 11.571017209071162, 57.86, '2025-04-05 20:45:18'),
-(13, 19, NULL, 11.571017209071162, 57.86, '2025-04-05 20:51:38'),
-(14, 20, NULL, 11.571017209071162, 57.86, '2025-04-05 20:53:44'),
-(15, 21, NULL, 11.341973252058446, 56.71, '2025-04-05 20:54:35'),
-(16, 22, NULL, 11.571017209071162, 57.86, '2025-04-05 20:54:57'),
-(17, 23, NULL, 11.341973252058446, 56.71, '2025-04-05 21:44:18'),
-(18, 24, NULL, 11.571017209071162, 57.86, '2025-04-05 21:52:20'),
-(19, 25, NULL, 11.571017209071162, 57.86, '2025-04-05 21:53:07'),
-(20, 26, NULL, 11.571017209071162, 57.86, '2025-04-05 22:32:17'),
-(21, 27, NULL, 11.571017209071162, 57.86, '2025-04-05 22:34:40'),
-(22, 28, NULL, 11.571017209071162, 57.86, '2025-04-05 22:36:24'),
-(23, 29, NULL, 11.341973252058446, 56.71, '2025-04-05 22:38:00'),
-(24, 30, NULL, 11.341973252058446, 56.71, '2025-04-05 22:42:36'),
-(25, 31, 24, 11.571017209071162, 57.86, '2025-04-05 22:53:19'),
-(26, 32, 25, 11.571017209071162, 57.86, '2025-04-05 23:01:06');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `ubicacionesrepartidores`
---
-
-CREATE TABLE `ubicacionesrepartidores` (
-  `idUbicacionRepartidor` int(11) NOT NULL,
-  `idRepartidor` int(11) NOT NULL,
-  `ubicacion` point DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `ubicacionesrepartidores`
---
-
-INSERT INTO `ubicacionesrepartidores` (`idUbicacionRepartidor`, `idRepartidor`, `ubicacion`) VALUES
-(1, 7, 0xe61000000101000000b4c876be9ffa2b40f90fe9b7af032dc0),
-(2, 8, 0xe610000001010000009a99999999f92b40f853e3a59b042dc0),
-(3, 9, 0xe6100000010100000046b6f3fdd4f82b403108ac1c5a042dc0),
-(4, 10, 0xe610000001010000007b14ae47e1fa2b40508d976e12032dc0),
-(5, 11, 0xe6100000010100000096438b6ce7fb2b4085eb51b81e052dc0);
+(1, 1, 3, 14.218155599452949, 71.09, '2025-04-06 12:00:51'),
+(2, 2, 9, 14.495023057499868, 72.48, '2025-04-06 12:04:55'),
+(3, 3, 4, 14.495023057499868, 72.48, '2025-04-06 12:06:12'),
+(4, 4, 5, 14.458225482649352, 72.29, '2025-04-06 12:08:54'),
+(5, 5, 5, 14.272390120367703, 71.36, '2025-04-06 12:09:28');
 
 -- --------------------------------------------------------
 
@@ -599,35 +492,25 @@ CREATE TABLE `usuarios` (
   `correo` varchar(255) DEFAULT NULL,
   `contrasenia` varchar(255) NOT NULL,
   `dni` varchar(255) DEFAULT NULL,
-  `idRol` int(11) NOT NULL,
   `telefono` varchar(255) DEFAULT NULL,
-  `idubicacionrepartidor` int(11) DEFAULT NULL
+  `idRol` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`idUsuario`, `idEstado`, `nombre`, `apellido`, `correo`, `contrasenia`, `dni`, `idRol`, `telefono`, `idubicacionrepartidor`) VALUES
-(1, 1, 'EDUARDO', 'MARTINEZ', 'emartinez@hmc.hn', '$2y$10$y3MHpjDet5p9u/yWeBB5pektkjsiKj6U7H.q2P1gizH24lzuwwrMS', '0801-1992-17896', 1, NULL, NULL),
-(7, 18, 'Carlos', 'Pérez', 'carlos.perez@example.com', 'password123', '1234567890', 2, NULL, NULL),
-(8, 18, 'Ana', 'Gómez', 'ana.gomez@example.com', 'password123', '2345678901', 2, NULL, NULL),
-(9, 18, 'Luis', 'Martínez', 'luis.martinez@example.com', 'password123', '3456789012', 2, NULL, NULL),
-(10, 18, 'Marta', 'Lopez', 'marta.lopez@example.com', 'password123', '4567890123', 2, NULL, NULL),
-(11, 18, 'Pedro', 'Ramírez', 'pedro.ramirez@example.com', 'password123', '5678901234', 2, NULL, NULL),
-(13, 1, 'EDUARDO', 'MARTINEZ', 'amartinez@hmc.hn', '$2y$10$gPXw1QiOv1bQJzLV909G6e9OeD..u/xcAsMdhkmz1/Gi6O5xppwTy', '0801-1992-178962', 3, NULL, NULL),
-(14, 18, 'Ana', 'Gómez', 'repartidor_1743910947568@gmail.com', '123345677', NULL, 2, '232342342', NULL),
-(15, 18, 'Carlos', 'Pérez', 'repartidor_1743910989348@gmail.com', '123345677', NULL, 2, '232342342', NULL),
-(16, 18, 'Luis', 'Martínez', 'repartidor_1743911063150@gmail.com', '123345677', NULL, 2, '232342342', NULL),
-(17, 18, 'Luis', 'Martínez', 'repartidor_1743911545896@gmail.com', '123345677', NULL, 2, '232342342', NULL),
-(18, 18, 'Luis', 'Martínez', 'repartidor_1743911591346@gmail.com', '123345677', NULL, 2, '232342342', NULL),
-(19, 18, 'Pedro', 'Ramírez', 'repartidor_1743913944332@gmail.com', 'repartidor_1743913944333', NULL, 2, '+504-1743913944333', NULL),
-(20, 18, 'Carlos', 'Pérez', 'repartidor_1743914084107@gmail.com', 'repartidor_1743914084107', NULL, 2, '+504-1743914084107', NULL),
-(21, 18, 'Ana', 'Gómez', 'repartidor_1743914187814@gmail.com', 'repartidor_1743914187814', NULL, 2, '+504-1743914187814', NULL),
-(22, 18, 'Luis', 'Martínez', 'repartidor_1743914285289@gmail.com', 'repartidor_1743914285289', NULL, 2, '+504-1743914285289', NULL),
-(23, 18, 'Ana', 'Gómez', 'repartidor_1743914560335@gmail.com', 'repartidor_1743914560336', NULL, 2, '+504-1743914560336', NULL),
-(24, 18, 'Marta', 'Lopez', 'repartidor_1743915204903@gmail.com', 'repartidor_1743915204903', NULL, 2, '+504-1743915204903', NULL),
-(25, 18, 'Ana', 'Gómez', 'repartidor_1743915668986@gmail.com', 'repartidor_1743915668987', NULL, 2, '+504-1743915668987', NULL);
+INSERT INTO `usuarios` (`idUsuario`, `idEstado`, `nombre`, `apellido`, `correo`, `contrasenia`, `dni`, `telefono`, `idRol`) VALUES
+(1, 1, 'EMEKA', 'CORP', 'emeka@emeka.hn', '12345678', '0801-1992-179862', '31512355', 3),
+(2, 1, 'Eduardo Gabriel', 'Martinez Zelaya', 'emartinez@hmc.hn', '$2y$10$cp7nBMLhPzAawCyoWmiWn.8tT185LOD..7dJIZjwIPvhYy4V77lAW', '0801-1992-17986', NULL, 1),
+(3, 3, 'Eduardo Gabriel', 'CROP', 'repartidor_1743962491847@gmail.com', 'repartidor_1743962491847', NULL, '+504-1743962491847', 2),
+(4, 3, 'Juan', 'Pérez', 'juan.perez@example.com', 'hashed_password', '12345678', '1234567890', 2),
+(5, 2, 'Carlos', 'López', 'carlos.lopez@example.com', 'hashed_password', '23456789', '2345678901', 2),
+(6, 2, 'Ana', 'García', 'ana.garcia@example.com', 'hashed_password', '34567890', '3456789012', 2),
+(7, 2, 'Laura', 'Martínez', 'laura.martinez@example.com', 'hashed_password', '45678901', '4567890123', 2),
+(8, 2, 'David', 'Rodríguez', 'david.rodriguez@example.com', 'hashed_password', '56789012', '5678901234', 2),
+(9, 3, 'Eduardo Gabriel', 'Pérez', 'repartidor_1743962698164@gmail.com', 'repartidor_1743962698164', NULL, '+504-1743962698164', 2),
+(10, 1, 'Eduardo Gabriel', 'Martinez Zelaya', 'amartinez@hmc.hn', '$2y$10$C7S8Ssykj9arZR59OGAxgey6DlGgredV7vEngTZc.f902LvPqA1lG', '0801', NULL, 3);
 
 -- --------------------------------------------------------
 
@@ -650,18 +533,13 @@ CREATE TABLE `vehiculos` (
 --
 
 INSERT INTO `vehiculos` (`idVehiculo`, `idRepartidor`, `vehiculo`, `modelo`, `marca`, `anio`, `velocidad`) VALUES
-(1, 7, 'Motocicleta', 'XRX 250', 'Honda', 2021, 150),
-(2, 8, 'Motocicleta', 'YBR 125', 'Yamaha', 2020, 120),
-(3, 9, 'Motocicleta', 'Gixxer 150', 'Suzuki', 2022, 130),
-(4, 10, 'Motocicleta', 'Duke 200', 'KTM', 2021, 140),
-(5, 11, 'Motocicleta', 'R15 V3', 'Yamaha', 2020, 135),
-(6, 19, 'Hatchback', 'X5', 'BMW', 0, 100),
-(7, 20, 'Pickup', 'Mustang', 'Chevrolet', 0, 250),
-(8, 21, 'Sedán', 'Corolla', 'Ford', 0, 100),
-(9, 22, 'Sedán', 'Mustang', 'Chevrolet', 0, 250),
-(10, 23, 'Sedán', 'Camaro', 'Ford', 0, 300),
-(11, 24, 'Sedán', 'Camaro', 'Honda', 0, 200),
-(12, 25, 'Sedán', 'Camaro', 'Honda', 0, 150);
+(1, 3, 'Pickup', 'X5', 'Honda', 0, 50),
+(2, 4, 'Moto', 'Ninja 400', 'Kawasaki', 2022, 180),
+(3, 5, 'Moto', 'R15', 'Yamaha', 2021, 160),
+(4, 6, 'Bicicleta', 'Mountain X', 'Specialized', 2023, 50),
+(5, 7, 'Scooter', 'E-125', 'Honda', 2022, 120),
+(6, 8, 'Moto', 'Duke 390', 'KTM', 2023, 170),
+(7, 9, 'SUV', 'X5', 'Toyota', 0, 154);
 
 --
 -- Índices para tablas volcadas
@@ -753,6 +631,13 @@ ALTER TABLE `productos`
   ADD KEY `idEmpresa` (`idEmpresa`);
 
 --
+-- Indices de la tabla `productosmasvendidos`
+--
+ALTER TABLE `productosmasvendidos`
+  ADD PRIMARY KEY (`idProductoMasVendido`),
+  ADD KEY `idProducto` (`idProducto`);
+
+--
 -- Indices de la tabla `roles`
 --
 ALTER TABLE `roles`
@@ -767,20 +652,12 @@ ALTER TABLE `trabajosrealizados`
   ADD KEY `idPedido` (`idPedido`);
 
 --
--- Indices de la tabla `ubicacionesrepartidores`
---
-ALTER TABLE `ubicacionesrepartidores`
-  ADD PRIMARY KEY (`idUbicacionRepartidor`),
-  ADD KEY `idRepartidor` (`idRepartidor`);
-
---
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`idUsuario`),
   ADD UNIQUE KEY `correo` (`correo`),
   ADD UNIQUE KEY `dni` (`dni`),
-  ADD UNIQUE KEY `UK5s5ax8wi1w608csyou6bve33x` (`idubicacionrepartidor`),
   ADD KEY `idEstado` (`idEstado`),
   ADD KEY `idRol` (`idRol`);
 
@@ -799,7 +676,7 @@ ALTER TABLE `vehiculos`
 -- AUTO_INCREMENT de la tabla `carritos`
 --
 ALTER TABLE `carritos`
-  MODIFY `idCarrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `idCarrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias`
@@ -811,7 +688,7 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `direcciones`
 --
 ALTER TABLE `direcciones`
-  MODIFY `idDireccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `idDireccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT de la tabla `empresas`
@@ -823,7 +700,7 @@ ALTER TABLE `empresas`
 -- AUTO_INCREMENT de la tabla `estados`
 --
 ALTER TABLE `estados`
-  MODIFY `idEstado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `idEstado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `lugares`
@@ -841,19 +718,25 @@ ALTER TABLE `metodopagos`
 -- AUTO_INCREMENT de la tabla `pagos`
 --
 ALTER TABLE `pagos`
-  MODIFY `idPago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `idPago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
   MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+
+--
+-- AUTO_INCREMENT de la tabla `productosmasvendidos`
+--
+ALTER TABLE `productosmasvendidos`
+  MODIFY `idProductoMasVendido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -865,25 +748,19 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `trabajosrealizados`
 --
 ALTER TABLE `trabajosrealizados`
-  MODIFY `idTrabajo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
-
---
--- AUTO_INCREMENT de la tabla `ubicacionesrepartidores`
---
-ALTER TABLE `ubicacionesrepartidores`
-  MODIFY `idUbicacionRepartidor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idTrabajo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `vehiculos`
 --
 ALTER TABLE `vehiculos`
-  MODIFY `idVehiculo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `idVehiculo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restricciones para tablas volcadas
@@ -948,6 +825,12 @@ ALTER TABLE `productos`
   ADD CONSTRAINT `productos_ibfk_2` FOREIGN KEY (`idEmpresa`) REFERENCES `empresas` (`idEmpresa`) ON DELETE CASCADE;
 
 --
+-- Filtros para la tabla `productosmasvendidos`
+--
+ALTER TABLE `productosmasvendidos`
+  ADD CONSTRAINT `productosmasvendidos_ibfk_1` FOREIGN KEY (`idProducto`) REFERENCES `productos` (`idProducto`);
+
+--
 -- Filtros para la tabla `trabajosrealizados`
 --
 ALTER TABLE `trabajosrealizados`
@@ -955,16 +838,9 @@ ALTER TABLE `trabajosrealizados`
   ADD CONSTRAINT `trabajosrealizados_ibfk_2` FOREIGN KEY (`idPedido`) REFERENCES `pedidos` (`idPedido`);
 
 --
--- Filtros para la tabla `ubicacionesrepartidores`
---
-ALTER TABLE `ubicacionesrepartidores`
-  ADD CONSTRAINT `ubicacionesrepartidores_ibfk_1` FOREIGN KEY (`idRepartidor`) REFERENCES `usuarios` (`idUsuario`);
-
---
 -- Filtros para la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD CONSTRAINT `FKd484ybcncx7igl40otssxd1cp` FOREIGN KEY (`idubicacionrepartidor`) REFERENCES `direcciones` (`idDireccion`),
   ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`idEstado`) REFERENCES `estados` (`idEstado`),
   ADD CONSTRAINT `usuarios_ibfk_2` FOREIGN KEY (`idRol`) REFERENCES `roles` (`idRol`);
 

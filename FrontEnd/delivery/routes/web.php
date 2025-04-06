@@ -32,3 +32,4 @@ Route::get('/admin/productosMasVendidos', [AdministradorController::class, 'prod
 Route::get('/admin/usuarios/historial', [AdministradorController::class, 'historialUsuario'])->name('admin.historialUsuario');
 Route::get('/admin/ganancias', [AdministradorController::class, 'ganancias'])->name('admin.ganancias');
 Route::get('/admin/empresasMasSolicitadas', [AdministradorController::class, 'empresasMasSolicitadas'])->name('admin.empresasMasSolicitadas');
+Route::get('/admin/empresas', [AdministradorController::class, 'empresas'])->name('admin.empresas');

@@ -207,4 +207,45 @@ public class EmpresaService {
         // Retorna -1 en caso de que no se encuentren los datos necesarios
         return -1;
     }
+
+
+    public List<EmpresaDTO> obtenerEmpresas() {
+        List<Empresa> empresas = empresaRepository.findAll();
+        List<EmpresaDTO> empresasDTO =empresas.stream()
+        .map(empresa -> modelMapper.map(empresa, EmpresaDTO.class))
+        .collect(Collectors.toList());
+
+        return empresasDTO;
+    }
+
+    public String editarEmpresa(EmpresaDTO empresaDTO) {
+        // Verificar si la empresa existe en la base de datos
+        Optional<Empresa> empresaOpt = empresaRepository.findById(empresaDTO.getIdEmpresa());
+        if (empresaOpt.isEmpty()) {
+            return "La empresa no existe en la base de datos.";
+        }
+
+        Empresa empresa = empresaOpt.get();
+
+        // Verificar si el usuario administrador existe en la base de datos
+        Optional<Usuario> adminOpt = usuarioRepository.findById(empresaDTO.getAdministradorEmpresa().getIdUsuario());
+        if (adminOpt.isEmpty()) {
+            return "El usuario administrador no existe.";
+        }
+
+        // Verificar que el costo de envío no sea negativo o inválido
+        if (empresaDTO.getCostoEnvio() <= 0) {
+            return "El costo de envío debe ser un valor positivo.";
+        }
+
+        // Actualizar los datos de la empresa
+        empresa.setEmpresa(empresaDTO.getEmpresa());
+        empresa.setCostoEnvio(empresaDTO.getCostoEnvio());
+        empresa.setAdministradorEmpresa(adminOpt.get());
+
+        // Guardar los cambios en la base de datos
+        empresaRepository.save(empresa);
+        return "Empresa actualizada correctamente.";
+    }
+
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-04-2025 a las 02:09:50
+-- Tiempo de generación: 06-04-2025 a las 07:35:00
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -164,14 +164,13 @@ CREATE TABLE `estados` (
 
 INSERT INTO `estados` (`idEstado`, `estado`) VALUES
 (1, 'ACTIVO'),
-(2, 'En Proceso'),
+(2, 'EN PROCESO'),
 (3, 'PENDIENTE'),
 (4, 'EN CAMINO'),
 (5, 'DISPONIBLE'),
 (6, 'EN RUTA'),
 (7, 'FINALIZADO'),
-(8, 'PENDIENTE'),
-(9, 'PENDIENTE');
+(18, 'OCUPADO');
 
 -- --------------------------------------------------------
 
@@ -277,7 +276,29 @@ INSERT INTO `pagos` (`idPago`, `idMetodoPago`, `factura`, `totalFactura`, `fecha
 (8, 1, 'FAC-2871', 352.2, '2025-04-05 16:27:22.000000'),
 (9, 1, 'FAC-5603', 352.2, '2025-04-05 16:28:17.000000'),
 (10, 1, 'FAC-7719', 162.86, '2025-04-05 16:28:31.000000'),
-(11, 1, 'FAC-6980', 247.47, '2025-04-05 17:54:59.000000');
+(11, 1, 'FAC-6980', 247.47, '2025-04-05 17:54:59.000000'),
+(12, 1, 'FAC-5346', 629.17, '2025-04-05 19:42:57.000000'),
+(13, 1, 'FAC-9376', 162.86, '2025-04-05 19:56:29.000000'),
+(14, 1, 'FAC-7735', 222.7, '2025-04-05 20:28:59.000000'),
+(15, 1, 'FAC-1743', 162.86, '2025-04-05 20:34:35.000000'),
+(16, 2, 'FAC-7529', 162.86, '2025-04-05 20:36:02.000000'),
+(17, 2, 'FAC-5803', 242.86, '2025-04-05 20:37:54.000000'),
+(18, 2, 'FAC-6429', 232.01, '2025-04-05 20:38:17.000000'),
+(19, 2, 'FAC-9671', 162.86, '2025-04-05 20:45:18.000000'),
+(20, 1, 'FAC-9409', 162.86, '2025-04-05 20:51:38.000000'),
+(21, 2, 'FAC-5322', 242.86, '2025-04-05 20:53:44.000000'),
+(22, 2, 'FAC-9397', 246.71, '2025-04-05 20:54:35.000000'),
+(23, 2, 'FAC-7202', 162.86, '2025-04-05 20:54:57.000000'),
+(24, 2, 'FAC-8907', 262.2, '2025-04-05 21:44:18.000000'),
+(25, 1, 'FAC-5308', 217.86, '2025-04-05 21:52:20.000000'),
+(26, 2, 'FAC-3996', 242.86, '2025-04-05 21:53:07.000000'),
+(27, 1, 'FAC-1462', 242.86, '2025-04-05 22:32:17.000000'),
+(28, 1, 'FAC-3033', 162.86, '2025-04-05 22:34:40.000000'),
+(29, 2, 'FAC-7120', 242.86, '2025-04-05 22:36:24.000000'),
+(30, 1, 'FAC-2076', 251.86, '2025-04-05 22:38:00.000000'),
+(31, 2, 'FAC-5533', 246.71, '2025-04-05 22:42:36.000000'),
+(32, 1, 'FAC-2550', 162.86, '2025-04-05 22:53:19.000000'),
+(33, 2, 'FAC-9559', 512.86, '2025-04-05 23:01:06.000000');
 
 -- --------------------------------------------------------
 
@@ -303,15 +324,37 @@ CREATE TABLE `pedidos` (
 --
 
 INSERT INTO `pedidos` (`idPedido`, `idComprador`, `idEmpresa`, `idRepartidor`, `idEstado`, `idPago`, `fechaPedido`, `fechaFinal`, `costoEnvioTotal`, `montoTotalDeProductos`) VALUES
-(1, 1, 11, NULL, 2, 1, '2025-04-05 15:47:58', NULL, 50, 460),
-(2, 1, 3, NULL, 2, 2, '2025-04-05 15:52:53', NULL, 70, 270.98),
+(1, 1, 11, 7, 20, 1, '2025-04-05 15:47:58', NULL, 50, 460),
+(2, 1, 3, 7, 15, 2, '2025-04-05 15:52:53', NULL, 70, 270.98),
 (3, 13, 11, 7, 9, 3, '2025-04-05 15:58:47', NULL, 107.8550860453558, 55),
-(4, 1, 3, NULL, 2, 4, '2025-04-05 15:59:45', NULL, 126.70986626029223, 245.15),
-(5, 1, 3, NULL, 2, 5, '2025-04-05 16:00:53', NULL, 126.71000000000001, 135.49),
-(7, 1, 11, NULL, 2, 7, '2025-04-05 16:07:01', NULL, 107.86, 270),
-(8, 1, 3, NULL, 2, 8, '2025-04-05 16:27:22', NULL, 126.71000000000001, 225.49),
+(4, 1, 3, 7, 14, 4, '2025-04-05 15:59:45', NULL, 126.70986626029223, 245.15),
+(5, 1, 3, 7, 13, 5, '2025-04-05 16:00:53', NULL, 126.71000000000001, 135.49),
+(7, 1, 11, 7, 12, 7, '2025-04-05 16:07:01', NULL, 107.86, 270),
+(8, 1, 3, 7, 11, 8, '2025-04-05 16:27:22', NULL, 126.71000000000001, 225.49),
 (9, 1, 11, NULL, 7, 10, '2025-04-05 16:28:31', NULL, 107.86, 55),
-(10, 13, 17, 7, 8, 11, '2025-04-05 17:54:59', NULL, 112.47, 135);
+(10, 13, 17, 7, 8, 11, '2025-04-05 17:54:59', NULL, 112.47, 135),
+(11, 1, 3, 7, 10, 12, '2025-04-05 19:42:57', NULL, 126.71000000000001, 502.46000000000004),
+(12, 1, 11, 7, 19, 13, '2025-04-05 19:56:29', NULL, 107.86, 55),
+(13, 1, 3, 7, 3, 14, '2025-04-05 20:28:59', NULL, 126.71000000000001, 95.99),
+(14, 1, 11, 7, 3, 15, '2025-04-05 20:34:35', NULL, 107.86, 55),
+(15, 1, 11, 7, 3, 16, '2025-04-05 20:36:02', NULL, 107.86, 55),
+(16, 1, 11, 7, 3, 17, '2025-04-05 20:37:54', NULL, 107.86, 135),
+(17, 1, 3, 8, 3, 18, '2025-04-05 20:38:17', NULL, 126.71000000000001, 105.3),
+(18, 1, 11, 9, 3, 19, '2025-04-05 20:45:18', NULL, 107.86, 55),
+(19, 1, 11, 10, 3, 20, '2025-04-05 20:51:38', NULL, 107.86, 55),
+(20, 1, 11, 11, 7, 21, '2025-04-05 20:53:44', NULL, 107.86, 135),
+(21, 1, 3, 15, 3, 22, '2025-04-05 20:54:35', NULL, 126.71000000000001, 120),
+(22, 1, 11, 14, 3, 23, '2025-04-05 20:54:57', NULL, 107.86, 55),
+(23, 1, 3, 16, 7, 24, '2025-04-05 21:44:18', NULL, 126.71000000000001, 135.49),
+(24, 1, 11, 17, 7, 25, '2025-04-05 21:52:20', NULL, 107.86, 110),
+(25, 1, 11, 18, 7, 26, '2025-04-05 21:53:07', NULL, 107.86, 135),
+(26, 1, 11, 19, 3, 27, '2025-04-05 22:32:17', NULL, 107.86, 135),
+(27, 1, 11, 20, 3, 28, '2025-04-05 22:34:40', NULL, 107.86, 55),
+(28, 1, 11, 21, 3, 29, '2025-04-05 22:36:24', NULL, 107.86, 135),
+(29, 1, 3, 22, 3, 30, '2025-04-05 22:38:00', NULL, 126.71000000000001, 125.15),
+(30, 1, 3, 23, 7, 31, '2025-04-05 22:42:36', NULL, 126.71000000000001, 120),
+(31, 1, 11, 24, 7, 32, '2025-04-05 22:53:19', NULL, 107.86, 55),
+(32, 1, 11, 25, 7, 33, '2025-04-05 23:01:06', NULL, 107.86, 405);
 
 -- --------------------------------------------------------
 
@@ -345,7 +388,30 @@ INSERT INTO `pedidosproductos` (`idPedido`, `idProducto`, `cantidad`, `preciouni
 (8, 6, 1, 90, 90, NULL, NULL),
 (8, 43, 1, 135.49, 135.49, NULL, NULL),
 (9, 22, 1, 55, 55, NULL, NULL),
-(10, 34, 1, 135, 135, NULL, NULL);
+(10, 34, 1, 135, 135, NULL, NULL),
+(11, 41, 1, 95.99, 95.99, NULL, NULL),
+(11, 43, 3, 135.49, 406.47, NULL, NULL),
+(12, 22, 1, 55, 55, NULL, NULL),
+(13, 41, 1, 95.99, 95.99, NULL, NULL),
+(14, 22, 1, 55, 55, NULL, NULL),
+(15, 22, 1, 55, 55, NULL, NULL),
+(16, 21, 1, 135, 135, NULL, NULL),
+(17, 45, 1, 105.3, 105.3, NULL, NULL),
+(18, 22, 1, 55, 55, NULL, NULL),
+(19, 22, 1, 55, 55, NULL, NULL),
+(20, 21, 1, 135, 135, NULL, NULL),
+(21, 5, 1, 120, 120, NULL, NULL),
+(22, 22, 1, 55, 55, NULL, NULL),
+(23, 43, 1, 135.49, 135.49, NULL, NULL),
+(24, 22, 2, 55, 110, NULL, NULL),
+(25, 21, 1, 135, 135, NULL, NULL),
+(26, 21, 1, 135, 135, NULL, NULL),
+(27, 22, 1, 55, 55, NULL, NULL),
+(28, 21, 1, 135, 135, NULL, NULL),
+(29, 44, 1, 125.15, 125.15, NULL, NULL),
+(30, 5, 1, 120, 120, NULL, NULL),
+(31, 22, 1, 55, 55, NULL, NULL),
+(32, 21, 3, 135, 405, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -472,7 +538,29 @@ INSERT INTO `trabajosrealizados` (`idTrabajo`, `idPedido`, `idRepartidor`, `kmRe
 (1, 7, NULL, 11.571017209071162, 57.86, '2025-04-05 16:07:01'),
 (2, 8, NULL, 11.341973252058446, 56.71, '2025-04-05 16:27:22'),
 (3, 9, NULL, 11.571017209071162, 57.86, '2025-04-05 16:28:31'),
-(4, 10, NULL, 9.493593502742998, 47.47, '2025-04-05 17:54:59');
+(4, 10, NULL, 9.493593502742998, 47.47, '2025-04-05 17:54:59'),
+(5, 11, NULL, 11.341973252058446, 56.71, '2025-04-05 19:42:57'),
+(6, 12, NULL, 11.571017209071162, 57.86, '2025-04-05 19:56:29'),
+(7, 13, NULL, 11.341973252058446, 56.71, '2025-04-05 20:29:00'),
+(8, 14, NULL, 11.571017209071162, 57.86, '2025-04-05 20:34:35'),
+(9, 15, NULL, 11.571017209071162, 57.86, '2025-04-05 20:36:02'),
+(10, 16, NULL, 11.571017209071162, 57.86, '2025-04-05 20:37:54'),
+(11, 17, NULL, 11.341973252058446, 56.71, '2025-04-05 20:38:17'),
+(12, 18, NULL, 11.571017209071162, 57.86, '2025-04-05 20:45:18'),
+(13, 19, NULL, 11.571017209071162, 57.86, '2025-04-05 20:51:38'),
+(14, 20, NULL, 11.571017209071162, 57.86, '2025-04-05 20:53:44'),
+(15, 21, NULL, 11.341973252058446, 56.71, '2025-04-05 20:54:35'),
+(16, 22, NULL, 11.571017209071162, 57.86, '2025-04-05 20:54:57'),
+(17, 23, NULL, 11.341973252058446, 56.71, '2025-04-05 21:44:18'),
+(18, 24, NULL, 11.571017209071162, 57.86, '2025-04-05 21:52:20'),
+(19, 25, NULL, 11.571017209071162, 57.86, '2025-04-05 21:53:07'),
+(20, 26, NULL, 11.571017209071162, 57.86, '2025-04-05 22:32:17'),
+(21, 27, NULL, 11.571017209071162, 57.86, '2025-04-05 22:34:40'),
+(22, 28, NULL, 11.571017209071162, 57.86, '2025-04-05 22:36:24'),
+(23, 29, NULL, 11.341973252058446, 56.71, '2025-04-05 22:38:00'),
+(24, 30, NULL, 11.341973252058446, 56.71, '2025-04-05 22:42:36'),
+(25, 31, 24, 11.571017209071162, 57.86, '2025-04-05 22:53:19'),
+(26, 32, 25, 11.571017209071162, 57.86, '2025-04-05 23:01:06');
 
 -- --------------------------------------------------------
 
@@ -522,12 +610,24 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`idUsuario`, `idEstado`, `nombre`, `apellido`, `correo`, `contrasenia`, `dni`, `idRol`, `telefono`, `idubicacionrepartidor`) VALUES
 (1, 1, 'EDUARDO', 'MARTINEZ', 'emartinez@hmc.hn', '$2y$10$y3MHpjDet5p9u/yWeBB5pektkjsiKj6U7H.q2P1gizH24lzuwwrMS', '0801-1992-17896', 1, NULL, NULL),
-(7, 5, 'Carlos', 'Pérez', 'carlos.perez@example.com', 'password123', '1234567890', 2, NULL, NULL),
-(8, 5, 'Ana', 'Gómez', 'ana.gomez@example.com', 'password123', '2345678901', 2, NULL, NULL),
-(9, 5, 'Luis', 'Martínez', 'luis.martinez@example.com', 'password123', '3456789012', 2, NULL, NULL),
-(10, 5, 'Marta', 'Lopez', 'marta.lopez@example.com', 'password123', '4567890123', 2, NULL, NULL),
-(11, 5, 'Pedro', 'Ramírez', 'pedro.ramirez@example.com', 'password123', '5678901234', 2, NULL, NULL),
-(13, 1, 'EDUARDO', 'MARTINEZ', 'amartinez@hmc.hn', '$2y$10$gPXw1QiOv1bQJzLV909G6e9OeD..u/xcAsMdhkmz1/Gi6O5xppwTy', '0801-1992-178962', 1, NULL, NULL);
+(7, 18, 'Carlos', 'Pérez', 'carlos.perez@example.com', 'password123', '1234567890', 2, NULL, NULL),
+(8, 18, 'Ana', 'Gómez', 'ana.gomez@example.com', 'password123', '2345678901', 2, NULL, NULL),
+(9, 18, 'Luis', 'Martínez', 'luis.martinez@example.com', 'password123', '3456789012', 2, NULL, NULL),
+(10, 18, 'Marta', 'Lopez', 'marta.lopez@example.com', 'password123', '4567890123', 2, NULL, NULL),
+(11, 18, 'Pedro', 'Ramírez', 'pedro.ramirez@example.com', 'password123', '5678901234', 2, NULL, NULL),
+(13, 1, 'EDUARDO', 'MARTINEZ', 'amartinez@hmc.hn', '$2y$10$gPXw1QiOv1bQJzLV909G6e9OeD..u/xcAsMdhkmz1/Gi6O5xppwTy', '0801-1992-178962', 3, NULL, NULL),
+(14, 18, 'Ana', 'Gómez', 'repartidor_1743910947568@gmail.com', '123345677', NULL, 2, '232342342', NULL),
+(15, 18, 'Carlos', 'Pérez', 'repartidor_1743910989348@gmail.com', '123345677', NULL, 2, '232342342', NULL),
+(16, 18, 'Luis', 'Martínez', 'repartidor_1743911063150@gmail.com', '123345677', NULL, 2, '232342342', NULL),
+(17, 18, 'Luis', 'Martínez', 'repartidor_1743911545896@gmail.com', '123345677', NULL, 2, '232342342', NULL),
+(18, 18, 'Luis', 'Martínez', 'repartidor_1743911591346@gmail.com', '123345677', NULL, 2, '232342342', NULL),
+(19, 18, 'Pedro', 'Ramírez', 'repartidor_1743913944332@gmail.com', 'repartidor_1743913944333', NULL, 2, '+504-1743913944333', NULL),
+(20, 18, 'Carlos', 'Pérez', 'repartidor_1743914084107@gmail.com', 'repartidor_1743914084107', NULL, 2, '+504-1743914084107', NULL),
+(21, 18, 'Ana', 'Gómez', 'repartidor_1743914187814@gmail.com', 'repartidor_1743914187814', NULL, 2, '+504-1743914187814', NULL),
+(22, 18, 'Luis', 'Martínez', 'repartidor_1743914285289@gmail.com', 'repartidor_1743914285289', NULL, 2, '+504-1743914285289', NULL),
+(23, 18, 'Ana', 'Gómez', 'repartidor_1743914560335@gmail.com', 'repartidor_1743914560336', NULL, 2, '+504-1743914560336', NULL),
+(24, 18, 'Marta', 'Lopez', 'repartidor_1743915204903@gmail.com', 'repartidor_1743915204903', NULL, 2, '+504-1743915204903', NULL),
+(25, 18, 'Ana', 'Gómez', 'repartidor_1743915668986@gmail.com', 'repartidor_1743915668987', NULL, 2, '+504-1743915668987', NULL);
 
 -- --------------------------------------------------------
 
@@ -554,7 +654,14 @@ INSERT INTO `vehiculos` (`idVehiculo`, `idRepartidor`, `vehiculo`, `modelo`, `ma
 (2, 8, 'Motocicleta', 'YBR 125', 'Yamaha', 2020, 120),
 (3, 9, 'Motocicleta', 'Gixxer 150', 'Suzuki', 2022, 130),
 (4, 10, 'Motocicleta', 'Duke 200', 'KTM', 2021, 140),
-(5, 11, 'Motocicleta', 'R15 V3', 'Yamaha', 2020, 135);
+(5, 11, 'Motocicleta', 'R15 V3', 'Yamaha', 2020, 135),
+(6, 19, 'Hatchback', 'X5', 'BMW', 0, 100),
+(7, 20, 'Pickup', 'Mustang', 'Chevrolet', 0, 250),
+(8, 21, 'Sedán', 'Corolla', 'Ford', 0, 100),
+(9, 22, 'Sedán', 'Mustang', 'Chevrolet', 0, 250),
+(10, 23, 'Sedán', 'Camaro', 'Ford', 0, 300),
+(11, 24, 'Sedán', 'Camaro', 'Honda', 0, 200),
+(12, 25, 'Sedán', 'Camaro', 'Honda', 0, 150);
 
 --
 -- Índices para tablas volcadas
@@ -692,7 +799,7 @@ ALTER TABLE `vehiculos`
 -- AUTO_INCREMENT de la tabla `carritos`
 --
 ALTER TABLE `carritos`
-  MODIFY `idCarrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `idCarrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias`
@@ -716,7 +823,7 @@ ALTER TABLE `empresas`
 -- AUTO_INCREMENT de la tabla `estados`
 --
 ALTER TABLE `estados`
-  MODIFY `idEstado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `idEstado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `lugares`
@@ -734,13 +841,13 @@ ALTER TABLE `metodopagos`
 -- AUTO_INCREMENT de la tabla `pagos`
 --
 ALTER TABLE `pagos`
-  MODIFY `idPago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `idPago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT de la tabla `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
@@ -758,7 +865,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `trabajosrealizados`
 --
 ALTER TABLE `trabajosrealizados`
-  MODIFY `idTrabajo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idTrabajo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `ubicacionesrepartidores`
@@ -770,13 +877,13 @@ ALTER TABLE `ubicacionesrepartidores`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `vehiculos`
 --
 ALTER TABLE `vehiculos`
-  MODIFY `idVehiculo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idVehiculo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Restricciones para tablas volcadas

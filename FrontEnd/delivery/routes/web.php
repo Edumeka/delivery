@@ -7,6 +7,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\InicioController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\AdministradorController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -24,3 +25,4 @@ Route::get('/productos/{idEmpresa}', [ProductoController::class, 'productos'])->
 
 Route::get('/carrito', [CarritoController::class, 'verCarrito'])->name('carrito');
 Route::get('/pedido', [PedidoController::class, 'pedido'])->name('pedido');
+Route::get('/admin', [AdministradorController::class, 'inicio'])->name('admin');

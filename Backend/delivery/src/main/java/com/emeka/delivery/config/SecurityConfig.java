@@ -83,6 +83,7 @@ public class SecurityConfig {
                         .requestMatchers("/delivery/v1/pedidos/actualizarEstadoDelPedido").permitAll()
                         .requestMatchers("/delivery/v1/clientes/crearRepartidor").permitAll() 
                         .requestMatchers("/delivery/v1/clientes/tiempoDeEspera").permitAll() 
+                        .requestMatchers("/delivery/v1/clientes/esAdmin").permitAll() 
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session

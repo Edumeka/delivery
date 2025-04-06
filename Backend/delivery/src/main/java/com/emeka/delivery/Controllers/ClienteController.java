@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.emeka.delivery.DTO.CarritoDTO;
 import com.emeka.delivery.DTO.DireccionDTO;
 import com.emeka.delivery.Security.JwtGenerator;
 import com.emeka.delivery.Services.DireccionService;
@@ -19,7 +20,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @RequestMapping("/delivery/v1/clientes")
@@ -106,38 +106,55 @@ public class ClienteController {
 
     @GetMapping("/crearRepartidor")
     public ResponseEntity<String> crearRepartidor(@RequestHeader("Authorization") String token) {
-       
-            // Verificar que el token esté presente y comience con "Bearer"
-            if (token == null || !token.startsWith("Bearer ")) {
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null); // 401 Unauthorized
-            }
 
-            // Eliminar el prefijo "Bearer " para obtener el token real
-            token = token.substring(7);
+        // Verificar que el token esté presente y comience con "Bearer"
+        if (token == null || !token.startsWith("Bearer ")) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null); // 401 Unauthorized
+        }
 
-            // Intentar extraer el correo desde el token
-            String correo = jwtGenerator.getUsernameFromToken(token);
+        // Eliminar el prefijo "Bearer " para obtener el token real
+        token = token.substring(7);
 
-            return ResponseEntity.ok(usuarioService.crearRepartidor(correo));
-      
+        // Intentar extraer el correo desde el token
+        String correo = jwtGenerator.getUsernameFromToken(token);
+
+        return ResponseEntity.ok(usuarioService.crearRepartidor(correo));
+
     }
 
     @GetMapping("/tiempoDeEspera")
     public ResponseEntity<String> tiempoDeEspera(@RequestHeader("Authorization") String token) {
-       
-            // Verificar que el token esté presente y comience con "Bearer"
-            if (token == null || !token.startsWith("Bearer ")) {
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null); // 401 Unauthorized
-            }
 
-            // Eliminar el prefijo "Bearer " para obtener el token real
-            token = token.substring(7);
+        // Verificar que el token esté presente y comience con "Bearer"
+        if (token == null || !token.startsWith("Bearer ")) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null); // 401 Unauthorized
+        }
 
-            // Intentar extraer el correo desde el token
-            String correo = jwtGenerator.getUsernameFromToken(token);
+        // Eliminar el prefijo "Bearer " para obtener el token real
+        token = token.substring(7);
 
-            return ResponseEntity.ok(usuarioService.tiempoDeEspera(correo));
-      
+        // Intentar extraer el correo desde el token
+        String correo = jwtGenerator.getUsernameFromToken(token);
+
+        return ResponseEntity.ok(usuarioService.tiempoDeEspera(correo));
+
     }
 
+    @GetMapping("/esAdmin")
+    public ResponseEntity<String> esAdmin(@RequestHeader("Authorization") String token) {
+
+        // Verificar que el token esté presente y comience con "Bearer"
+        if (token == null || !token.startsWith("Bearer ")) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null); // 401 Unauthorized
+        }
+
+        // Eliminar el prefijo "Bearer " para obtener el token real
+        token = token.substring(7);
+
+        // Intentar extraer el correo desde el token
+        String correo = jwtGenerator.getUsernameFromToken(token);
+       
+        return ResponseEntity.ok(usuarioService.esAdmin(correo));
+
+    }
 }

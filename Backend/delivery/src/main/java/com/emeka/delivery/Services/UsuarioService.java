@@ -139,7 +139,7 @@ public class UsuarioService {
                 Usuario repartidor = pedido.getRepartidor();
 
                 // Obtener el vehículo del repartidor
-                Vehiculo vehiculo = vehiculoRepository.findByRepartidor(repartidor);             
+                Vehiculo vehiculo = vehiculoRepository.findByRepartidor(repartidor);
 
                 // Calcular el tiempo de espera en horas
                 double tiempoEsperaHoras = distancia / vehiculo.getVelocidad();
@@ -154,7 +154,9 @@ public class UsuarioService {
                 System.out.println("Tiempo de espera en segundos: " + tiempoEsperaSegundos);
 
                 // Devolver el mensaje con el tiempo de espera en minutos y segundos
-                return "La Distancia del Cliente a la empresa es de: "+distancia+"m.\n La velocidad del vehiculo del Repartidor es de: "+vehiculo.getVelocidad()+"km. \nEste es el tiempo de Espera: "
+                return "La Distancia del Cliente a la empresa es de: " + distancia
+                                + "m.\n La velocidad del vehiculo del Repartidor es de: " + vehiculo.getVelocidad()
+                                + "km/h. \nEste es el tiempo de Espera: "
                                 + String.format("%.2f", tiempoEsperaMinutos) + " minutos ("
                                 + String.format("%.0f", tiempoEsperaSegundos) + " segundos)";
 
@@ -198,6 +200,20 @@ public class UsuarioService {
 
                 // Calcular la distancia
                 return radioTierra * c;
+        }
+
+        public String esAdmin(String correo) {
+                // Buscar al usuario por correo
+                Usuario usuario = usuarioRepository.findByCorreo(correo)
+                                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+                                                "Usuario no encontrado"));
+
+                // Verificar si el rol del usuario es "ADMIN"
+                if (usuario.getRol().getRol().equalsIgnoreCase("ADMINISTRADOR")) {
+                        return "ADMIN";
+                } else {
+                        return "El usuario no es administrador.";
+                }
         }
 
 }

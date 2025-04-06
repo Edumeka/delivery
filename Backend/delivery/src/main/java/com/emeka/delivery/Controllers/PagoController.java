@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.emeka.delivery.DTO.PagoDTO;
 import com.emeka.delivery.DTO.PagoRespuestaDTO;
 import com.emeka.delivery.Security.JwtGenerator;
 import com.emeka.delivery.Services.PagoService;

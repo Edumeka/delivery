@@ -28,7 +28,6 @@
                     "Authorization": `Bearer ${token}`
                 },
                 success: function(data) {
-                    console.log(data);
                     // Si se encuentra un repartidor y se asigna
                     if (data) {
                         Swal.fire({
@@ -55,7 +54,6 @@
                     }
                 },
                 error: function(xhr, status, error) {
-                    console.log(xhr.status);
                     console.error("Error en la solicitud:", error);
 
                     // Si el error es un 404, mostramos un mensaje específico
@@ -174,7 +172,6 @@
                     });
                 },
                 error: function(xhr, status, error) {
-                    console.log(xhr);
                     // Si hay un error en la solicitud
                     console.error("Error al crear el repartidor:", error);
                     Swal.fire({
@@ -214,7 +211,6 @@
                     });
                 },
                 error: function(xhr, status, error) {
-                    console.log(xhr);
                     // Si hay un error en la solicitud
                     console.error("Error al obtener el tiempo de espera:", error);
                     Swal.fire({

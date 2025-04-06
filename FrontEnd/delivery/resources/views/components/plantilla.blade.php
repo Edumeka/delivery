@@ -205,6 +205,32 @@
                 }
             });
         }
+        comprobarSiEsAdmin();
+        function comprobarSiEsAdmin() {
+            const token = getCookie("jwt");
+
+            $.ajax({
+                url: "http://localhost:8080/delivery/v1/clientes/esAdmin",
+                method: "GET",
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                },
+                success: function(respuesta) {
+                    if (respuesta === "ADMIN") {
+                        // El usuario es ADMIN
+                        console.log("El usuario es ADMIN");
+
+                        window.location.href = "{{ route('admin') }}";
+
+                    } else {
+
+                    }
+                },
+                error: function(e) {
+                    console.error("Error al obtener el dato:", e);
+                }
+            });
+        }
     </script>
 </body>
 

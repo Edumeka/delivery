@@ -82,8 +82,7 @@
                             <i class="bi bi-search"></i> Buscar
                         </button>
 
-                        <!-- Campo oculto para la ubicación -->
-                        <input type="text" id="ubicacion" name="ubicacion" />
+                        <input type="text" id="ubicacion" name="ubicacion" hidden/>
 
 
                         <div class="mb-3">

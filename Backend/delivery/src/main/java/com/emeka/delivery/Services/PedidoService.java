@@ -3,6 +3,7 @@ package com.emeka.delivery.Services;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +11,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.emeka.delivery.DTO.PedidoDTO;
 import com.emeka.delivery.DTO.UsuarioDTO;
 import com.emeka.delivery.Repositories.CarritoRepository;
 import com.emeka.delivery.Repositories.EstadoRepository;
 import com.emeka.delivery.Repositories.PedidoProductoRepository;
 import com.emeka.delivery.Repositories.PedidoRepository;
+import com.emeka.delivery.Repositories.ProductoMasVendidoRepository;
 import com.emeka.delivery.Repositories.TrabajoRealizadoRepository;
 import com.emeka.delivery.Repositories.UsuarioRepository;
 import com.emeka.delivery.models.Carrito;
@@ -24,6 +27,8 @@ import com.emeka.delivery.models.Pago;
 import com.emeka.delivery.models.Pedido;
 import com.emeka.delivery.models.PedidoProducto;
 import com.emeka.delivery.models.PedidoProductoId;
+import com.emeka.delivery.models.Producto;
+import com.emeka.delivery.models.ProductoMasVendido;
 import com.emeka.delivery.models.TrabajoRealizado;
 import com.emeka.delivery.models.Usuario;
 
@@ -48,6 +53,8 @@ public class PedidoService {
         @Autowired
         private TrabajoRealizadoRepository trabajoRepository;
 
+          @Autowired
+private ProductoMasVendidoRepository productoMasVendidoRepository;
         @Autowired
         private ModelMapper modelMapper;
 
@@ -121,81 +128,104 @@ public class PedidoService {
                 return "Pedido guardado con éxito";
         }
 
-        @Transactional
-        public String asignarPago(Pago pago, Usuario comprador, double kmRecorridos, double costoEnvio,
-                        double gananciaRepartidor) {
-                // 1. Buscar al usuario comprador
+       @Transactional
+public String asignarPago(Pago pago, Usuario comprador, double kmRecorridos, double costoEnvio,
+                          double gananciaRepartidor) {
 
-                // 2. Obtener los items del carrito del usuario
-                List<Carrito> carritos = carritoRepository.findByUsuario(comprador);
+ 
+    // 1. Obtener los items del carrito del usuario
+    List<Carrito> carritos = carritoRepository.findByUsuario(comprador);
 
-                if (carritos.isEmpty()) {
-                        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "El carrito está vacío");
-                }
+    if (carritos.isEmpty()) {
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "El carrito está vacío");
+    }
 
-                // 3. Validar que todos los productos sean de la misma empresa
-                Empresa empresaDelPedido = carritos.get(0).getProducto().getEmpresa();
+    // 2. Validar que todos los productos sean de la misma empresa
+    Empresa empresaDelPedido = carritos.get(0).getProducto().getEmpresa();
 
-                boolean mismaEmpresa = carritos.stream()
-                                .allMatch(c -> c.getProducto().getEmpresa().getIdEmpresa() == empresaDelPedido
-                                                .getIdEmpresa());
+    boolean mismaEmpresa = carritos.stream()
+            .allMatch(c -> c.getProducto().getEmpresa().getIdEmpresa() == empresaDelPedido.getIdEmpresa());
 
-                if (!mismaEmpresa) {
-                        throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-                                        "Todos los productos deben ser de la misma empresa");
-                }
+    if (!mismaEmpresa) {
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                "Todos los productos deben ser de la misma empresa");
+    }
 
-                // 4. Crear un nuevo pedido
-                Pedido pedido = new Pedido();
-                pedido.setFechaPedido(LocalDateTime.now());
-                pedido.setComprador(comprador);
-                pedido.setEmpresa(empresaDelPedido);
-                pedido.setPago(pago);
-                pedido.setCostoEnvioTotal(costoEnvio + gananciaRepartidor);
-                pedido.setMontoTotalDeProductos(
-                                carritos.stream().mapToDouble(item -> item.getCantidad() * item.getPrecioUnitario())
-                                                .sum());
+    // 3. Crear un nuevo pedido
+    Pedido pedido = new Pedido();
+    pedido.setFechaPedido(LocalDateTime.now());
+    pedido.setComprador(comprador);
+    pedido.setEmpresa(empresaDelPedido);
+    pedido.setPago(pago);
+    pedido.setCostoEnvioTotal(costoEnvio + gananciaRepartidor);
+    pedido.setMontoTotalDeProductos(
+            carritos.stream().mapToDouble(item -> item.getCantidad() * item.getPrecioUnitario()).sum());
 
-                // Buscar el estado "EN PROCESO" o crearlo si no existe
-                Estado estadoEnProceso = estadoRepository.findByEstado("EN PROCESO")
-                                .orElseGet(() -> {
-                                        Estado nuevoEstado = new Estado();
-                                        nuevoEstado.setEstado("EN PROCESO");
-                                        return estadoRepository.save(nuevoEstado);
-                                });
+    // Buscar el estado "EN PROCESO" o crearlo si no existe
+    Estado estadoEnProceso = estadoRepository.findByEstado("EN PROCESO")
+            .orElseGet(() -> {
+                Estado nuevoEstado = new Estado();
+                nuevoEstado.setEstado("EN PROCESO");
+                return estadoRepository.save(nuevoEstado);
+            });
 
-                pedido.setEstado(estadoEnProceso); // Asignar el estado al pedido
+    pedido.setEstado(estadoEnProceso); // Asignar el estado al pedido
 
-                // 5. Guardar el pedido en base de datos
-                Pedido pedidoGuardado = pedidoRepository.save(pedido);
+    // 4. Guardar el pedido en base de datos
+    Pedido pedidoGuardado = pedidoRepository.save(pedido);
 
-                // 6. Mapear cada carrito a un detalle de pedido
-                for (Carrito item : carritos) {
-                        PedidoProducto detalle = new PedidoProducto();
-                        // Crear la clave compuesta
-                        PedidoProductoId id = new PedidoProductoId(pedidoGuardado.getIdPedido(),
-                                        item.getProducto().getIdProducto());
-                        detalle.setId(id); // Asignar el ID compuesto
-                        detalle.setPedido(pedidoGuardado);
-                        detalle.setProducto(item.getProducto());
-                        detalle.setCantidad(item.getCantidad());
-                        detalle.setPrecioUnitario(item.getPrecioUnitario());
-                        detalle.setSubTotal(item.getCantidad() * item.getPrecioUnitario());
-                        detallePedidoRepository.save(detalle);
-                }
+    // 5. Mapear cada carrito a un detalle de pedido
+    for (Carrito item : carritos) {
+        PedidoProducto detalle = new PedidoProducto();
+        PedidoProductoId id = new PedidoProductoId(pedidoGuardado.getIdPedido(),
+                item.getProducto().getIdProducto());
+        detalle.setId(id);
+        detalle.setPedido(pedidoGuardado);
+        detalle.setProducto(item.getProducto());
+        detalle.setCantidad(item.getCantidad());
+        detalle.setPrecioUnitario(item.getPrecioUnitario());
+        detalle.setSubTotal(item.getCantidad() * item.getPrecioUnitario());
+        detallePedidoRepository.save(detalle);
+    }
 
-                // 7. Limpiar el carrito del usuario
-                carritoRepository.deleteAll(carritos);
+    // 6. Actualizar productos más vendidos antes de limpiar el carrito
+    for (Carrito item : carritos) {
+        Producto producto = item.getProducto();
+        int cantidadVendida = item.getCantidad();
+        double ingreso = cantidadVendida * item.getPrecioUnitario();
 
-                TrabajoRealizado trabajoRealizado = new TrabajoRealizado();
-                trabajoRealizado.setPedido(pedidoGuardado);
-                trabajoRealizado.setFecha(LocalDateTime.now());
-                trabajoRealizado.setKmRecorrido(kmRecorridos);
-                trabajoRealizado.setGanancia(gananciaRepartidor);
+        Optional<ProductoMasVendido> existente = productoMasVendidoRepository.findByProducto(producto);
 
-                trabajoRepository.save(trabajoRealizado); // Guardar el trabajo realizado
-                return "Pedido guardado con éxito";
+        if (existente.isPresent()) {
+            ProductoMasVendido pmv = existente.get();
+            pmv.setCantidadVendida(pmv.getCantidadVendida() + cantidadVendida);
+            pmv.setTotalIngresos(pmv.getTotalIngresos() + ingreso);
+            pmv.setUltimaFechaVenta(LocalDateTime.now());
+            productoMasVendidoRepository.save(pmv);
+        } else {
+            ProductoMasVendido nuevo = new ProductoMasVendido();
+            nuevo.setProducto(producto);
+            nuevo.setCantidadVendida(cantidadVendida);
+            nuevo.setTotalIngresos(ingreso);
+            nuevo.setUltimaFechaVenta(LocalDateTime.now());
+            productoMasVendidoRepository.save(nuevo);
         }
+    }
+
+    // 7. Limpiar el carrito del usuario
+    carritoRepository.deleteAll(carritos);
+
+    // 8. Guardar el trabajo realizado
+    TrabajoRealizado trabajoRealizado = new TrabajoRealizado();
+    trabajoRealizado.setPedido(pedidoGuardado);
+    trabajoRealizado.setFecha(LocalDateTime.now());
+    trabajoRealizado.setKmRecorrido(kmRecorridos);
+    trabajoRealizado.setGanancia(gananciaRepartidor);
+    trabajoRepository.save(trabajoRealizado);
+
+    return "Pedido guardado con éxito";
+}
+
 
         @Transactional
         public UsuarioDTO buscarRepartidor(String correo) {
@@ -323,9 +353,34 @@ public class PedidoService {
                                                                                    // de datos
                                 }));
                 pedido.setEstado(estadoFinalizado.get());
+                pedido.setFechaFinal(LocalDateTime.now());
+
                 pedidoRepository.save(pedido);
+                        // . Buscar el estado "DISPONIBLE"
+                        Estado estadoDisponible = estadoRepository.findByEstado("DISPONIBLE")
+                        .orElseThrow(
+                                        () -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+                                                        "Estado 'DISPONIBLE' no encontrado"));
+                Usuario repartidor = pedido.getRepartidor();
+
+                repartidor.setEstado(estadoDisponible);
+
+                usuarioRepository.save(repartidor);
 
                 return "Se ha actualizado el pedido";
         }
+
+        public List<PedidoDTO> obtenerPedidos() {
+        List<Pedido> pedidos = pedidoRepository.findAll();
+        // Asegúrate de que tu ModelMapper esté configurado correctamente
+        List<PedidoDTO> pedidosDTO = pedidos.stream()
+                                            .map(pedido -> modelMapper.map(pedido, PedidoDTO.class))
+                                            .collect(Collectors.toList());
+
+        return pedidosDTO;
+    }
+
+
+
 
 }

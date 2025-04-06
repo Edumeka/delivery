@@ -6,6 +6,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.emeka.delivery.DTO.CarritoDTO;
 import com.emeka.delivery.DTO.DireccionDTO;
+import com.emeka.delivery.DTO.UsuarioDTO;
 import com.emeka.delivery.Security.JwtGenerator;
 import com.emeka.delivery.Services.DireccionService;
 import com.emeka.delivery.Services.UsuarioService;
@@ -16,10 +17,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @RequestMapping("/delivery/v1/clientes")
@@ -157,4 +162,21 @@ public class ClienteController {
         return ResponseEntity.ok(usuarioService.esAdmin(correo));
 
     }
+
+    @GetMapping("/obtenerUsuarios")
+    public List<UsuarioDTO> obtenerUsuarios() {
+        return usuarioService.obtenerUsuarios();
+    }
+
+    @DeleteMapping("/eliminarUsuario/{idUsuario}")
+    public String eliminarUsuario(@PathVariable int idUsuario) {
+        return usuarioService.eliminarUsuario(idUsuario);
+    }
+    
+    @PostMapping("/editarUsuario")
+    public String editarUsuario(@RequestBody UsuarioDTO usuarioDTO) {
+        return usuarioService.editarUsuario(usuarioDTO);
+    }
+    
+    
 }

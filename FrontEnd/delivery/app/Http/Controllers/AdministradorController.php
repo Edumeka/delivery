@@ -10,4 +10,14 @@ class AdministradorController extends Controller
     {
         return view('administrador');
     }
+
+
+    public function pedidos()
+    {
+        return view('adminpedidos');
+    }
+    public function usuarios()
+    {
+        return view('adminusuarios');
+    }
 }

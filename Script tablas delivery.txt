@@ -29,6 +29,7 @@ CREATE TABLE empresas (
     empresa VARCHAR(50) NOT NULL,
     RTN VARCHAR(50) NOT NULL UNIQUE,
     costoEnvio DOUBLE NOT NULL DEFAULT 0.0,
+    imagen varchar(255),
     FOREIGN KEY (idUsuarioAdministrador) REFERENCES usuarios(idUsuario) ON DELETE CASCADE
 );
 
@@ -53,13 +54,6 @@ descripcion varchar (255) NULL,
     FOREIGN KEY (idEmpresa) REFERENCES empresas(idEmpresa) ON DELETE CASCADE
 );
 
-create table ubicacionesRepartidores(
-    idUbicacionRepartidor int AUTO_INCREMENT PRIMARY KEY,
-    idRepartidor int Not Null,
-    ubicacion POINT,
-     FOREIGN KEY (idRepartidor) REFERENCES usuarios(idUsuario),
-);
-
 CREATE TABLE vehiculos (
     idVehiculo INT AUTO_INCREMENT PRIMARY KEY,
     idRepartidor INT NOT NULL,
@@ -82,6 +76,7 @@ CREATE TABLE pagos (
     idMetodoPago INT NOT NULL,
     factura VARCHAR(50) NOT NULL UNIQUE,
     totalFactura DOUBLE NOT NULL,
+    fecha dateTime,
     FOREIGN KEY (idMetodoPago) REFERENCES metodopagos(idMetodoPago) ON DELETE CASCADE
 );
 
@@ -155,4 +150,13 @@ create table trabajosrealizados(
     fecha dateTime,
     FOREIGN KEY (idRepartidor) REFERENCES usuarios(idUsuario),
     FOREIGN KEY (idPedido) REFERENCES pedidos(idPedido)
+);
+
+CREATE TABLE productosMasVendidos (
+    idProductoMasVendido INT AUTO_INCREMENT PRIMARY KEY,
+    idProducto INT,
+    cantidadVendida INT,
+    ultimaFechaVenta DATETIME,
+    totalIngresos DECIMAL(10,2),
+    FOREIGN KEY (idProducto) REFERENCES productos(idProducto)
 );

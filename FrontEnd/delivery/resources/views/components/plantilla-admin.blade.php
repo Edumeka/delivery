@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard de Administrador</title>
+    <title>Delivery CCDE Administrador</title>
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome (para íconos) -->
@@ -14,15 +15,23 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Bootstrap 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- SweetAlert2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css" rel="stylesheet">
+
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
     <style>
-        body {
-            background-color: #212529; /* Fondo oscuro para toda la página */
-            color: #e4e6f0; /* Texto claro para contraste */
+        <link rel="icon" type="image/png" href="{{ asset('img/logo_delivery.png') }}"><style>body {
+            background-color: #212529;
+            /* Fondo oscuro para toda la página */
+            color: #e4e6f0;
+            /* Texto claro para contraste */
         }
 
         .sidebar {
             min-height: 100vh;
-            background-color: #343a40; /* Barra lateral más oscura */
+            background-color: #343a40;
+            /* Barra lateral más oscura */
             color: #ffffff;
         }
 
@@ -40,17 +49,20 @@
         }
 
         .card {
-            background-color: #495057; /* Fondo de las tarjetas oscuro */
+            background-color: #495057;
+            /* Fondo de las tarjetas oscuro */
             border: none;
             color: #f8f9fa;
         }
 
         .card-title {
-            color: #ffffff; /* Títulos de las tarjetas en blanco */
+            color: #ffffff;
+            /* Títulos de las tarjetas en blanco */
         }
 
         .card-body {
-            background-color: #6c757d; /* Fondo de las tarjetas con un toque más suave */
+            background-color: #6c757d;
+            /* Fondo de las tarjetas con un toque más suave */
         }
 
         .btn-primary {
@@ -84,11 +96,14 @@
             padding: 2rem;
         }
 
-        .navbar, .nav-item, .nav-link {
+        .navbar,
+        .nav-item,
+        .nav-link {
             background-color: #343a40;
         }
     </style>
 </head>
+
 <body>
     <div class="d-flex">
         <!-- Barra lateral -->
@@ -96,22 +111,22 @@
             <h4 class="text-center mb-4 text-light">Administrador</h4>
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">
+                    <a class="nav-link active" href="{{route('admin')}}">
                         <i class="fas fa-tachometer-alt"></i> Dashboard
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('admin.pedidos') }}">
                         <i class="fas fa-box"></i> Pedidos
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" hidden>
                     <a class="nav-link" href="#">
                         <i class="fas fa-cogs"></i> Configuración
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('admin.usuarios') }}">
                         <i class="fas fa-users"></i> Usuarios
                     </a>
                 </li>
@@ -121,100 +136,104 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-danger" href="#">
+                    <a class="nav-link text-danger" id="btnCerrarSesion" href="#">
                         <i class="fas fa-sign-out-alt"></i> Cerrar sesión
                     </a>
                 </li>
             </ul>
         </div>
-
         <!-- Contenido principal -->
-        <div class="content">
-            <h2 class="mb-4 text-light">Dashboard</h2>
-
-            <!-- Estadísticas y métricas -->
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card dashboard-card shadow-sm">
-                        <div class="card-body">
-                            <h5 class="card-title">Pedidos Hoy</h5>
-                            <p class="card-text">25 Pedidos</p>
-                            <a href="#" class="btn btn-primary">Ver detalles</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card dashboard-card shadow-sm">
-                        <div class="card-body">
-                            <h5 class="card-title">Total Ventas</h5>
-                            <p class="card-text">$1,250.00</p>
-                            <a href="#" class="btn btn-primary">Ver detalles</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card dashboard-card shadow-sm">
-                        <div class="card-body">
-                            <h5 class="card-title">Usuarios Activos</h5>
-                            <p class="card-text">102 Usuarios</p>
-                            <a href="#" class="btn btn-primary">Ver detalles</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Gráficos -->
-            <div class="row mt-4">
-                <div class="col-md-8">
-                    <div class="card shadow-sm">
-                        <div class="card-body">
-                            <h5 class="card-title">Ventas Mensuales</h5>
-                            <canvas id="salesChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card shadow-sm">
-                        <div class="card-body">
-                            <h5 class="card-title">Pedidos por Estado</h5>
-                            <canvas id="orderStatusChart"></canvas>
-                        </div>
-                    </div>
-                </div>
+        <div class="main-content">
+            <div class="content-wrapper">
+                {{ $slot }}
             </div>
         </div>
     </div>
-
-    <!-- Script de gráficos -->
-    <script>
-        // Gráfico de ventas mensuales
-        const ctx1 = document.getElementById('salesChart').getContext('2d');
-        const salesChart = new Chart(ctx1, {
-            type: 'line',
-            data: {
-                labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
-                datasets: [{
-                    label: 'Ventas ($)',
-                    data: [500, 600, 700, 800, 950, 1200],
-                    borderColor: 'rgba(0, 123, 255, 1)',
-                    backgroundColor: 'rgba(0, 123, 255, 0.1)',
-                    fill: true
-                }]
-            }
-        });
-
-        // Gráfico de pedidos por estado
-        const ctx2 = document.getElementById('orderStatusChart').getContext('2d');
-        const orderStatusChart = new Chart(ctx2, {
-            type: 'pie',
-            data: {
-                labels: ['Completados', 'Pendientes', 'Cancelados'],
-                datasets: [{
-                    data: [40, 30, 30],
-                    backgroundColor: ['#28a745', '#ffc107', '#dc3545']
-                }]
-            }
-        });
-    </script>
 </body>
+
 </html>
+<script>
+    function getCookie(name) {
+        const cookies = document.cookie.split("; ");
+
+        for (let cookie of cookies) {
+            let [key, value] = cookie.split("=");
+
+            if (key === name) {
+                return decodeURIComponent(value);
+            }
+        }
+        return null;
+    }
+
+    // Función para verificar si la cookie 'jwt' existe
+    function checkAuth() {
+        const jwtToken = getCookie("jwt");
+
+        if (jwtToken) {
+
+            $('#btnCerrarSesion').show(); // Mostrar el botón de cerrar sesión
+            $('#liCarrito').show();
+        } else {
+            // Si no existe la cookie JWT, mostrar 'Iniciar sesión'
+            $('#btnCerrarSesion').hide(); // Mostrar el botón de cerrar sesión
+            document.getElementById('auth-link').textContent = 'Iniciar sesión';
+            document.getElementById('auth-link').setAttribute('href',
+                '{{ route('login') }}'); // Redirige a la página de login
+
+            $('#liCarrito').hide();
+        }
+    }
+
+    // Llamamos a la función para actualizar el enlace según el estado de la cookie
+    checkAuth();
+
+
+
+
+    function cerrarSesion() {
+        fetch("http://localhost:8080/delivery/v1/auth/logout", {
+                method: "POST",
+                credentials: "include" // Enviar cookies en la petición
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Error al cerrar sesión");
+                }
+                return response.text();
+            })
+            .then(() => {
+                console.log("Sesión cerrada correctamente");
+                localStorage.removeItem('bearerToken'); // Elimina el token de localStorage
+                window.location.href = "{{ route('bienvenida') }}"; // Redirigir a la página de inicio de sesión
+
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+    }
+
+
+
+    $("#btnCerrarSesion").click(function() {
+        confirmarCerrarSesion();
+    });
+
+
+    function confirmarCerrarSesion() {
+        Swal.fire({
+            title: "¿Cerrar sesión?",
+            text: "¿Estás seguro de que deseas cerrar sesión?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Sí, cerrar sesión",
+            cancelButtonText: "Cancelar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                cerrarSesion();
+            }
+        });
+    }
+</script>

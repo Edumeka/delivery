@@ -1,5 +1,7 @@
 package com.emeka.delivery.Controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.emeka.delivery.DTO.PedidoDTO;
 import com.emeka.delivery.DTO.UsuarioDTO;
 import com.emeka.delivery.Security.JwtGenerator;
 import com.emeka.delivery.Services.PedidoService;
@@ -15,6 +18,8 @@ import com.emeka.delivery.Services.PedidoService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @RestController
@@ -112,5 +117,11 @@ public class PedidoController {
         }
     }
     
+    @GetMapping("/listaDePedidos")
+    public List<PedidoDTO> obtenerPedidos() {
+        return pedidoService.obtenerPedidos();
+    }
+    
+
     
 }

@@ -6,11 +6,13 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 import org.locationtech.jts.geom.Point;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.emeka.delivery.DTO.UsuarioDTO;
 import com.emeka.delivery.Repositories.DireccionRepository;
 import com.emeka.delivery.Repositories.EstadoRepository;
 import com.emeka.delivery.Repositories.PedidoRepository;
@@ -41,34 +43,35 @@ public class UsuarioService {
         private VehiculoRepository vehiculoRepository;
         @Autowired
         private DireccionRepository direccionRepository;
+        @Autowired
+        private ModelMapper modelMapper;
 
         public String crearRepartidor(String correo) {
                 List<Usuario> usuariosDelSistema = usuarioRepository.findAll();
 
                 // Extraer los ids de los usuarios
                 List<Integer> idsDeUsuarios = usuariosDelSistema.stream()
-                                .map(Usuario::getIdUsuario) // Asegúrate de que 'getIdUsuario()' es el nombre del método
-                                                            // que devuelve el
-                                                            // id
+                                .map(Usuario::getIdUsuario)                                                            
                                 .collect(Collectors.toList());
 
                 // Obtener un índice aleatorio entre 0 y la lista de idsDeUsuarios.size() - 1
                 int indiceAleatorio = new Random().nextInt(idsDeUsuarios.size());
+                // Obtener un índice aleatorio entre 0 y la lista de idsDeUsuarios.size() - 1
+                int indiceAleatorio2 = new Random().nextInt(idsDeUsuarios.size());
 
                 // Obtener el idUsuario aleatorio
                 Integer idUsuarioAleatorio = idsDeUsuarios.get(indiceAleatorio);
 
                 // Obtener un nombre aleatorio del usuario
-                Usuario usuarioNombre = usuarioRepository.findById(idUsuarioAleatorio) // Asumimos que el primer usuario
-                                                                                       // es el
+                Usuario usuarioNombre = usuarioRepository.findById(idUsuarioAleatorio)                                                                                       
                                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
                                                 "No se encontró el usuario"));
                 String nombreRepartidor = usuarioNombre.getNombre();
 
                 // 5. Obtener un apellido aleatorio del usuario numeroAleatorio
-                Usuario usuarioApellido = usuarioRepository.findById(idUsuarioAleatorio) // Asumimos que el usuario
-                                                                                         // número
-                                                                                         // aleatorio
+                Usuario usuarioApellido = usuarioRepository.findById(indiceAleatorio2) 
+                                                                                      
+                                                                                         
                                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
                                                 "No se encontró el usuario "));
                 String apellidoRepartidor = usuarioApellido.getApellido();
@@ -216,4 +219,40 @@ public class UsuarioService {
                 }
         }
 
+
+        public List<UsuarioDTO> obtenerUsuarios() {
+                List<Usuario> usuarios = usuarioRepository.findAll();
+                List<UsuarioDTO> usuariosDTO =   usuarios.stream()
+                        .map(usuario -> modelMapper.map(usuario, UsuarioDTO.class))
+                        .collect(Collectors.toList());
+                        return usuariosDTO;
+        }
+
+        public String eliminarUsuario(int idUsuario) {
+                Usuario usuarioAEliminar = usuarioRepository.findById(idUsuario)
+                                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+                                                "Usuario no encontrado"));
+
+                usuarioRepository.delete(usuarioAEliminar);
+
+                return "Usuario eliminado con éxito";
+        }
+
+        public String editarUsuario(UsuarioDTO usuarioDTO) {
+                Usuario usuarioSeleccionado = usuarioRepository.findById(usuarioDTO.getIdUsuario())
+                                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+                                                "Usuario no encontrado"));
+
+                usuarioSeleccionado.setNombre(usuarioDTO.getNombre());
+                usuarioSeleccionado.setApellido(usuarioDTO.getApellido());
+                usuarioSeleccionado.setCorreo(usuarioDTO.getCorreo());
+                Rol nuevoRol = this.modelMapper.map(usuarioDTO.getRol(),Rol.class);
+                usuarioSeleccionado.setRol(nuevoRol);
+                Estado nuevoEstado = this.modelMapper.map(usuarioDTO.getEstado(), Estado.class);
+                usuarioSeleccionado.setEstado(nuevoEstado);
+
+                usuarioRepository.save(usuarioSeleccionado);
+
+                return "Usuario editado con éxito";
+        }
 }

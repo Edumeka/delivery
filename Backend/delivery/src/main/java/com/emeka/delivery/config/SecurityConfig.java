@@ -84,6 +84,12 @@ public class SecurityConfig {
                         .requestMatchers("/delivery/v1/clientes/crearRepartidor").permitAll() 
                         .requestMatchers("/delivery/v1/clientes/tiempoDeEspera").permitAll() 
                         .requestMatchers("/delivery/v1/clientes/esAdmin").permitAll() 
+                        .requestMatchers("/delivery/v1/pedidos/listaDePedidos").permitAll()
+                        .requestMatchers("/delivery/v1/clientes/obtenerUsuarios").permitAll()
+                        .requestMatchers("/delivery/v1/clientes/eliminarUsuario/*").permitAll()
+                        .requestMatchers("/delivery/v1/clientes/editarUsuario").permitAll()
+                        .requestMatchers("/delivery/v1/roles/obtenerRoles").permitAll()
+                        .requestMatchers("/delivery/v1/estados/obtenerEstados").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session

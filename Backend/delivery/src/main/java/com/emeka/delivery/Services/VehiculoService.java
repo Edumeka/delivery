@@ -41,11 +41,11 @@ public class VehiculoService {
         vehiculos.add("Hatchback");
 
         List<Integer> velocidades = new ArrayList<>();
+        velocidades.add(50);
         velocidades.add(100);
-        velocidades.add(150);
-        velocidades.add(200);
-        velocidades.add(250);
-        velocidades.add(300);
+        velocidades.add(120);
+        velocidades.add(125);
+        velocidades.add(154);
         Vehiculo vehiculo = new Vehiculo();
 
         // Asignar valores aleatorios a los atributos del vehículo

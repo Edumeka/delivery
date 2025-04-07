@@ -131,7 +131,13 @@ public class SecurityConfig {
             "/swagger-ui",
             "/delivery/swagger-ui/index.html",
             "/delivery/v1/clientes/obtenerRepartidores",
-            "/delivery/v1/clientes/buscarHistorialRepartidor/*"                  
+            "/delivery/v1/clientes/buscarHistorialRepartidor/*",
+            "/delivery/v1/pedidos/hoy",
+            "/delivery/v1/pedidos/totalVendido",
+            "/delivery/v1/clientes/usuariosActivos",
+            "/delivery/v1/pedidos/reporteEstadoPedidos",
+            "/delivery/v1/clientes/obtenerClientes",            
+            "/delivery/v1/clientes/historialCliente/*",
     };
 
     @Bean

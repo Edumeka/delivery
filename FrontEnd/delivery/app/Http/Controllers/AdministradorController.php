@@ -31,4 +31,9 @@ class AdministradorController extends Controller
     public function repartidores(){
         return view('AdminRepartidores');
     }
+
+    public function clientes(){
+        return view('AdminClientes');
+    }
+
 }

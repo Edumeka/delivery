@@ -1,5 +1,6 @@
 package com.emeka.delivery.Services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
@@ -12,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.emeka.delivery.DTO.ProductoDTO;
 import com.emeka.delivery.DTO.TrabajoRealizadoDTO;
 import com.emeka.delivery.DTO.UsuarioDTO;
 import com.emeka.delivery.Repositories.DireccionRepository;
@@ -286,4 +288,45 @@ public class UsuarioService {
 
                 return trabajosRealizadosDTO;
         }
+
+        public int usuariosActivos() {
+                List<Usuario> usuarios = usuarioRepository.findAll();
+                // Filtrar los usuarios que no tienen el estado "INACTIVO"
+                return (int) usuarios.stream()
+                        .filter(usuario -> !usuario.getEstado().getEstado().equalsIgnoreCase("INACTIVO"))
+                        .count();
+            }
+            
+            public List<UsuarioDTO> obtenerClientes() {
+                List<Usuario> usuarios = usuarioRepository.findAll();
+                List<UsuarioDTO> repartidoresDTO = usuarios.stream()
+                        .filter(usuario -> usuario.getRol().getRol().equalsIgnoreCase("CLIENTE"))
+                        .map(usuario -> modelMapper.map(usuario, UsuarioDTO.class))
+                        .collect(Collectors.toList());
+                return repartidoresDTO;
+        }
+
+      public List<ProductoDTO> historialCliente(int idUsuario) {
+    // Buscar el usuario
+    Usuario usuario = usuarioRepository.findById(idUsuario)
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuario no encontrado"));
+
+    // Obtener todos los pedidos realizados por el usuario
+    List<Pedido> pedidos = pedidoRepository.findByComprador(usuario);
+
+    // Si el usuario no tiene pedidos, retornar una lista vacía
+    if (pedidos.isEmpty()) {
+        return new ArrayList<>();
+    }
+
+    // Obtener todos los productos asociados a los pedidos y convertirlos a ProductoDTO
+    List<ProductoDTO> productos = pedidos.stream()
+            .flatMap(pedido -> pedido.getProductos().stream()) // Obtener los productos de cada pedido
+            .map(producto -> modelMapper.map(producto, ProductoDTO.class)) // Convertir Producto a ProductoDTO
+            .collect(Collectors.toList());
+
+    return productos;
+}
+
+        
 }

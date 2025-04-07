@@ -1,54 +1,49 @@
 <x-plantilla>
-    <div class="container d-flex justify-content-center align-items-center mt-1">
-        <div class='row'>
-            <div class="col-md-6">
-
-            
-        <div class="card shadow-lg p-4 rounded bg-secondary" style="width: 500px; background:rgb(95, 102, 112); color: white;">
-            <div class="text-center">
-                <h2 class="mb-3">Crear Cuenta</h2>
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="card shadow-md p-4 rounded-md border border-secondary border-opacity-25" style="width: 500px; background:rgb(59, 59, 63); color: white;">
+            <div class="text-center mb-4">
+                <h2 class="text-light">Crear Cuenta</h2>
             </div>
-            <form id="registerForm" class="form-floating">
-                <div class='row'>
-                    <div class="col-md-6">
-                        <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Escriba su Nombre" required>
+            <form id="registerForm">
+                <div class="row mb-3">
+                    <div class="col-md-6 form-floating">
+                        <input type="text" class="form-control rounded-sm bg-dark text-light" id="nombre" name="nombre" placeholder="Nombre" required>
+                        <label for="nombre" class="form-label text-light">Nombre</label>
                     </div>
-                    <div class="col-md-6">
-                        <label for="apellido" class="form-label">Apellido</label>
-                        <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Escriba su apellido" required>
+                    <div class="col-md-6 form-floating">
+                        <input type="text" class="form-control rounded-sm bg-dark text-light" id="apellido" name="apellido" placeholder="Apellido" required>
+                        <label for="apellido" class="form-label text-light">Apellido</label>
                     </div>
                 </div>
-               
-                <div class="mb-3">
-                    <label for="email" class="form-label">Correo Electrónico</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="usuario@ejemplo.com" required>
+    
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control rounded-sm bg-dark text-light" id="email" name="email" placeholder="usuario@ejemplo.com" required>
+                    <label for="email" class="form-label text-light">Correo Electrónico</label>
                 </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="********" required>
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control rounded-sm bg-dark text-light" id="password" name="password" placeholder="********" required>
+                    <label for="password" class="form-label text-light">Contraseña</label>
                 </div>
-                <div class="mb-3">
-                    <label for="password_confirmation" class="form-label">Confirmar Contraseña</label>
-                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="********" required>
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control rounded-sm bg-dark text-light" id="password_confirmation" name="password_confirmation" placeholder="********" required>
+                    <label for="password_confirmation" class="form-label text-light">Confirmar Contraseña</label>
                 </div>
-                <div class="mb-6">
-                    <label for="dni" class="form-label">DNI</label>
-                    <input type="text" class="form-control" id="dni" name="dni" placeholder="xxxx-xxxx-xxxxx" required>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control rounded-sm bg-dark text-light" id="dni" name="dni" placeholder="xxxx-xxxx-xxxxx" required>
+                    <label for="dni" class="form-label text-light">DNI</label>
                 </div>
-                <div class="mb-6">
-                    <label for="telefono" class="form-label">Telefono</label>
-                    <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Escriba su telefono" required>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control rounded-sm bg-dark text-light" id="telefono" name="telefono" placeholder="Escriba su telefono" required>
+                    <label for="telefono" class="form-label text-light">Teléfono</label>
                 </div>
-                <button type="submit" class="btn btn-primary w-100">Registrar</button>
+                <button type="submit" class="btn btn-primary w-100 rounded-pill">Registrar</button>
             </form>
-
+    
             <div class="mt-3 text-center">
-                <p class="text-light">¿Ya tienes cuenta? <a href="{{ route('login') }}" class="text-decoration-none text-primary">Inicia sesión aquí</a></p>
+                <p class="text-light">¿Ya tienes cuenta? <a href="{{ route('login') }}" class="text-decoration-none text-info">Inicia sesión aquí</a></p>
             </div>
         </div>
     </div>
-</div></div>
 
 <script>
     $(document).ready(function () {

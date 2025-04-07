@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-bs-theme="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -15,7 +15,7 @@
 
     <style>
         body {
-            background: linear-gradient(to right, #5282ED, #D46678);
+            background: linear-gradient(to bottom, #7d7e7d 0%,#0e0e0e 100%);
         }
 
         .welcome-container {

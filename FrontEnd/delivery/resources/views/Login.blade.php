@@ -12,11 +12,11 @@
         </div>
         <form id="loginForm" onsubmit="event.preventDefault(); iniciarSesion();">
             <div class="form-floating mb-3">
-                <input type="email" class="form-control rounded-sm bg-light text-dark" id="email" name="email" placeholder="usuario@ejemplo.com" required>
+                <input type="email" class="form-control rounded-sm bg-dark text-light" id="email" name="email" required>
                 <label for="email" class="form-label text-light">Correo Electrónico</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="password" class="form-control rounded-sm bg-light text-dark" id="password" name="password" placeholder="********" required>
+                <input type="password" class="form-control rounded-sm bg-dark text-light" id="password" name="password" required>
                 <label for="password" class="form-label text-light">Contraseña</label>
             </div>
             <button type="submit" class="btn btn-primary w-100 rounded-pill">Acceder</button>

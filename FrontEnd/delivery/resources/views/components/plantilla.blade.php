@@ -15,11 +15,11 @@
 
     <style>
         body {
-            background: linear-gradient(to right, #1f1c2c, #928DAB);
+            background: linear-gradient(to right, #5282ED, #D46678);
         }
 
         .welcome-container {
-            background: #2C2F33;
+            background:rgb(90, 90, 90);
             padding: 40px;
             border-radius: 15px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
@@ -29,7 +29,8 @@
         .navbar-brand {
             font-weight: bold;
             font-size: 1.5rem;
-            color: #fff !important;
+            bg-color: #ffc107 !important;
+            color: rgb(255,255,255) !important;
         }
 
         .btn-primary {
@@ -52,9 +53,9 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-warning bg-gradient shadow-sm">
         <div class="container">
-            <a class="navbar-brand" href="{{ route('bienvenida') }}"><img src="{{ asset('img/logo_delivery.png') }}"
+            <a class="navbar-brand text-light" href="{{ route('bienvenida') }}"><img src="{{ asset('img/logo_delivery.png') }}"
                     width="70"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>

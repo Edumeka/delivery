@@ -1,27 +1,32 @@
 <x-plantilla>
-    <div class="container d-flex justify-content-center align-items-center mt-5">
-        <div class="card shadow-lg p-4 rounded" style="width: 350px; background: #2C2F33; color: white;">
-            <div class="text-center">
-                <h2 class="mb-3">Iniciar Sesión</h2>
-            </div>
-            <form id="loginForm" onsubmit="event.preventDefault(); iniciarSesion();">
-                <div class="mb-3">
-                    <label for="email" class="form-label">Correo Electrónico</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="usuario@ejemplo.com" required>
-                </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="********" required>
-                </div>
-                <button type="submit" class="btn btn-primary w-100">Acceder</button>
-            </form>
+    <style>
+         .form-control::placeholder {
+            color: #6c757d !important;
+        }
+    </style>
 
-            <!-- Enlace para registro -->
-            <div class="mt-3 text-center">
-                <p class="text-light">¿No tienes cuenta? <a href="{{ route('register') }}" class="text-decoration-none text-primary">Regístrate aquí</a></p>
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card shadow-md p-4 rounded-md border border-secondary border-opacity-25" style="width: 350px; background:rgb(59, 59, 63); color: white;">
+        <div class="text-center mb-4">
+            <h2 class="text-light">Iniciar Sesión</h2>
+        </div>
+        <form id="loginForm" onsubmit="event.preventDefault(); iniciarSesion();">
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control rounded-sm bg-light text-dark" id="email" name="email" placeholder="usuario@ejemplo.com" required>
+                <label for="email" class="form-label text-light">Correo Electrónico</label>
             </div>
+            <div class="form-floating mb-3">
+                <input type="password" class="form-control rounded-sm bg-light text-dark" id="password" name="password" placeholder="********" required>
+                <label for="password" class="form-label text-light">Contraseña</label>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 rounded-pill">Acceder</button>
+        </form>
+
+        <div class="mt-3 text-center">
+            <p class="text-light">¿No tienes cuenta? <a href="{{ route('register') }}" class="text-decoration-none text-info">Regístrate aquí</a></p>
         </div>
     </div>
+</div>
 
     <script>
         function iniciarSesion() {

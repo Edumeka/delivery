@@ -4,11 +4,11 @@
             <div class="col-md-6">
 
             
-        <div class="card shadow-lg p-4 rounded" style="width: 500px; background: #2C2F33; color: white;">
+        <div class="card shadow-lg p-4 rounded bg-secondary" style="width: 500px; background:rgb(95, 102, 112); color: white;">
             <div class="text-center">
                 <h2 class="mb-3">Crear Cuenta</h2>
             </div>
-            <form id="registerForm">
+            <form id="registerForm" class="form-floating">
                 <div class='row'>
                     <div class="col-md-6">
                         <label for="nombre" class="form-label">Nombre</label>

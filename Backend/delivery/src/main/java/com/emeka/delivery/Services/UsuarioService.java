@@ -12,17 +12,20 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.emeka.delivery.DTO.TrabajoRealizadoDTO;
 import com.emeka.delivery.DTO.UsuarioDTO;
 import com.emeka.delivery.Repositories.DireccionRepository;
 import com.emeka.delivery.Repositories.EstadoRepository;
 import com.emeka.delivery.Repositories.PedidoRepository;
 import com.emeka.delivery.Repositories.RolRepository;
+import com.emeka.delivery.Repositories.TrabajoRealizadoRepository;
 import com.emeka.delivery.Repositories.UsuarioRepository;
 import com.emeka.delivery.Repositories.VehiculoRepository;
 import com.emeka.delivery.models.Direccion;
 import com.emeka.delivery.models.Estado;
 import com.emeka.delivery.models.Pedido;
 import com.emeka.delivery.models.Rol;
+import com.emeka.delivery.models.TrabajoRealizado;
 import com.emeka.delivery.models.Usuario;
 import com.emeka.delivery.models.Vehiculo;
 
@@ -44,7 +47,11 @@ public class UsuarioService {
         @Autowired
         private DireccionRepository direccionRepository;
         @Autowired
+        private TrabajoRealizadoRepository trabajoRealizadoRepository;
+        @Autowired
         private ModelMapper modelMapper;
+
+
 
         public String crearRepartidor(String correo) {
                 List<Usuario> usuariosDelSistema = usuarioRepository.findAll();
@@ -253,5 +260,30 @@ public class UsuarioService {
                 usuarioRepository.save(usuarioSeleccionado);
 
                 return "Usuario editado con éxito";
+        }
+
+        public List<UsuarioDTO> obtenerRepartidores() {
+                List<Usuario> usuarios = usuarioRepository.findAll();
+                List<UsuarioDTO> repartidoresDTO = usuarios.stream()
+                        .filter(usuario -> usuario.getRol().getRol().equalsIgnoreCase("REPARTIDOR"))
+                        .map(usuario -> modelMapper.map(usuario, UsuarioDTO.class))
+                        .collect(Collectors.toList());
+                return repartidoresDTO;
+        }
+        
+        public List<TrabajoRealizadoDTO> historialRepartidor(int idUsuario) {
+                Usuario repartidorSeleccionado = usuarioRepository.findById(idUsuario)
+                                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+                                                "Repartidor no encontrado"));
+
+                // Obtener todos los trabajos realizados por el repartidor
+                List<TrabajoRealizado> trabajosRealizados = trabajoRealizadoRepository.findByRepartidor(repartidorSeleccionado);
+
+                // Convertir la lista de trabajos realizados a DTOs
+                List<TrabajoRealizadoDTO> trabajosRealizadosDTO = trabajosRealizados.stream()
+                                .map(trabajo -> modelMapper.map(trabajo, TrabajoRealizadoDTO.class))
+                                .collect(Collectors.toList());
+
+                return trabajosRealizadosDTO;
         }
 }

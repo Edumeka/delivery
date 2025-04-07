@@ -5,10 +5,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.emeka.delivery.DTO.DireccionDTO;
+import com.emeka.delivery.DTO.TrabajoRealizadoDTO;
 import com.emeka.delivery.DTO.UsuarioDTO;
 import com.emeka.delivery.Security.JwtGenerator;
 import com.emeka.delivery.Services.DireccionService;
 import com.emeka.delivery.Services.UsuarioService;
+import com.emeka.delivery.models.TrabajoRealizado;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -26,6 +28,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @RestController
@@ -254,6 +258,18 @@ public class ClienteController {
     public String editarUsuario(@RequestBody UsuarioDTO usuarioDTO) {
         return usuarioService.editarUsuario(usuarioDTO);
     }
+    
+
+    @GetMapping("/obtenerRepartidores")
+    public List<UsuarioDTO> obtenerRepartidores() {
+        return usuarioService.obtenerRepartidores();
+    }
+
+    @GetMapping("/buscarHistorialRepartidor/{idUsuario}")
+    public List<TrabajoRealizadoDTO> historialRepartidor(@PathVariable int idUsuario) {
+        return usuarioService.historialRepartidor(idUsuario);
+    }
+    
     
     
 }

@@ -129,7 +129,9 @@ public class SecurityConfig {
             "/v3/api-docs.yaml",
             "/swagger-ui/index.html",
             "/swagger-ui",
-            "/delivery/swagger-ui/index.html"
+            "/delivery/swagger-ui/index.html",
+            "/delivery/v1/clientes/obtenerRepartidores",
+            "/delivery/v1/clientes/buscarHistorialRepartidor/*"                  
     };
 
     @Bean

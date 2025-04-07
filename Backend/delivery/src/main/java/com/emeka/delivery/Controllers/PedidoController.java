@@ -15,6 +15,9 @@ import com.emeka.delivery.DTO.UsuarioDTO;
 import com.emeka.delivery.Security.JwtGenerator;
 import com.emeka.delivery.Services.PedidoService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,12 +28,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RestController
 @RequestMapping("/delivery/v1/pedidos")
 @CrossOrigin(origins = "http://localhost:8000")
+@Tag(name = "Pedidos", description = "Controlador para gestionar pedidos")
 public class PedidoController {
     @Autowired
     private JwtGenerator jwtGenerator;
     @Autowired
     private PedidoService pedidoService;
 
+    @Operation(summary = "Guardar un nuevo pedido", description = "Este endpoint permite guardar un nuevo pedido en el sistema.")
     @PostMapping("/guardarPedido")
     public ResponseEntity<String> guardarPedido(@RequestHeader("Authorization") String token) {
         try {
@@ -61,6 +66,7 @@ public class PedidoController {
         }
     }
 
+    @Operation(summary = "Buscar repartidor disponible", description = "Este endpoint permite buscar un repartidor disponible para un pedido.")
     @GetMapping("/buscarRepartidor")
     public ResponseEntity<UsuarioDTO> buscarRepartidor(@RequestHeader("Authorization") String token) {
     
@@ -91,6 +97,8 @@ public class PedidoController {
   
     }
 
+
+    @Operation(summary = "Actualizar estado del pedido", description = "Este endpoint permite actualizar el estado de un pedido específico.")
     @PostMapping("/actualizarEstadoDelPedido")
     public ResponseEntity<String> actualizarEstadoDelPedido(@RequestHeader("Authorization") String token) {
         try {
@@ -117,6 +125,7 @@ public class PedidoController {
         }
     }
     
+    @Operation(summary = "Obtener lista de pedidos", description = "Este endpoint devuelve la lista completa de pedidos registrados en el sistema.")
     @GetMapping("/listaDePedidos")
     public List<PedidoDTO> obtenerPedidos() {
         return pedidoService.obtenerPedidos();

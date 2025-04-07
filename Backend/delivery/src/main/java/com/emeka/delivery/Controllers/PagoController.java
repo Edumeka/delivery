@@ -14,8 +14,12 @@ import com.emeka.delivery.DTO.PagoRespuestaDTO;
 import com.emeka.delivery.Security.JwtGenerator;
 import com.emeka.delivery.Services.PagoService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
 @RequestMapping("/delivery/v1/pagos")
+@Tag(name = "Pagos", description = "Operaciones relacionadas con el manejo de pagos en el sistema.")
 public class PagoController {
         @Autowired
     private JwtGenerator jwtGenerator;
@@ -23,6 +27,7 @@ public class PagoController {
     @Autowired
     private PagoService pagoService;
     
+    @Operation(summary = "Realiza un pago", description = "Este endpoint permite realizar un pago utilizando la información proporcionada en el cuerpo de la solicitud.")
     @PostMapping("/pagar")
     public ResponseEntity<String> guardarPago(@RequestHeader("Authorization") String token,@RequestBody PagoRespuestaDTO pagoDTO) {
         try {

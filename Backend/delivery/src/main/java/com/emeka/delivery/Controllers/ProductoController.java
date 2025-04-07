@@ -16,6 +16,10 @@ import com.emeka.delivery.DTO.ProductoMasVendidoDTO;
 import com.emeka.delivery.Security.JwtGenerator;
 import com.emeka.delivery.Services.ProductoMasVendidoService;
 import com.emeka.delivery.Services.ProductoService;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -25,6 +29,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 @CrossOrigin(origins = {"http://localhost:8000", "https://localhost:8000", "http://127.0.0.1:8000/"})
 @RestController
 @RequestMapping("/delivery/v1/productos")
+@Tag(name = "Productos", description = "Controlador para gestionar productos en el sistema.")
 public class ProductoController {
      @Autowired
      private ProductoService productoService;
@@ -34,6 +39,7 @@ public class ProductoController {
       @Autowired
     private JwtGenerator jwtGenerator;
     
+    @Operation(summary = "Obtener productos de una empresa", description = "Obtiene una lista de productos asociados a una empresa específica usando su ID.")
      @GetMapping("/{idEmpresa}")     
       public ResponseEntity<List<ProductoDTO>> productosDeLaEmpresa(@RequestHeader("Authorization") String token, @PathVariable int idEmpresa) {
     
@@ -66,11 +72,13 @@ public class ProductoController {
 
     }
 
+    @Operation(summary = "Obtener empresa asociada a un producto", description = "Obtiene la información de la empresa asociada a un producto específico usando su ID.")
         @GetMapping("/obtenerEmpresaPorProducto/{idProducto}")
     public EmpresaDTO obtenerEmpresaPorIdProducto(@PathVariable int idProducto) {
         return productoService.obtenerEmpresaPorIdProducto(idProducto);
     }
     
+    @Operation(summary = "Obtener los productos más vendidos", description = "Devuelve una lista de los productos más vendidos en la tienda.")
     @GetMapping("/productosMasVendidos")
     public List<ProductoMasVendidoDTO> productoMasVendidos() {
         return productoMasVendidoService.productoMasVendidos();

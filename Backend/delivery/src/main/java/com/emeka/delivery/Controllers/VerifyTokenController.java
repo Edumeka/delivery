@@ -8,9 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.emeka.delivery.models.Usuario;
+
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import com.emeka.delivery.Repositories.UsuarioRepository;
 @CrossOrigin(origins = {"http://localhost:8000", "https://localhost:8000", "http://127.0.0.1:8000/"})
 @RestController
+@Tag(name = "VerifyToken", description = "Controlador para verificar la validez del token JWT.")
 public class VerifyTokenController {
 
     private final UsuarioRepository usuarioRepository;

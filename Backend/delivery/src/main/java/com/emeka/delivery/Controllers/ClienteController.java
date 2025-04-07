@@ -4,12 +4,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.emeka.delivery.DTO.CarritoDTO;
 import com.emeka.delivery.DTO.DireccionDTO;
 import com.emeka.delivery.DTO.UsuarioDTO;
 import com.emeka.delivery.Security.JwtGenerator;
 import com.emeka.delivery.Services.DireccionService;
 import com.emeka.delivery.Services.UsuarioService;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 import java.util.List;
 
@@ -23,7 +26,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @RestController
@@ -33,6 +35,7 @@ import org.springframework.web.bind.annotation.RequestParam;
         "http://localhost:8080",
         "http://127.0.0.1:8000"
 })
+@Tag(name = "Cliente", description = "Controlador para gestionar la información de los clientes")
 
 public class ClienteController {
     @Autowired
@@ -41,7 +44,16 @@ public class ClienteController {
     private DireccionService direccionService;
     @Autowired
     private JwtGenerator jwtGenerator;
-
+   @Operation(
+    summary = "Crear una nueva dirección para un cliente",
+    description = "Este endpoint permite crear una nueva dirección asociada a un cliente, proporcionando la información de la dirección en formato JSON.",
+    responses = {
+        @ApiResponse(responseCode = "200", description = "Dirección creada correctamente"),
+        @ApiResponse(responseCode = "400", description = "Solicitud incorrecta o datos inválidos proporcionados"),
+        @ApiResponse(responseCode = "401", description = "No autorizado. Se requiere un token válido en el encabezado de autorización"),
+        @ApiResponse(responseCode = "500", description = "Error interno del servidor")
+    }
+)
     @PostMapping("/crearDireccionCliente")
     public ResponseEntity<String> crearDireccionCliente(@RequestHeader("Authorization") String token,
             @RequestBody DireccionDTO direccionDTO) {
@@ -77,6 +89,16 @@ public class ClienteController {
         }
     }
 
+    @Operation(
+    summary = "Obtener todas las direcciones de un cliente",
+    description = "Este endpoint permite obtener todas las direcciones asociadas a un cliente utilizando su token de autorización.",
+    responses = {
+        @ApiResponse(responseCode = "200", description = "Direcciones obtenidas correctamente"),
+        @ApiResponse(responseCode = "401", description = "No autorizado. Se requiere un token válido en el encabezado de autorización"),
+        @ApiResponse(responseCode = "404", description = "No se encontraron direcciones para el cliente"),
+        @ApiResponse(responseCode = "500", description = "Error interno del servidor")
+    }
+)
     @GetMapping("/obtenerDireccionCliente")
     /**
      * Obtiene todas las direcciones de un cliente
@@ -109,6 +131,16 @@ public class ClienteController {
 
     }
 
+    @Operation(
+    summary = "Crear un nuevo repartidor",
+    description = "Este endpoint permite crear un nuevo repartidor utilizando un token de autorización. El repartidor es creado y registrado en el sistema.",
+    responses = {
+        @ApiResponse(responseCode = "200", description = "Repartidor creado correctamente"),
+        @ApiResponse(responseCode = "401", description = "No autorizado. Se requiere un token válido en el encabezado de autorización"),
+        @ApiResponse(responseCode = "400", description = "Solicitud incorrecta. Es posible que falten parámetros necesarios"),
+        @ApiResponse(responseCode = "500", description = "Error interno del servidor")
+    }
+)
     @GetMapping("/crearRepartidor")
     public ResponseEntity<String> crearRepartidor(@RequestHeader("Authorization") String token) {
 
@@ -127,6 +159,15 @@ public class ClienteController {
 
     }
 
+    @Operation(
+    summary = "Obtener el tiempo estimado de espera",
+    description = "Este endpoint permite obtener el tiempo estimado de espera para la entrega de un pedido utilizando un token de autorización.",
+    responses = {
+        @ApiResponse(responseCode = "200", description = "Tiempo de espera obtenido correctamente"),
+        @ApiResponse(responseCode = "401", description = "No autorizado. Se requiere un token válido en el encabezado de autorización"),
+        @ApiResponse(responseCode = "500", description = "Error interno del servidor")
+    }
+)
     @GetMapping("/tiempoDeEspera")
     public ResponseEntity<String> tiempoDeEspera(@RequestHeader("Authorization") String token) {
 
@@ -145,6 +186,16 @@ public class ClienteController {
 
     }
 
+    @Operation(
+    summary = "Verificar si el usuario tiene privilegios de administrador",
+    description = "Este endpoint verifica si el usuario autenticado tiene privilegios de administrador utilizando el token de autorización proporcionado.",
+    responses = {
+        @ApiResponse(responseCode = "200", description = "El usuario tiene privilegios de administrador"),
+        @ApiResponse(responseCode = "401", description = "No autorizado. Se requiere un token válido en el encabezado de autorización"),
+        @ApiResponse(responseCode = "403", description = "El usuario no tiene privilegios de administrador"),
+        @ApiResponse(responseCode = "500", description = "Error interno del servidor")
+    }
+)
     @GetMapping("/esAdmin")
     public ResponseEntity<String> esAdmin(@RequestHeader("Authorization") String token) {
 
@@ -162,17 +213,43 @@ public class ClienteController {
         return ResponseEntity.ok(usuarioService.esAdmin(correo));
 
     }
-
+    @Operation(
+    summary = "Obtener la lista de todos los usuarios",
+    description = "Este endpoint permite obtener la lista completa de usuarios registrados en el sistema.",
+    responses = {
+        @ApiResponse(responseCode = "200", description = "Lista de usuarios obtenida exitosamente"),
+        @ApiResponse(responseCode = "500", description = "Error interno del servidor")
+    }
+)
     @GetMapping("/obtenerUsuarios")
     public List<UsuarioDTO> obtenerUsuarios() {
         return usuarioService.obtenerUsuarios();
     }
 
+    @Operation(
+    summary = "Eliminar un usuario por su ID",
+    description = "Este endpoint permite eliminar un usuario específico del sistema usando su identificador único (ID).",
+    responses = {
+        @ApiResponse(responseCode = "200", description = "Usuario eliminado exitosamente"),
+        @ApiResponse(responseCode = "404", description = "Usuario no encontrado con el ID proporcionado"),
+        @ApiResponse(responseCode = "500", description = "Error interno del servidor")
+    }
+)
     @DeleteMapping("/eliminarUsuario/{idUsuario}")
     public String eliminarUsuario(@PathVariable int idUsuario) {
         return usuarioService.eliminarUsuario(idUsuario);
     }
     
+    @Operation(
+    summary = "Editar un usuario existente",
+    description = "Este endpoint permite actualizar la información de un usuario en el sistema usando los datos proporcionados en el cuerpo de la solicitud.",
+    responses = {
+        @ApiResponse(responseCode = "200", description = "Usuario actualizado exitosamente"),
+        @ApiResponse(responseCode = "400", description = "Solicitud incorrecta, los datos del usuario no son válidos"),
+        @ApiResponse(responseCode = "404", description = "Usuario no encontrado con el ID proporcionado"),
+        @ApiResponse(responseCode = "500", description = "Error interno del servidor")
+    }
+)
     @PostMapping("/editarUsuario")
     public String editarUsuario(@RequestBody UsuarioDTO usuarioDTO) {
         return usuarioService.editarUsuario(usuarioDTO);

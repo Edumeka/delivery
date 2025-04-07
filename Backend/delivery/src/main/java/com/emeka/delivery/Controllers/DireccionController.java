@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.emeka.delivery.DTO.LugarDTO;
 import com.emeka.delivery.Services.DireccionService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -22,12 +25,13 @@ import org.springframework.web.bind.annotation.RequestHeader;
 @CrossOrigin(origins = {"http://localhost:8000", "https://localhost:8000", "http://127.0.0.1:8000/"})
 @RestController
 @RequestMapping("/delivery/v1/direcciones")
+@Tag(name = "Direcciones", description = "Endpoints para gestionar las direcciones de los clientes.")
 public class DireccionController {
     
     @Autowired
     private DireccionService direccionService;
 
-
+@Operation(summary = "Obtiene la lista de países", description = "Este endpoint permite obtener la lista de países disponibles.")
     @GetMapping("/paises")
     public ResponseEntity<List<LugarDTO>> obtenerPaises(@RequestHeader("Authorization") String token) {
         try {
@@ -47,6 +51,7 @@ public class DireccionController {
         }
     }
 
+    @Operation(summary = "Obtiene la lista de departamentos de un lugar superior", description = "Este endpoint permite obtener los departamentos correspondientes a un lugar superior, identificado por su ID.")
     @GetMapping("/departamentos/{idLugarSuperior}")
     public ResponseEntity<List<LugarDTO>> obtenerDepartamentos(@RequestHeader("Authorization") String token,@PathVariable  int idLugarSuperior) {
         
@@ -67,7 +72,7 @@ public class DireccionController {
         }
     }
 
-    
+    @Operation(summary = "Obtiene la lista de municipios de un lugar superior", description = "Este endpoint permite obtener los municipios correspondientes a un lugar superior, identificado por su ID.")
     @GetMapping("/municipios/{idLugarSuperior}")
     public ResponseEntity<List<LugarDTO>> obtenerMunicipios(@RequestHeader("Authorization") String token,@PathVariable int idLugarSuperior) {
         

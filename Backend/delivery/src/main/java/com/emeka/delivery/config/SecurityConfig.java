@@ -53,6 +53,17 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
                         authorization -> authorization
+                        .requestMatchers("/v3/api-docs").permitAll() // Permitir acceso a los docs
+                        .requestMatchers("/swagger-ui/**").permitAll() // Permitir acceso a la UI de Swagger
+                        .requestMatchers("/swagger-ui.html").permitAll() // Permitir acceso a la página de Swagger UI
+                        .requestMatchers("/swagger-ui/index.html").permitAll() // Permitir acceso a la página principal de Swagger UI
+                        .requestMatchers("/v3/api-docs/swagger-config").permitAll() // Permitir acceso al Swagger config
+                        .requestMatchers("/swagger-resources/**").permitAll() // Permitir acceso a los recursos de Swagger
+                        .requestMatchers("/webjars/**").permitAll() // Permitir acceso a los webjars (archivos estáticos de Swagger)
+                        .requestMatchers("/v3/api-docs.yaml").permitAll() // Permitir acceso al archivo YAML de Swagger
+                        .requestMatchers("/swagger-ui").permitAll() // Permitir acceso a la ruta Swagger UI
+                        .requestMatchers("/v3/api-docs/delivery").permitAll()
+                        
                         .requestMatchers("/delivery/v1/auth/register").permitAll()
                         .requestMatchers("/delivery/v1/auth/login").permitAll()
                         .requestMatchers("/delivery/v1/auth/logued").permitAll()
@@ -93,6 +104,8 @@ public class SecurityConfig {
                         .requestMatchers("/delivery/v1/empresas/obtenerEmpresas").permitAll()
                         .requestMatchers("/delivery/v1/empresas/editarEmpresa").permitAll()
                         .requestMatchers("/delivery/v1/productos/productosMasVendidos").permitAll()
+                        .requestMatchers(AUTH_WHITELIST).permitAll() // Permitir acceso a la UI de Swagger
+
                         
                                 .anyRequest().authenticated()
                 )
@@ -108,6 +121,17 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder(BCryptPasswordEncoder.BCryptVersion.$2Y);
     }
 
+    private static final String[] AUTH_WHITELIST = {
+            "/v3/api-docs/**",
+            "/swagger-ui/**",
+            "/swagger-resources/**",
+            "/webjars/**",
+            "/v3/api-docs.yaml",
+            "/swagger-ui/index.html",
+            "/swagger-ui",
+            "/delivery/swagger-ui/index.html"
+    };
+
     @Bean
 public WebMvcConfigurer corsConfigurer() {
     return new WebMvcConfigurer() {
@@ -120,4 +144,5 @@ public WebMvcConfigurer corsConfigurer() {
         }
     };
 }
+
 }

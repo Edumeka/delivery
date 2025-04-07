@@ -16,6 +16,12 @@ import com.emeka.delivery.DTO.CarritoRequest;
 import com.emeka.delivery.Security.JwtGenerator;
 import com.emeka.delivery.Services.CarritoService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -23,13 +29,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 @RestController
 @RequestMapping("/delivery/v1/carritos")
-@CrossOrigin(origins = "http://localhost:8000")
+@CrossOrigin(origins = "http://localhost:8080/")
+@Tag(name = "Carrito", description = "Operaciones relacionadas con el carrito de compras.")
 public class CarritoController {
     @Autowired
     private CarritoService carritoService;
  @Autowired
     private JwtGenerator jwtGenerator;
-    
+   
+    @Operation(
+        summary = "Guardar los productos en el carrito",
+        description = "Este endpoint guarda el carrito de compras con los productos seleccionados por el usuario.",
+        responses = {
+            @ApiResponse(responseCode = "200", description = "Carrito guardado correctamente"),
+            @ApiResponse(responseCode = "400", description = "Solicitud incorrecta"),
+            @ApiResponse(responseCode = "500", description = "Error interno del servidor")
+        }
+    )
    @PostMapping("/guardarCarrito")
 public ResponseEntity<String> guardarCarrito(
         @RequestHeader("Authorization") String token,
@@ -55,6 +71,15 @@ public ResponseEntity<String> guardarCarrito(
     }
 }
 
+@Operation(
+    summary = "Ver los productos en el carrito de compras",
+    description = "Este endpoint permite al usuario ver los productos que tiene en su carrito de compras utilizando el token de autorización.",
+    responses = {
+        @ApiResponse(responseCode = "200", description = "Carrito de compras recuperado correctamente", content = @Content(mediaType = "application/json", schema = @Schema(implementation = CarritoDTO.class))),
+        @ApiResponse(responseCode = "401", description = "No autorizado, token inválido o expirado"),
+        @ApiResponse(responseCode = "500", description = "Error interno del servidor")
+    }
+)
 @GetMapping("/verCarrito")
 public ResponseEntity<List<CarritoDTO>> verCarrito( @RequestHeader("Authorization") String token) {
     try {
@@ -83,6 +108,15 @@ System.out.println("Token: " + token);
     }
 }
 
+@Operation(
+    summary = "Eliminar un carrito de compras",
+    description = "Este endpoint permite eliminar un carrito de compras especificado por su ID.",
+    responses = {
+        @ApiResponse(responseCode = "200", description = "Carrito de compras eliminado correctamente"),
+        @ApiResponse(responseCode = "404", description = "Carrito de compras no encontrado con el ID proporcionado"),
+        @ApiResponse(responseCode = "500", description = "Error interno del servidor")
+    }
+)
 @DeleteMapping("/eliminarCarrito/{idCarrito}")
 public String eliminarCarrito(@PathVariable int idCarrito) {
     try {

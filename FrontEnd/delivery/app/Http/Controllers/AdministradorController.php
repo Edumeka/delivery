@@ -28,4 +28,7 @@ class AdministradorController extends Controller
     {
         return view('AdminPedidosMasVendidos');
     }
+    public function repartidores(){
+        return view('AdminRepartidores');
+    }
 }

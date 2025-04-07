@@ -33,3 +33,4 @@ Route::get('/admin/usuarios/historial', [AdministradorController::class, 'histor
 Route::get('/admin/ganancias', [AdministradorController::class, 'ganancias'])->name('admin.ganancias');
 Route::get('/admin/empresasMasSolicitadas', [AdministradorController::class, 'empresasMasSolicitadas'])->name('admin.empresasMasSolicitadas');
 Route::get('/admin/empresas', [AdministradorController::class, 'empresas'])->name('admin.empresas');
+Route::get('/admin/repartidores', [AdministradorController::class, 'repartidores'])->name('admin.repartidores');

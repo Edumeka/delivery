@@ -158,10 +158,9 @@ public class UsuarioService {
 
                 // Devolver el mensaje con el tiempo de espera en minutos y segundos
                 return "La Distancia del Cliente a la empresa es de: " + distancia
-                                + "m.\n La velocidad del vehiculo del Repartidor es de: " + vehiculo.getVelocidad()
+                                + "km.\n La velocidad del vehiculo del Repartidor es de: " + vehiculo.getVelocidad()
                                 + "km/h. \nEste es el tiempo de Espera: "
-                                + String.format("%.2f", tiempoEsperaMinutos) + " minutos ("
-                                + String.format("%.0f", tiempoEsperaSegundos) + " segundos)";
+                                + String.format("%.2f", tiempoEsperaMinutos) + " minutos ";
 
         }
 

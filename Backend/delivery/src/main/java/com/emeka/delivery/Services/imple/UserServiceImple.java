@@ -67,6 +67,7 @@ public class UserServiceImple implements UserService {
         user.setContrasenia(passwordEncoder.encode(registerDto.getContrasenia()));
         user.setCorreo(registerDto.getCorreo());
         user.setDni(registerDto.getDni());
+        user.setTelefono(registerDto.getTelefono());
 
         /**Se busca el rol de cliente para dejar al usuario como cliente predeterminado */
         Optional<Rol> optionalRol = rolRepository.findByRol("CLIENTE");

@@ -140,6 +140,11 @@
                         <i class="fas fa-box"></i> Productos Mas Vendidos
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.repartidores') }}">
+                        <i class="fas fa-users"></i> Repartidores
+                    </a>
+                </li>
                 <li class="nav-item" hidden>
                     <a class="nav-link" href="#">
                         <i class="fas fa-chart-line"></i> Reportes

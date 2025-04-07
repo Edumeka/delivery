@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-04-2025 a las 20:19:20
+-- Tiempo de generación: 07-04-2025 a las 06:53:17
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.4.5
 
@@ -36,6 +36,13 @@ CREATE TABLE `carritos` (
   `subtotal` double DEFAULT NULL,
   `fechaCreacion` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `carritos`
+--
+
+INSERT INTO `carritos` (`idCarrito`, `idUsuario`, `idProducto`, `cantidad`, `preciounitario`, `subtotal`, `fechaCreacion`) VALUES
+(10, 11, 3, 1, 190, 190, '2025-04-06 20:22:21');
 
 -- --------------------------------------------------------
 
@@ -102,7 +109,8 @@ INSERT INTO `direcciones` (`idDireccion`, `direccion`, `descripcion`, `idLugar`,
 (19, 'Avenida México, Col. Miraflor', 'Sucursal Five Guys', 24, NULL, 19, 0x0000000001010000005b423ee8d9cc55c01c7c613255f02b40),
 (20, 'Avenida 1 de Mayo, Col. Los Pinos', 'Sucursal Jersey Mike\'s', 24, NULL, 20, 0x000000000101000000151dc9e53fcc55c0226c787aa5ec2b40),
 (31, 'Honduras Medical Center', 'Trabajo', 24, 2, NULL, 0x0000000001010000009f2876592dcc55c0064fd7c9cf302c40),
-(32, 'Calpules, Tegucigalpa', 'Mi Casa', 24, 2, NULL, 0x0000000001010000001952ea37b8cc55c096253acb2c1a2c40);
+(32, 'Calpules, Tegucigalpa', 'Mi Casa', 24, 2, NULL, 0x0000000001010000001952ea37b8cc55c096253acb2c1a2c40),
+(33, 'Calpules', 'Casa', 24, 11, NULL, 0x0000000001010000001952ea37b8cc55c096253acb2c1a2c40);
 
 -- --------------------------------------------------------
 
@@ -126,7 +134,7 @@ CREATE TABLE `empresas` (
 INSERT INTO `empresas` (`idEmpresa`, `idUsuarioAdministrador`, `empresa`, `rtn`, `costoEnvio`, `imagen`) VALUES
 (1, 1, 'Little Caesars', '0201-0201-0201', 50, NULL),
 (2, 1, 'Pizza Hut', '0101-0101-0101', 60, NULL),
-(3, 1, 'KFC', '0301-0301-0301', 70, NULL),
+(3, 8, 'KFC', '0301-0301-0301', 25, NULL),
 (4, 1, 'McDonald\'s', '0401-0401-0401', 55, NULL),
 (5, 1, 'Subway', '0501-0501-0501', 45, NULL),
 (6, 1, 'Domino\'s Pizza', '0601-0601-0601', 50, NULL),
@@ -267,7 +275,9 @@ INSERT INTO `pagos` (`idPago`, `idMetodoPago`, `factura`, `totalFactura`, `fecha
 (2, 1, 'FAC-1731', 572.48, '2025-04-06 12:04:55.000000'),
 (3, 1, 'FAC-5152', 462.48, '2025-04-06 12:06:12.000000'),
 (4, 1, 'FAC-8723', 397.29, '2025-04-06 12:08:54.000000'),
-(5, 2, 'FAC-3501', 291.36, '2025-04-06 12:09:28.000000');
+(5, 2, 'FAC-3501', 291.36, '2025-04-06 12:09:28.000000'),
+(6, 1, 'FAC-7624', 181.55, '2025-04-06 20:02:14.000000'),
+(7, 2, 'FAC-6857', 258.43, '2025-04-06 20:18:59.000000');
 
 -- --------------------------------------------------------
 
@@ -293,11 +303,13 @@ CREATE TABLE `pedidos` (
 --
 
 INSERT INTO `pedidos` (`idPedido`, `idComprador`, `idEmpresa`, `idRepartidor`, `idEstado`, `idPago`, `fechaPedido`, `fechaFinal`, `costoEnvioTotal`, `montoTotalDeProductos`) VALUES
-(1, 2, 1, 3, 7, 1, '2025-04-06 12:00:51', NULL, 121.09, 50),
+(1, 2, 1, 3, 5, 1, '2025-04-06 12:00:51', NULL, 121.09, 50),
 (2, 2, 2, 9, 7, 2, '2025-04-06 12:04:55', NULL, 132.48000000000002, 440),
 (3, 2, 2, 4, 7, 3, '2025-04-06 12:06:12', NULL, 132.48000000000002, 330),
-(4, 2, 17, 5, 7, 4, '2025-04-06 12:08:54', NULL, 137.29000000000002, 260),
-(5, 2, 12, 5, 7, 5, '2025-04-06 12:09:28', NULL, 131.36, 160);
+(4, 2, 17, 5, 5, 4, '2025-04-06 12:08:54', NULL, 137.29000000000002, 260),
+(5, 2, 12, 5, 7, 5, '2025-04-06 12:09:28', NULL, 131.36, 160),
+(6, 2, 6, 5, 5, 6, '2025-04-06 20:02:14', '2025-04-06 20:02:22', 121.55, 60),
+(7, 11, 13, 5, 7, 7, '2025-04-06 20:18:59', '2025-04-06 20:19:34', 98.43, 160);
 
 -- --------------------------------------------------------
 
@@ -324,7 +336,10 @@ INSERT INTO `pedidosproductos` (`idPedido`, `idProducto`, `cantidad`, `preciouni
 (2, 4, 4, 110, 440, NULL, NULL),
 (3, 4, 3, 110, 330, NULL, NULL),
 (4, 33, 2, 130, 260, NULL, NULL),
-(5, 24, 1, 160, 160, NULL, NULL);
+(5, 24, 1, 160, 160, NULL, NULL),
+(6, 12, 1, 60, 60, NULL, NULL),
+(7, 25, 1, 120, 120, NULL, NULL),
+(7, 26, 1, 40, 40, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -430,7 +445,10 @@ INSERT INTO `productosmasvendidos` (`idProductoMasVendido`, `idProducto`, `canti
 (1, 2, 1, '2025-04-06 12:00:51', 50),
 (2, 4, 7, '2025-04-06 12:06:12', 770),
 (3, 33, 2, '2025-04-06 12:08:54', 260),
-(4, 24, 1, '2025-04-06 12:09:28', 160);
+(4, 24, 1, '2025-04-06 12:09:28', 160),
+(5, 12, 1, '2025-04-06 20:02:14', 60),
+(6, 25, 1, '2025-04-06 20:18:59', 120),
+(7, 26, 1, '2025-04-06 20:18:59', 40);
 
 -- --------------------------------------------------------
 
@@ -476,7 +494,9 @@ INSERT INTO `trabajosrealizados` (`idTrabajo`, `idPedido`, `idRepartidor`, `kmRe
 (2, 2, 9, 14.495023057499868, 72.48, '2025-04-06 12:04:55'),
 (3, 3, 4, 14.495023057499868, 72.48, '2025-04-06 12:06:12'),
 (4, 4, 5, 14.458225482649352, 72.29, '2025-04-06 12:08:54'),
-(5, 5, 5, 14.272390120367703, 71.36, '2025-04-06 12:09:28');
+(5, 5, 5, 14.272390120367703, 71.36, '2025-04-06 12:09:28'),
+(6, 6, 5, 14.310504517719796, 71.55, '2025-04-06 20:02:14'),
+(7, 7, 5, 8.686883638065083, 43.43, '2025-04-06 20:18:59');
 
 -- --------------------------------------------------------
 
@@ -510,7 +530,8 @@ INSERT INTO `usuarios` (`idUsuario`, `idEstado`, `nombre`, `apellido`, `correo`,
 (7, 2, 'Laura', 'Martínez', 'laura.martinez@example.com', 'hashed_password', '45678901', '4567890123', 2),
 (8, 2, 'David', 'Rodríguez', 'david.rodriguez@example.com', 'hashed_password', '56789012', '5678901234', 2),
 (9, 3, 'Eduardo Gabriel', 'Pérez', 'repartidor_1743962698164@gmail.com', 'repartidor_1743962698164', NULL, '+504-1743962698164', 2),
-(10, 1, 'Eduardo Gabriel', 'Martinez Zelaya', 'amartinez@hmc.hn', '$2y$10$C7S8Ssykj9arZR59OGAxgey6DlGgredV7vEngTZc.f902LvPqA1lG', '0801', NULL, 3);
+(10, 1, 'Eduardo Gabriel', 'Martinez Zelaya', 'amartinez@hmc.hn', '$2y$10$C7S8Ssykj9arZR59OGAxgey6DlGgredV7vEngTZc.f902LvPqA1lG', '0801', NULL, 3),
+(11, 1, 'David', 'Parada', 'dparada@hotmail.com', '$2y$10$LQRzSGKXlDVHT.fFXFqki.G8waBVEkO8I63rx9ZI1j.evbTFLote6', '54646', '546494', 1);
 
 -- --------------------------------------------------------
 
@@ -676,7 +697,7 @@ ALTER TABLE `vehiculos`
 -- AUTO_INCREMENT de la tabla `carritos`
 --
 ALTER TABLE `carritos`
-  MODIFY `idCarrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idCarrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias`
@@ -688,7 +709,7 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `direcciones`
 --
 ALTER TABLE `direcciones`
-  MODIFY `idDireccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `idDireccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT de la tabla `empresas`
@@ -718,13 +739,13 @@ ALTER TABLE `metodopagos`
 -- AUTO_INCREMENT de la tabla `pagos`
 --
 ALTER TABLE `pagos`
-  MODIFY `idPago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idPago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
@@ -736,7 +757,7 @@ ALTER TABLE `productos`
 -- AUTO_INCREMENT de la tabla `productosmasvendidos`
 --
 ALTER TABLE `productosmasvendidos`
-  MODIFY `idProductoMasVendido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idProductoMasVendido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -748,13 +769,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `trabajosrealizados`
 --
 ALTER TABLE `trabajosrealizados`
-  MODIFY `idTrabajo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idTrabajo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `vehiculos`

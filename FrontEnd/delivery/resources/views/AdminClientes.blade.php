@@ -1,5 +1,5 @@
 <x-plantilla-admin>
-    <h2>Lista de Repartidores</h2>
+    <h2>Lista de Clientes</h2>
     <table class="table table-striped table-bordered">
         <thead class="table-dark">
             <tr>
@@ -21,35 +21,20 @@
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content shadow-lg rounded-4 border-0">
                 <div class="modal-header bg-primary text-white rounded-top-4">
-                    <h5 class="modal-title" id="historialModalLabel">Historial de Trabajo del Repartidor</h5>
+                    <h5 class="modal-title" id="historialModalLabel">Historial de Compra del cliente</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                         aria-label="Cerrar"></button>
                 </div>
 
                 <div class="modal-body">
-                    <div class="mb-3">
-                        <h6 class="fw-bold text-secondary">Resumen:</h6>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="alert alert-info p-2" role="alert">
-                                    <strong>Kilómetros recorridos:</strong> <span id="lblKmRecorridos">0 km</span>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="alert alert-success p-2" role="alert">
-                                    <strong>Ganancia total:</strong> <span id="lblGananciaTotal">L 0.00</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                  
                     <table class="table table-hover table-bordered align-middle">
                         <thead class="table-dark">
                             <tr>
                                 <th>#</th>
-                                <th>Fecha</th>
-                                <th>Kilómetros Recorridos</th>
-                                <th>Ganancia (Lps)</th>
+                                <th>Producto</th>
+                                <th>Descripcion</th>     
+                                <th>Empresa</th>                               
                             </tr>
                         </thead>
                         <tbody id="tablaHistorial">
@@ -77,7 +62,7 @@
         const token = getCookie("jwt");
 
         $.ajax({
-            url: "http://localhost:8080/delivery/v1/clientes/obtenerRepartidores", // Asegúrate de que la URL coincida con tu endpoint en Spring Boot
+            url: "http://localhost:8080/delivery/v1/clientes/obtenerClientes", // Asegúrate de que la URL coincida con tu endpoint en Spring Boot
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${token}`
@@ -100,10 +85,10 @@
                         <td>${usuario.nombre}</td>
                         <td>${usuario.apellido}</td>
                         <td>${usuario.correo}</td>
-                                  <td>${usuario.telefono}</td>
+                        <td>${usuario.telefono}</td>
                          
                         <td>
-                            <button class="btn btn-info btn-sm" onclick="verHistorialRepartidor(${usuario.idUsuario})">Ver Historial</button>
+                            <button class="btn btn-info btn-sm" onclick="verHistorialCliente(${usuario.idUsuario})">Ver Historial</button>
                         </td>
                     </tr>`;
         });
@@ -111,28 +96,23 @@
         $("#tablaUsuarios").html(html);
     }
 
-    function verHistorialRepartidor(idUsuario) {
-        fetch(`http://localhost:8080/delivery/v1/clientes/buscarHistorialRepartidor/${idUsuario}`)
+    function verHistorialCliente(idUsuario) {
+        fetch(`http://localhost:8080/delivery/v1/clientes/historialCliente/${idUsuario}`)
             .then(res => res.json())
             .then(data => {
                 let html = '';
                 let i = 1;
-                let gananciaTotal = 0;
-                let kmTotal = 0;
-                data.forEach(h => {
-                    gananciaTotal += h.ganancia;
-                    kmTotal += h.kmRecorrido;
+                data.forEach(h => {                    
+                
                     html += `<tr>
                             <td>${i++}</td>
-                            <td>${h.fecha}</td>
+                            <td>${h.producto}</td>
                             
-                            <td>${(h.kmRecorrido).toFixed(2)}</td>
-                            <td>${h.ganancia}</td>
+                            <td>${(h.descripcion)}</td>
+                            <td>${h.empresa.empresa}</td>
                          </tr>`;
                 });
-                $('#lblGananciaTotal').html(gananciaTotal.toFixed(2));
-                $('#lblKmRecorridos').html(kmTotal.toFixed(2));
-
+                
                 document.getElementById('tablaHistorial').innerHTML = html;
                 $('#historialModal').modal('show');
             })

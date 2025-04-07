@@ -1,6 +1,7 @@
 package com.emeka.delivery.Controllers;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -132,5 +133,20 @@ public class PedidoController {
     }
     
 
+    @GetMapping("/hoy")
+    public int pedidosDelDia() {
+        return pedidoService.pedidosDelDia();
+    }
+    
+    
+    @GetMapping("/totalVendido")
+    public double totalVendido() {
+        return pedidoService.totalVendido();
+    }
+
+    @GetMapping("/reporteEstadoPedidos")
+    public Map<String, Integer> obtenerPedidosPorEstado() {
+      return pedidoService.reporteEstadoPedido();
+    }
     
 }

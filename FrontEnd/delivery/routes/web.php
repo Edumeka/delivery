@@ -34,3 +34,4 @@ Route::get('/admin/ganancias', [AdministradorController::class, 'ganancias'])->n
 Route::get('/admin/empresasMasSolicitadas', [AdministradorController::class, 'empresasMasSolicitadas'])->name('admin.empresasMasSolicitadas');
 Route::get('/admin/empresas', [AdministradorController::class, 'empresas'])->name('admin.empresas');
 Route::get('/admin/repartidores', [AdministradorController::class, 'repartidores'])->name('admin.repartidores');
+Route::get('/admin/clientes', [AdministradorController::class, 'clientes'])->name('admin.clientes');

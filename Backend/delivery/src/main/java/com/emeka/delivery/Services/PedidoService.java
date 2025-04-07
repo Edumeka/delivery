@@ -2,6 +2,7 @@ package com.emeka.delivery.Services;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -15,6 +16,7 @@ import com.emeka.delivery.DTO.PedidoDTO;
 import com.emeka.delivery.DTO.UsuarioDTO;
 import com.emeka.delivery.Repositories.CarritoRepository;
 import com.emeka.delivery.Repositories.EstadoRepository;
+import com.emeka.delivery.Repositories.PagoRepository;
 import com.emeka.delivery.Repositories.PedidoProductoRepository;
 import com.emeka.delivery.Repositories.PedidoRepository;
 import com.emeka.delivery.Repositories.ProductoMasVendidoRepository;
@@ -55,6 +57,8 @@ public class PedidoService {
 
           @Autowired
 private ProductoMasVendidoRepository productoMasVendidoRepository;
+@Autowired
+private PagoRepository pagoRepository;
         @Autowired
         private ModelMapper modelMapper;
 
@@ -382,5 +386,39 @@ public String asignarPago(Pago pago, Usuario comprador, double kmRecorridos, dou
 
 
 
+public int pedidosDelDia() {
+        LocalDateTime inicioDelDia = LocalDateTime.now().withHour(0).withMinute(0).withSecond(0).withNano(0);
+        LocalDateTime finDelDia = LocalDateTime.now().withHour(23).withMinute(59).withSecond(59).withNano(999999999);
 
+        return (int) pedidoRepository.findAll().stream()
+                        .filter(pedido -> pedido.getFechaPedido().isAfter(inicioDelDia) && pedido.getFechaPedido().isBefore(finDelDia))
+                        .count();
+}
+
+public double totalVendido() {
+        List<Pago> pagos = pagoRepository.findAll();
+       
+                return pagos.stream()
+                            .mapToDouble(Pago::getTotalFactura)
+                            .sum();           
+            
+        
+}
+public Map<String, Integer> reporteEstadoPedido() {
+        // Buscar los objetos Estado en la base de datos
+        Optional<Estado> estadoFinalizado = estadoRepository.findByEstado("FINALIZADO");
+        Optional<Estado> estadoPendiente = estadoRepository.findByEstado("PENDIENTE");
+        Optional<Estado> estadoEnProceso = estadoRepository.findByEstado("EN PROCESO");
+
+        // Contamos los pedidos por estado
+        int finalizados = pedidoRepository.countByEstado(estadoFinalizado.get());
+        int pendientes = pedidoRepository.countByEstado(estadoPendiente.get());
+        int enProceso = pedidoRepository.countByEstado(estadoEnProceso.get());
+
+        return Map.of(
+                "finalizados", finalizados,
+                "pendientes", pendientes,
+                "enProceso", enProceso
+        );
+    }
 }

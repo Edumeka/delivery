@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.emeka.delivery.DTO.DireccionDTO;
+import com.emeka.delivery.DTO.ProductoDTO;
 import com.emeka.delivery.DTO.TrabajoRealizadoDTO;
 import com.emeka.delivery.DTO.UsuarioDTO;
 import com.emeka.delivery.Security.JwtGenerator;
@@ -270,6 +271,22 @@ public class ClienteController {
         return usuarioService.historialRepartidor(idUsuario);
     }
     
+    @GetMapping("/usuariosActivos")
+    public int obtenerUsuariosActivos() {
+        return usuarioService.usuariosActivos();
+    }
+
+    @GetMapping("/obtenerClientes")
+    public List<UsuarioDTO> obtenerClientes() {
+        return usuarioService.obtenerClientes();
+    }
     
+    
+    
+    
+    @GetMapping("/historialCliente/{idUsuario}")
+    public List<ProductoDTO> historialCliente(@PathVariable int idUsuario) {
+        return usuarioService.historialCliente(idUsuario);
+    }
     
 }
